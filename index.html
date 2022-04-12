@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/6ca788691e.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <!-- Header -->
     <div class="header-container">
         <div class="header">
             <div class="title-wrapper">
@@ -27,6 +28,7 @@
             </div>
         </div>
     </div>
+    <!-- Expense Overview -->
     <div class="expenses-overview-section">
         <div class="expenses-overview-container">
             <div class="expenses-overview-wrapper">
@@ -48,6 +50,7 @@
             </div>
         </div>
     </div>
+    <!-- Transactions -->
     <div class="transactions-container">
         <div class="transactions-label">
             <p class="transactions">Transactions</p>
@@ -56,6 +59,54 @@
             <ul class="transactions-list"><em>Transactions will go here</em></ul>
         </div>
     </div>
+    <!-- Expense Modal -->
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="expense-deposit-btn">
+                <button class="expense-btn active-expense-btn">Expense</button>
+                <button class="deposit-btn inactive-deposit-btn">Deposit</button>
+            </div>
+            <div class="modal-content-expense">
+                <form class="inputs-wrapper">
+                    <label class="inputs-label" for="amount">Amount
+                        <input type="number" id="amount" class="expense-inputs" placeholder="Enter amount">
+                    </label>
+                    <label class="inputs-label" for="merchant">Merchant
+                        <input type="text" id="merchant" class="expense-inputs" placeholder="Enter merchant name">
+                    </label>
+                    <label class="inputs-label" for="category">Category
+                        <input type="number" id="category" class="expense-inputs" placeholder="Choose category">
+                    </label>
+                    <button class="add-expense">Add Expense</button>
+                </form>
+            </div>
+
+            <div class="modal-content-deposit hidden">
+                <form class="inputs-wrapper">
+                    <label class="inputs-label" for="amount">Amount
+                        <input type="number" id="amount" class="expense-inputs" placeholder="Enter amount">
+                    </label>
+                    <label class="inputs-label" for="deposit type">Deposit Type
+                        <select name="" id="" class="expense-input">
+                            <option value="">Choose Deposit Type</option>
+                            <option value="">Cash</option>
+                            <option value="">Check</option>
+                        </select>
+                    </label>
+                    <label class="inputs-label" for="category">Category
+                        <select name="" id="" class="expense-input">
+                            <option value="">Choose Category</option>
+                            <option value="">Paycheck</option>
+                            <option value="">Gift</option>
+                        </select>
+                    </label>
+                    <button class="add-expense">Add Expense</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Deposit Modal -->
+    <!-- Navbar -->
     <nav class="navbar">
         <ul class="navbar-list-wrapper">
             <li><i class="fa-solid fa-house gray-nav-icon"></i></li>
