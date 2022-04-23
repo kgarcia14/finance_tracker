@@ -291,6 +291,10 @@ nav {
   color: #6488e5;
 }
 
+.transactions-page, .statistics-page, .savings-page {
+  margin-top: 50px;
+}
+
 .hidden {
   display: none;
 }

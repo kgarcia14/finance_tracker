@@ -13,7 +13,10 @@
     <div class="header-container">
         <div class="header">
             <div class="title-wrapper">
-                <h4 class="title">Dashboard</h4>
+                <h4 class="title home-title">Dashboard</h4>
+                <h4 class="title transactions-title hidden">Transactions</h4>
+                <h4 class="title statistics-title hidden">Statistics</h4>
+                <h4 class="title savings-title hidden">Savings</h4>
             </div>
             <div class="total-balance-container">
                 <div class="total-balance-wrapper">
@@ -28,36 +31,51 @@
             </div>
         </div>
     </div>
-    <!-- Expense Overview -->
-    <div class="expenses-overview-section">
-        <div class="expenses-overview-container">
-            <div class="expenses-overview-wrapper">
-                <div class="expenses-overview-label">
-                    <p>Expenses</p>
-                    <p class="expense-overview">Expense Overview</p>
+    <!-- Home Page -->
+    <div class="home-page">
+        <!-- Home Expense Overview -->
+        <div class="expenses-overview-section">
+            <div class="expenses-overview-container">
+                <div class="expenses-overview-wrapper">
+                    <div class="expenses-overview-label">
+                        <p>Expenses</p>
+                        <p class="expense-overview">Expense Overview</p>
+                    </div>
+                    <div class="expenses-overview-balance-wrapper">
+                        <p class="expenses-overview-balance"><span class="expenses-dollar-sign">- $</span>500</p>
+                    </div>
                 </div>
-                <div class="expenses-overview-balance-wrapper">
-                    <p class="expenses-overview-balance"><span class="expenses-dollar-sign">- $</span>500</p>
+                <div class="expenses-overview-icons-wrapper">
+                    <ul class="expenses-overview-icons-list">
+                        <li class="expenses-overview-icon"><i class="fa-solid fa-utensils overview-icon"></i></li>
+                        <li class="expenses-overview-icon"><i class="fa-solid fa-bag-shopping overview-icon"></i></li>
+                        <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-car"></i></li>
+                        <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-house"></i></li>
+                    </ul>
                 </div>
             </div>
-            <div class="expenses-overview-icons-wrapper">
-                <ul class="expenses-overview-icons-list">
-                    <li class="expenses-overview-icon"><i class="fa-solid fa-utensils overview-icon"></i></li>
-                    <li class="expenses-overview-icon"><i class="fa-solid fa-bag-shopping overview-icon"></i></li>
-                    <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-car"></i></li>
-                    <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-house"></i></li>
-                </ul>
+        </div>
+        <!-- Home Transactions -->
+        <div class="transactions-container">
+            <div class="transactions-label">
+                <p class="transactions">Transactions</p>
+            </div>
+            <div class="transactions-list-container">
+                <ul class="transactions-list"><em>Transactions will go here</em></ul>
             </div>
         </div>
     </div>
-    <!-- Transactions -->
-    <div class="transactions-container">
-        <div class="transactions-label">
-            <p class="transactions">Transactions</p>
-        </div>
-        <div class="transactions-list-container">
-            <ul class="transactions-list"><em>Transactions will go here</em></ul>
-        </div>
+    <!-- Transactions Page -->
+    <div class="transactions-page hidden">
+        TRANSACTIONS
+    </div>
+    <!-- Statistics Page -->
+    <div class="statistics-page hidden">
+        STATISTICS
+    </div>
+    <!-- Savings Page -->
+    <div class="savings-page hidden">
+        SAVINGS
     </div>
     <!-- Modal -->
     <div class="modal-overlay hidden">

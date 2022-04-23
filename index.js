@@ -4,6 +4,14 @@ const homeBtn = document.querySelector('.home-btn');
 const transactionsBtn = document.querySelector('.transactions-btn');
 const chartBtn = document.querySelector('.chart-btn');
 const savingsBtn = document.querySelector('.savings-btn');
+const homePage = document.querySelector('.home-page');
+const transactionsPage = document.querySelector('.transactions-page');
+const statisticsPage = document.querySelector('.statistics-page');
+const savingsPage = document.querySelector('.savings-page');
+const homeTitle = document.querySelector('.home-title');
+const transactionsTitle = document.querySelector('.transactions-title');
+const statisticsTitle = document.querySelector('.statistics-title');
+const savingsTitle = document.querySelector('.savings-title');
 const modal = document.querySelector('.modal-overlay');
 const addTransactionBtn = document.querySelector('.add-transaction-btn');
 const cancelBtn = document.querySelectorAll('.cancel-btn');
@@ -17,6 +25,15 @@ homeBtn.addEventListener('click', () => {
     transactionsBtn.classList.remove('active-nav-btn');
     chartBtn.classList.remove('active-nav-btn');
     savingsBtn.classList.remove('active-nav-btn');
+
+    homePage.classList.remove('hidden');
+    homeTitle.classList.remove('hidden');
+    transactionsPage.classList.add('hidden');
+    transactionsTitle.classList.add('hidden');
+    statisticsPage.classList.add('hidden');
+    statisticsTitle.classList.add('hidden');
+    savingsPage.classList.add('hidden');
+    savingsTitle.classList.add('hidden');
 });
 
 transactionsBtn.addEventListener('click', () => {
@@ -24,6 +41,15 @@ transactionsBtn.addEventListener('click', () => {
     homeBtn.classList.remove('active-nav-btn');
     chartBtn.classList.remove('active-nav-btn');
     savingsBtn.classList.remove('active-nav-btn');
+
+    transactionsPage.classList.remove('hidden');
+    transactionsTitle.classList.remove('hidden');
+    homePage.classList.add('hidden');
+    homeTitle.classList.add('hidden');
+    statisticsPage.classList.add('hidden');
+    statisticsTitle.classList.add('hidden');
+    savingsPage.classList.add('hidden');
+    savingsTitle.classList.add('hidden');
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -47,6 +73,15 @@ chartBtn.addEventListener('click', () => {
     homeBtn.classList.remove('active-nav-btn');
     transactionsBtn.classList.remove('active-nav-btn');
     savingsBtn.classList.remove('active-nav-btn');
+
+    statisticsPage.classList.remove('hidden');
+    statisticsTitle.classList.remove('hidden');
+    homePage.classList.add('hidden');
+    homeTitle.classList.add('hidden');
+    transactionsPage.classList.add('hidden');
+    transactionsTitle.classList.add('hidden');
+    savingsPage.classList.add('hidden');
+    savingsTitle.classList.add('hidden');
 });
 
 savingsBtn.addEventListener('click', () => {
@@ -54,12 +89,21 @@ savingsBtn.addEventListener('click', () => {
     homeBtn.classList.remove('active-nav-btn');
     transactionsBtn.classList.remove('active-nav-btn');
     chartBtn.classList.remove('active-nav-btn');
+
+    savingsPage.classList.remove('hidden');
+    savingsTitle.classList.remove('hidden');
+    homePage.classList.add('hidden');
+    homeTitle.classList.add('hidden');
+    transactionsPage.classList.add('hidden');
+    transactionsTitle.classList.add('hidden');
+    statisticsPage.classList.add('hidden');
+    statisticsTitle.classList.add('hidden');
 });
 
 cancelBtn.forEach((cancelButtons) => {
     cancelButtons.addEventListener('click', (e) => {
         e.preventDefault();
-        console.log('cancel clickeddd')
+
         modal.classList.add('hidden');
 
         if(!modal.classList.contains('hidden')) {
