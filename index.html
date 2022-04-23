@@ -59,59 +59,65 @@
             <ul class="transactions-list"><em>Transactions will go here</em></ul>
         </div>
     </div>
-    <!-- Expense Modal -->
+    <!-- Modal -->
     <div class="modal-overlay">
         <div class="modal">
-            <div class="expense-deposit-btn">
-                <button class="expense-btn active-expense-btn">Expense</button>
-                <button class="deposit-btn inactive-deposit-btn">Deposit</button>
-            </div>
-            <div class="modal-content-expense">
-                <form class="inputs-wrapper">
-                    <label class="inputs-label" for="amount">Amount
-                        <input type="number" id="amount" class="expense-inputs" placeholder="Enter amount">
+            <div class="modal-content">
+                <div class="expense-deposit-btn">
+                    <button class="expense-btn active-expense-btn">Expense</button>
+                    <button class="deposit-btn inactive-deposit-btn">Deposit</button>
+                </div>
+                <form class="modal-content-expense inputs-wrapper">
+                    <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
+                        <input type="number" id="amount" class="form-inputs" placeholder="Enter amount">
                     </label>
-                    <label class="inputs-label" for="merchant">Merchant
-                        <input type="text" id="merchant" class="expense-inputs" placeholder="Enter merchant name">
+                    <label class="inputs-label-wrapper" for="merchant"><span class="input-label">Merchant</span>
+                        <input type="text" id="merchant" class="form-inputs" placeholder="Enter merchant name">
                     </label>
-                    <label class="inputs-label" for="category">Category
-                        <input type="number" id="category" class="expense-inputs" placeholder="Choose category">
-                    </label>
-                    <button class="add-expense">Add Expense</button>
-                </form>
-            </div>
-
-            <div class="modal-content-deposit hidden">
-                <form class="inputs-wrapper">
-                    <label class="inputs-label" for="amount">Amount
-                        <input type="number" id="amount" class="expense-inputs" placeholder="Enter amount">
-                    </label>
-                    <label class="inputs-label" for="deposit type">Deposit Type
-                        <select name="" id="" class="expense-input">
-                            <option value="">Choose Deposit Type</option>
-                            <option value="">Cash</option>
-                            <option value="">Check</option>
-                        </select>
-                    </label>
-                    <label class="inputs-label" for="category">Category
-                        <select name="" id="" class="expense-input">
+                    <label class="inputs-label-wrapper" for="category"><span class="input-label">Category</span>
+                        <select name="" id="" class="form-inputs">
                             <option value="">Choose Category</option>
                             <option value="">Paycheck</option>
                             <option value="">Gift</option>
                         </select>
                     </label>
-                    <button class="add-expense">Add Expense</button>
+                    <div class="submit-btn">
+                        <button class="modal-btn add-expense-btn">Add Expense</button>
+                        <button class="cancel-btn">Cancel</button>
+                    </div>
+                </form>
+                <form class="modal-content-deposit inputs-wrapper hidden">
+                    <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
+                        <input type="number" id="amount" class="form-inputs" placeholder="Enter amount">
+                    </label>
+                    <label class="inputs-label-wrapper" for="deposit type"><span class="input-label">Deposit Type</span>
+                        <select name="" id="" class="form-inputs">
+                            <option value="">Choose Deposit Type</option>
+                            <option value="">Cash</option>
+                            <option value="">Check</option>
+                        </select>
+                    </label>
+                    <label class="inputs-label-wrapper" for="category"><span class="input-label">Category</span>
+                        <select name="" id="" class="form-inputs">
+                            <option value="">Choose Category</option>
+                            <option value="">Paycheck</option>
+                            <option value="">Gift</option>
+                        </select>
+                    </label>
+                    <div class="submit-btn">
+                        <button class="modal-btn add-deposit-btn">Add Deposit</button>
+                        <button class="cancel-btn">Cancel</button>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <!-- Deposit Modal -->
     <!-- Navbar -->
     <nav class="navbar">
         <ul class="navbar-list-wrapper">
             <li><i class="fa-solid fa-house gray-nav-icon"></i></li>
             <li><i class="fa-solid fa-money-bill-transfer gray-nav-icon"></i></li>
-            <li><i class="fa-solid fa-square-plus plus-nav-icon"></i></li>
+            <li><i class="fa-solid fa-square-plus plus-nav-icon add-transaction-btn"></i></li>
             <li><i class="fa-solid fa-chart-simple gray-nav-icon"></i></li>
             <li><i class="fa-solid fa-piggy-bank gray-nav-icon"></i></li>
         </ul>
