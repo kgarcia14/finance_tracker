@@ -9,7 +9,7 @@ const modalContentExpense = document.querySelector('.modal-content-expense');
 const modalContentDeposit = document.querySelector('.modal-content-deposit');
 
 addTransactionBtn.addEventListener('click', () => {
-
+    modal.classList.remove('hidden');
 });
 
 cancelBtn.forEach((cancelButtons) => {
