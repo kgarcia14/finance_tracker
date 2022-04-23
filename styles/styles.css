@@ -294,3 +294,11 @@ nav {
 .hidden {
   display: none;
 }
+
+.disable-click {
+  pointer-events: none;
+}
+
+.active-nav-btn{
+  -webkit-text-stroke: 1px #6488e5;
+}
