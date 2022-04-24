@@ -1,5 +1,6 @@
 'use strict';
 
+// Button Functionality
 const homeBtn = document.querySelector('.home-btn');
 const transactionsBtn = document.querySelector('.transactions-btn');
 const chartBtn = document.querySelector('.chart-btn');
@@ -19,6 +20,7 @@ const expenseBtn = document.querySelector('.expense-btn');
 const depositBtn = document.querySelector('.deposit-btn');
 const modalContentExpense = document.querySelector('.modal-content-expense');
 const modalContentDeposit = document.querySelector('.modal-content-deposit');
+const inputs = document.querySelectorAll('input, select');
 
 homeBtn.addEventListener('click', () => {
     homeBtn.classList.add('active-nav-btn');
@@ -100,7 +102,7 @@ savingsBtn.addEventListener('click', () => {
     statisticsTitle.classList.add('hidden');
 });
 
-cancelBtn.forEach((cancelButtons) => {
+cancelBtn.forEach(cancelButtons => {
     cancelButtons.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -117,6 +119,10 @@ cancelBtn.forEach((cancelButtons) => {
             chartBtn.classList.remove('disable-click');
             savingsBtn.classList.remove('disable-click');
         }
+
+        inputs.forEach(input => {
+            input.value = '';
+        });
     })
 });
 
@@ -135,3 +141,76 @@ depositBtn.addEventListener('click', () => {
     modalContentExpense.classList.add('hidden');
     modalContentDeposit.classList.remove('hidden');
 });
+
+// Form Submit Functionality
+const expenseForm = document.querySelector('.expense-form');
+const depositForm = document.querySelector('.deposit-form');
+
+let transactions = [];
+console.log(transactions);
+
+let transactionsObj = {};
+
+expenseForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let expense_date = document.getElementById('expense_date').value;
+    let expense_amount = document.getElementById('expense_amount').value;
+    let expense_store = document.getElementById('expense_store').value;
+    let expense_category = document.getElementById('expense_category').value;
+
+    let expenseSubmission = {
+        type: 'expense',
+        date: expense_date,
+        amount: expense_amount,
+        store: expense_store,
+        category: expense_category,
+    }
+
+    if(transactions === []) {
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+    }
+
+    transactions = JSON.parse(localStorage.getItem('transactions'));
+    console.log(transactions);
+
+    transactions.push(expenseSubmission);
+
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+    
+    inputs.forEach(input => {
+        input.value = '';
+    });
+};
+
+depositForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let deposit_date = document.getElementById('deposit_date').value;
+    let deposit_amount = document.getElementById('deposit_amount').value;
+    let deposit_store = document.getElementById('deposit_type').value;
+    let deposit_category = document.getElementById('deposit_category').value;
+
+    let depositSubmission = {
+        type: 'deposit',
+        date: deposit_date,
+        amount: deposit_amount,
+        store: deposit_store,
+        category: deposit_category,
+    }
+
+    if(transactions === []) {
+        localStorage.setItem('transactions', JSON.stringify(transactions));
+    }
+
+    transactions = JSON.parse(localStorage.getItem('transactions'));
+    console.log(transactions);
+
+    transactions.push(depositSubmission);
+
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+
+    inputs.forEach(input => {
+        input.value = '';
+    });
+};
