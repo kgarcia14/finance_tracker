@@ -162,7 +162,7 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    height: 500px;
+    height: 520px;
     border-radius: 20px;
 }
 
@@ -224,10 +224,6 @@ body {
     border-radius: 20px;
 }
 
-option {
-  width: 40%;
-}
-
 .modal-btn {
     width: 50%;
     height: 45px;
@@ -238,10 +234,20 @@ option {
 
 .add-expense-btn {
   color: #FF7D8C;
+  font-size: 1rem;
 }
 
 .add-deposit-btn {
   color: #00E300;
+  font-size: 1rem;
+}
+
+.cancel-btn {
+  border: none;
+  background: none;
+  color: #333;
+  margin-left: 20px;
+  font-size: 1rem;
 }
 
 .inactive-expense-btn {
