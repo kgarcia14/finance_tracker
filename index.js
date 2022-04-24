@@ -151,7 +151,7 @@ console.log(transactions);
 
 let transactionsObj = {};
 
-expenseForm.addEventListener('click', (e) => {
+expenseForm.onsubmit = (e) => {
     e.preventDefault();
 
     let expense_date = document.getElementById('expense_date').value;
@@ -167,7 +167,7 @@ expenseForm.addEventListener('click', (e) => {
         category: expense_category,
     }
 
-    if(transactions === []) {
+    if(transactions === null || [] ) {
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
 
@@ -181,7 +181,7 @@ expenseForm.addEventListener('click', (e) => {
     inputs.forEach(input => {
         input.value = '';
     });
-});
+};
 
 depositForm.onsubmit = (e) => {
     e.preventDefault();
@@ -199,7 +199,7 @@ depositForm.onsubmit = (e) => {
         category: deposit_category,
     }
 
-    if(transactions === []) {
+    if(transactions === null || [] ) {
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
 
