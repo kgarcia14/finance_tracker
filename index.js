@@ -151,7 +151,7 @@ console.log(transactions);
 
 let transactionsObj = {};
 
-expenseForm.onsubmit = (e) => {
+expenseForm.addEventListener('click', (e) => {
     e.preventDefault();
 
     let expense_date = document.getElementById('expense_date').value;
@@ -181,7 +181,7 @@ expenseForm.onsubmit = (e) => {
     inputs.forEach(input => {
         input.value = '';
     });
-};
+});
 
 depositForm.onsubmit = (e) => {
     e.preventDefault();
