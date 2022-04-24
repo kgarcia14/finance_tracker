@@ -158,6 +158,11 @@ console.log(transactions);
 
 let transactionsObj = {};
 
+// function to fetch all transactions from local storage
+const fetchTransactions = () => {
+    transactions = JSON.parse(localStorage.getItem('transactions'));
+} 
+
 expenseForm.onsubmit = (e) => {
     e.preventDefault();
 
@@ -178,7 +183,7 @@ expenseForm.onsubmit = (e) => {
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
 
-    transactions = JSON.parse(localStorage.getItem('transactions'));
+    fetchTransactions();
     console.log(transactions);
 
     transactions.push(expenseSubmission);
@@ -210,7 +215,7 @@ depositForm.onsubmit = (e) => {
         localStorage.setItem('transactions', JSON.stringify(transactions));
     }
 
-    transactions = JSON.parse(localStorage.getItem('transactions'));
+    fetchTransactions();
     console.log(transactions);
 
     transactions.push(depositSubmission);
@@ -221,3 +226,20 @@ depositForm.onsubmit = (e) => {
         input.value = '';
     });
 };
+
+// Home Displayed Data
+fetchTransactions();
+console.log(transactions);
+
+const homeTransactionsList = document.querySelector('.home-transactions-list');
+
+transactions.map((transaction) => {
+    const liTransaction = document.createElement('li');
+    liTransaction.className = 'transaction-li';
+    liTransaction.innerHTML = `${transaction.type}, ${transaction.date}, ${transaction.amount}, ${transaction.category}, ${transaction.store}`;
+    homeTransactionsList.append(liTransaction);
+})
+
+
+
+
