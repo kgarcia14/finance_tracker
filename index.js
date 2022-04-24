@@ -20,6 +20,7 @@ const expenseBtn = document.querySelector('.expense-btn');
 const depositBtn = document.querySelector('.deposit-btn');
 const modalContentExpense = document.querySelector('.modal-content-expense');
 const modalContentDeposit = document.querySelector('.modal-content-deposit');
+const formSubmitBtns = document.querySelectorAll('.form-submit-btn');
 const inputs = document.querySelectorAll('input, select');
 
 homeBtn.addEventListener('click', () => {
@@ -101,6 +102,12 @@ savingsBtn.addEventListener('click', () => {
     statisticsPage.classList.add('hidden');
     statisticsTitle.classList.add('hidden');
 });
+
+formSubmitBtns.forEach(formSubmitBtn => {
+    formSubmitBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+    })
+})
 
 cancelBtn.forEach(cancelButtons => {
     cancelButtons.addEventListener('click', (e) => {
