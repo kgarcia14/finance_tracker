@@ -149,20 +149,20 @@ depositBtn.addEventListener('click', () => {
     modalContentDeposit.classList.remove('hidden');
 });
 
-// Form Submit Functionality
+
+// FORM SUBMIT AND SAVE TO LOCAL STORAGE FUNCTIONALITY
 const expenseForm = document.querySelector('.expense-form');
 const depositForm = document.querySelector('.deposit-form');
 
-let transactions = [];
-console.log(transactions);
+//save and fetch localstorage (must check if null first and if null then set item to empty array)
+if(localStorage.getItem('data') === null) {
+    localStorage.setItem('data', '[]');
+}
 
-let transactionsObj = {};
+let transactions = JSON.parse(localStorage.getItem('data'));
 
-// function to fetch all transactions from local storage
-const fetchTransactions = () => {
-    transactions = JSON.parse(localStorage.getItem('transactions'));
-} 
 
+//submit expense form
 expenseForm.onsubmit = (e) => {
     e.preventDefault();
 
@@ -179,22 +179,18 @@ expenseForm.onsubmit = (e) => {
         category: expense_category,
     }
 
-    if(transactions === null || [] ) {
-        localStorage.setItem('transactions', JSON.stringify(transactions));
-    }
-
-    fetchTransactions();
-    console.log(transactions);
 
     transactions.push(expenseSubmission);
+    console.log(transactions);
 
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-    
+    localStorage.setItem('data', JSON.stringify(transactions));
+
     inputs.forEach(input => {
         input.value = '';
     });
 };
 
+//submit deposit form
 depositForm.onsubmit = (e) => {
     e.preventDefault();
 
@@ -211,35 +207,15 @@ depositForm.onsubmit = (e) => {
         category: deposit_category,
     }
 
-    if(transactions === null || [] ) {
-        localStorage.setItem('transactions', JSON.stringify(transactions));
-    }
-
-    fetchTransactions();
+    transactions.push(depositSubmission);
     console.log(transactions);
 
-    transactions.push(depositSubmission);
-
-    localStorage.setItem('transactions', JSON.stringify(transactions));
-
+    localStorage.setItem('data', JSON.stringify(transactions));
+    
     inputs.forEach(input => {
         input.value = '';
     });
 };
-
-// Home Displayed Data
-fetchTransactions();
-console.log(transactions);
-
-const homeTransactionsList = document.querySelector('.home-transactions-list');
-
-transactions.map((transaction) => {
-    const liTransaction = document.createElement('li');
-    liTransaction.className = 'transaction-li';
-    liTransaction.innerHTML = `${transaction.type}, ${transaction.date}, ${transaction.amount}, ${transaction.category}, ${transaction.store}`;
-    homeTransactionsList.append(liTransaction);
-})
-
 
 
 

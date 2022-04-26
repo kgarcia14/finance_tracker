@@ -301,6 +301,12 @@ nav {
   margin-top: 50px;
 }
 
+.home-transactions-list {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 70px;
+}
+
 .hidden {
   display: none;
 }
