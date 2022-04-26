@@ -174,7 +174,7 @@ expenseForm.onsubmit = (e) => {
     let expenseSubmission = {
         type: 'expense',
         date: expense_date,
-        amount: expense_amount,
+        amount: -Math.abs(expense_amount), //convert from positive to negative
         store: expense_store,
         category: expense_category,
     }
@@ -188,6 +188,8 @@ expenseForm.onsubmit = (e) => {
     inputs.forEach(input => {
         input.value = '';
     });
+
+    location.reload();
 };
 
 //submit deposit form
@@ -215,7 +217,31 @@ depositForm.onsubmit = (e) => {
     inputs.forEach(input => {
         input.value = '';
     });
+
+    location.reload();
 };
+
+
+//display transactions on home page
+//map through transactions to display each transaction
+transactions.map(transaction => {
+    console.log(transaction);
+    const transactionsList = document.querySelector('.home-transactions-list');
+    const transactionLi = document.createElement('li');
+    transactionLi.classList.add('transaction-list-item');
+    transactionLi.innerHTML = `
+            <div>
+                <h4>${transaction.store}</h4>
+                <p>${transaction.category}</p>
+            </div>
+            <div>
+                <p>${transaction.amount}</p>
+            </div>
+    `
+    console.log(transactionLi);
+    transactionsList.append(transactionLi);
+})
+
 
 
 
