@@ -25,7 +25,7 @@
                         <p class="cash-available">Cash available</p>
                     </div>
                     <div class="total-balance">
-                        <p class="balance">$1000</p>
+                        <p class="balance"></p>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                         <p class="expense-overview">Expense Overview</p>
                     </div>
                     <div class="expenses-overview-balance-wrapper">
-                        <p class="expenses-overview-balance"><span class="expenses-dollar-sign">- $</span>500</p>
+                        <p class="expenses-overview-balance"><span class="expenses-dollar-sign">- $</span>0</p>
                     </div>
                 </div>
                 <div class="expenses-overview-icons-wrapper">
@@ -89,16 +89,16 @@
                 </div>
                 <form class="modal-content-expense inputs-wrapper expense-form">
                     <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="expense_date" class="form-inputs">
+                        <input type="date" id="expense_date" class="form-inputs" required>
                     </label>
                     <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="expense_amount" class="form-inputs" placeholder="Enter amount">
+                        <input type="number" id="expense_amount" class="form-inputs" placeholder="Enter amount" required>
                     </label>
                     <label class="inputs-label-wrapper" for="expense_store"><span class="input-label">Store</span>
-                        <input type="text" id="expense_store" class="form-inputs" placeholder="Enter store name">
+                        <input type="text" id="expense_store" class="form-inputs" placeholder="Enter store name" required>
                     </label>
                     <label class="inputs-label-wrapper" for="expense_category"><span class="input-label">Category</span>
-                        <select name="expense_category" id="expense_category" class="form-inputs">
+                        <select name="expense_category" id="expense_category" class="form-inputs" required>
                             <option value="">Choose Category</option>
                             <option value="food">Food</option>
                             <option value="shopping">Shopping</option>
@@ -117,23 +117,23 @@
                 </form>
                 <form class="modal-content-deposit inputs-wrapper deposit-form hidden">
                     <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="deposit_date" class="form-inputs">
+                        <input type="date" id="deposit_date" class="form-inputs" required>
                     </label>
                     <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="deposit_amount" class="form-inputs" placeholder="Enter amount">
+                        <input type="number" id="deposit_amount" class="form-inputs" placeholder="Enter amount" required>
                     </label>
                     <label class="inputs-label-wrapper" for="deposit_type"><span class="input-label">Deposit Type</span>
-                        <select name="deposit_type" id="deposit_type" class="form-inputs">
+                        <select name="deposit_type" id="deposit_type" class="form-inputs" required>
                             <option value="">Choose Deposit Type</option>
                             <option value="deposit">Deposit</option>
                             <option value="check">Check</option>
                         </select>
                     </label>
                     <label class="inputs-label-wrapper" for="deposit_category"><span class="input-label">Category</span>
-                        <select name="deposit_category" id="deposit_category" class="form-inputs">
+                        <select name="deposit_category" id="deposit_category" class="form-inputs" required>
                             <option value="">Choose Category</option>
                             <option value="cash">Cash</option>
-                            <option value="paycheck">Paycheck</option>
+                            <option value="Paycheck">Paycheck</option>
                             <option value="gift">Gift</option>
                         </select>
                     </label>
