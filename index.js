@@ -174,7 +174,7 @@ expenseForm.onsubmit = (e) => {
     let expenseSubmission = {
         type: 'expense',
         date: expense_date,
-        amount: -Math.abs(expense_amount), //convert from positive to negative
+        amount: -parseInt(expense_amount),
         store: expense_store,
         category: expense_category,
     }
@@ -204,7 +204,7 @@ depositForm.onsubmit = (e) => {
     let depositSubmission = {
         type: 'deposit',
         date: deposit_date,
-        amount: deposit_amount,
+        amount: +parseInt(deposit_amount),
         store: deposit_store,
         category: deposit_category,
     }
@@ -221,24 +221,48 @@ depositForm.onsubmit = (e) => {
     location.reload();
 };
 
+//calculate total balance of transactions
+    transactions = JSON.parse(localStorage.getItem('data'));
+
+    let totalBalance = 0;
+    for(let i = 0; i <= transactions.length - 1; i++) {
+        totalBalance += transactions[i].amount;
+    }
+    console.log(totalBalance);
+
+    const totalBalanceWrapper = document.querySelector('.balance');
+    totalBalanceWrapper.innerHTML = `${totalBalance}`
+
+
 
 //display transactions on home page
 //map through transactions to display each transaction
 transactions.map(transaction => {
-    console.log(transaction);
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item');
-    transactionLi.innerHTML = `
-            <div>
-                <h4>${transaction.store}</h4>
-                <p>${transaction.category}</p>
-            </div>
-            <div>
-                <p>${transaction.amount}</p>
-            </div>
-    `
-    console.log(transactionLi);
+    if(transaction.type === 'expense') {
+        transactionLi.innerHTML = `
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $${transaction.amount}</p>
+                </div>
+        `
+    } else {
+        transactionLi.innerHTML = `
+                <div>
+                    <h5>DEPOSIT</h5>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="deposit-list-item-amount">+ $${transaction.amount}</p>
+                </div>
+        `
+    }
     transactionsList.append(transactionLi);
 })
 

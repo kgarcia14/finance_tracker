@@ -15,6 +15,8 @@ body {
 
 
 .header-container {
+  position: fixed;
+  top: 0;
   width: 100%;
   height: 25vh;
   display: flex;
@@ -83,7 +85,7 @@ body {
   justify-content: center;
   width: 95%;
   height: 170px;
-  margin-top: 50px;
+  margin-top: 230px;
 }
 
 .expenses-overview-wrapper {
@@ -150,7 +152,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position:absolute;
+    position:fixed;
     width: 100%;
     height: 100vh;
     background-color:rgba(0, 0, 0, 0.4);
@@ -327,9 +329,17 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   background-color: #fff;
   padding: 0 20px 0 20px
+}
+
+.expense-list-item-amount {
+  color: #E56372;
+}
+
+.deposit-list-item-amount {
+  color: #0F9D58;
 }
 
 .hidden {
