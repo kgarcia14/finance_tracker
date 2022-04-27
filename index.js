@@ -222,21 +222,33 @@ depositForm.onsubmit = (e) => {
 };
 
 //calculate total balance of transactions
-    transactions = JSON.parse(localStorage.getItem('data'));
+transactions = JSON.parse(localStorage.getItem('data'));
 
-    let totalBalance = 0;
-    for(let i = 0; i <= transactions.length - 1; i++) {
-        totalBalance += transactions[i].amount;
+let totalBalance = 0;
+for(let i = 0; i <= transactions.length - 1; i++) {
+    totalBalance += transactions[i].amount;
+}
+totalBalance = totalBalance.toFixed(2);
+
+const totalBalanceWrapper = document.querySelector('.balance');
+if (totalBalance < 0) {
+    totalBalanceWrapper.innerHTML = `- $ ${totalBalance.replace('-', '')}`
+} else {
+    totalBalanceWrapper.innerHTML = `$ ${totalBalance}`
+}
+
+
+//Calculate expenses balance
+let expenseBalance = 0;
+for(let i = 0; i <= transactions.length - 1; i++) {
+    if (transactions[i].type === 'expense') {
+        expenseBalance += transactions[i].amount;
     }
-    totalBalance = totalBalance.toFixed(2);
+}
+expenseBalance = expenseBalance.toFixed(2);
 
-    const totalBalanceWrapper = document.querySelector('.balance');
-    if (totalBalance < 0) {
-        totalBalanceWrapper.innerHTML = `- $ ${totalBalance.replace('-', '')}`
-    } else {
-        totalBalanceWrapper.innerHTML = `$ ${totalBalance}`
-    }
-
+const expenseOverviewBalance = document.querySelector('.expenses-overview-balance');
+expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
 
 //display transactions on home page
@@ -245,28 +257,87 @@ transactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item');
-    if (transaction.type === 'expense') {
+    let transactionAmount = transaction.amount.toFixed(2);
+
+    if (transaction.category ==='Food') {
         transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/food_icon.svg" alt="fork and knife icon"></div>
                 <div>
                     <h4>${transaction.store}</h4>
                     <p>${transaction.category}</p>
                 </div>
                 <div>
-                    <p class="expense-list-item-amount">- $ ${JSON.stringify(transaction.amount).replace('-', '')}</p>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                </div>
+        `
+    } else if (transaction.category ==='Shopping') {
+        transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/shopping_icon.svg" alt="shopping bag"></div>
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                </div>
+        `
+    } else if (transaction.category ==='Transportation') {
+        transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/transportation_icon.svg" alt="car"></div>
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                </div>
+        `
+    } else if (transaction.category ==='Home') {
+        transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/home_icon.svg" alt="house"></div>
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                </div>
+        `
+    } else if (transaction.category ==='Gas') {
+        transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/gas_icon.svg" alt="gas tank"></div>
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                </div>
+        `
+    } else if (transaction.category ==='Bills') {
+        transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/home_icon.svg" alt="gas tank"></div>
+                <div>
+                    <h4>${transaction.store}</h4>
+                    <p>${transaction.category}</p>
+                </div>
+                <div>
+                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
         `
     } else {
         transactionLi.innerHTML = `
+                <div class="transaction-icon"><img src="./images/deposit_icon.svg" alt="fork and knife icon"></div>
                 <div>
-                    <h5>DEPOSIT</h5>
                     <h4>${transaction.store}</h4>
                     <p>${transaction.category}</p>
                 </div>
                 <div>
-                    <p class="deposit-list-item-amount">+ $${transaction.amount}</p>
+                    <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
                 </div>
         `
     }
+    
     transactionsList.append(transactionLi);
 })
 
