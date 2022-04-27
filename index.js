@@ -174,7 +174,7 @@ expenseForm.onsubmit = (e) => {
     let expenseSubmission = {
         type: 'expense',
         date: expense_date,
-        amount: -parseInt(expense_amount),
+        amount: - expense_amount,
         store: expense_store,
         category: expense_category,
     }
@@ -204,7 +204,7 @@ depositForm.onsubmit = (e) => {
     let depositSubmission = {
         type: 'deposit',
         date: deposit_date,
-        amount: +parseInt(deposit_amount),
+        amount: +deposit_amount,
         store: deposit_store,
         category: deposit_category,
     }
@@ -228,10 +228,14 @@ depositForm.onsubmit = (e) => {
     for(let i = 0; i <= transactions.length - 1; i++) {
         totalBalance += transactions[i].amount;
     }
-    console.log(totalBalance);
+    totalBalance = totalBalance.toFixed(2);
 
     const totalBalanceWrapper = document.querySelector('.balance');
-    totalBalanceWrapper.innerHTML = `${totalBalance}`
+    if (totalBalance < 0) {
+        totalBalanceWrapper.innerHTML = `- $ ${totalBalance.replace('-', '')}`
+    } else {
+        totalBalanceWrapper.innerHTML = `$ ${totalBalance}`
+    }
 
 
 
@@ -241,14 +245,14 @@ transactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item');
-    if(transaction.type === 'expense') {
+    if (transaction.type === 'expense') {
         transactionLi.innerHTML = `
                 <div>
                     <h4>${transaction.store}</h4>
                     <p>${transaction.category}</p>
                 </div>
                 <div>
-                    <p class="expense-list-item-amount">- $${transaction.amount}</p>
+                    <p class="expense-list-item-amount">- $ ${JSON.stringify(transaction.amount).replace('-', '')}</p>
                 </div>
         `
     } else {
