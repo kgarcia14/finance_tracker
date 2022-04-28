@@ -224,6 +224,8 @@ body {
     height: 45px;
     border: 1px solid #6488e5;
     border-radius: 20px;
+    background: none;
+    padding: 0 20px 0 20px;
 }
 
 .modal-btn {
@@ -315,23 +317,46 @@ nav {
 
 .home-transactions-list {
   list-style-type: none;
-  width: 95%;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: column-reverse;
   margin-bottom: 70px;
 }
 
 .transaction-list-item {
   border-radius: 20px;
-  width: 100%;
+  width: 95%;
   height: 95px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-bottom: 15px;
   background-color: #fff;
-  padding: 0 20px 0 20px
+}
+
+.transaction-title-wrapper {
+  margin-left: -70px;
+}
+
+.transaction-title {
+  font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.transaction-subtitle {
+  color: #9E9E9E;
+  font-size: .8rem;
+  margin-top: 8px;
+}
+
+.transaction-content-wrapper {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .expense-list-item-amount {

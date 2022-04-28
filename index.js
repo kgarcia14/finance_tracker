@@ -261,80 +261,108 @@ transactions.map(transaction => {
 
     if (transaction.category ==='Food') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/food_icon.svg" alt="fork and knife icon"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/food_icon.svg" alt="fork and knife icon">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else if (transaction.category ==='Shopping') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/shopping_icon.svg" alt="shopping bag"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/shopping_icon.svg" alt="shopping bag">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else if (transaction.category ==='Transportation') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/transportation_icon.svg" alt="car"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/transportation_icon.svg" alt="car">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else if (transaction.category ==='Home') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/home_icon.svg" alt="house"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/home_icon.svg" alt="house">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else if (transaction.category ==='Gas') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/gas_icon.svg" alt="gas tank"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/gas_icon.svg" alt="gas tank">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else if (transaction.category ==='Bills') {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/home_icon.svg" alt="gas tank"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/home_icon.svg" alt="gas tank">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">${transaction.store}</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     } else {
         transactionLi.innerHTML = `
-                <div class="transaction-icon"><img src="./images/deposit_icon.svg" alt="fork and knife icon"></div>
-                <div>
-                    <h4>${transaction.store}</h4>
-                    <p>${transaction.category}</p>
+            <div class="transaction-content-wrapper">
+                <div class="transaction-icon">
+                    <img src="./images/deposit_icon.svg" alt="fork and knife icon">
+                </div>
+                <div class="transaction-title-wrapper">
+                    <h4 class="transaction-title">Deposit</h4>
+                    <p class="transaction-subtitle">${transaction.category}</p>
                 </div>
                 <div>
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
                 </div>
+            </div>
         `
     }
     
