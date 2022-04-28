@@ -251,7 +251,7 @@ const expenseOverviewBalance = document.querySelector('.expenses-overview-balanc
 expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
 
-//display transactions on home page
+//display transactions on home page and transctions page
 //map through transactions to display each transaction
 transactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
@@ -264,10 +264,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/food_icon.svg" alt="fork and knife icon">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -279,10 +279,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/shopping_icon.svg" alt="shopping bag">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -294,10 +294,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/transportation_icon.svg" alt="car">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -309,10 +309,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/home_icon.svg" alt="house">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -324,10 +324,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/gas_icon.svg" alt="gas tank">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -339,10 +339,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/home_icon.svg" alt="gas tank">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">${transaction.store}</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
@@ -354,10 +354,10 @@ transactions.map(transaction => {
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
                     <img src="./images/deposit_icon.svg" alt="fork and knife icon">
-                </div>
-                <div class="transaction-title-wrapper">
-                    <h4 class="transaction-title">Deposit</h4>
-                    <p class="transaction-subtitle">${transaction.category}</p>
+                    <div class="transaction-title-wrapper">
+                        <h4 class="transaction-title">Deposit</h4>
+                        <p class="transaction-subtitle">${transaction.category}</p>
+                    </div>
                 </div>
                 <div>
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
