@@ -336,8 +336,12 @@ nav {
   background-color: #fff;
 }
 
+.transaction-icon {
+  display: flex;
+}
+
 .transaction-title-wrapper {
-  margin-left: -70px;
+  margin-left: 25px;
 }
 
 .transaction-title {
