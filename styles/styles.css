@@ -382,3 +382,11 @@ nav {
 .active-nav-btn{
   -webkit-text-stroke: 1px #6488e5;
 }
+
+
+.delete-deposit-btn {
+  background: none;
+  color: red;
+  border: none;
+  margin-top: 10px;
+}
