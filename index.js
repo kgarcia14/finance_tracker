@@ -202,6 +202,7 @@ depositForm.onsubmit = (e) => {
     let deposit_category = document.getElementById('deposit_category').value;
 
     let depositSubmission = {
+        id: Date.now(),
         type: 'deposit',
         date: deposit_date,
         amount: +deposit_amount,
@@ -271,6 +272,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -286,6 +288,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -301,6 +304,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -316,6 +320,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -331,6 +336,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -346,6 +352,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -361,6 +368,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
+                    <button type="button" class="delete-deposit-btn">Delete</button>
                 </div>
             </div>
         `
@@ -370,5 +378,21 @@ transactions.map(transaction => {
 })
 
 
+//DELETE Transaction from list
+console.log(transactions);
 
+const deleteDepositBtn = document.querySelectorAll('.delete-deposit-btn');
 
+deleteDepositBtn.forEach(deleteDeposit => {
+    deleteDeposit.addEventListener('click', () => {
+        const indexofTransaction = transactions.findIndex(transaction => {
+            return transaction.id === transaction.id;
+        })
+        console.log(indexofTransaction);
+        transactions.splice(indexofTransaction, 1);
+        localStorage.setItem('data', JSON.stringify(transactions));
+        location.reload();
+    })
+});
+
+console.log(transactions);
