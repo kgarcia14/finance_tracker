@@ -172,6 +172,7 @@ expenseForm.onsubmit = (e) => {
     let expense_category = document.getElementById('expense_category').value;
 
     let expenseSubmission = {
+        id: Date.now(),
         type: 'expense',
         date: expense_date,
         amount: - expense_amount,
@@ -258,7 +259,9 @@ transactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item');
+    transactionLi.setAttribute('id', `${transaction.id}`);
     let transactionAmount = transaction.amount.toFixed(2);
+    console.log(transactions);
 
     if (transaction.category ==='Food') {
         transactionLi.innerHTML = `
@@ -272,7 +275,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -288,7 +291,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -304,7 +307,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -320,7 +323,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -336,7 +339,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -352,7 +355,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -368,7 +371,7 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-deposit-btn">Delete</button>
+                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -379,20 +382,28 @@ transactions.map(transaction => {
 
 
 //DELETE Transaction from list
-console.log(transactions);
+const deleteButtons = document.querySelectorAll('.delete-btn');
+    
+for (let i = 0; i < deleteButtons.length; i++) {
+    let deleteBtn = deleteButtons[i];
+    deleteBtn.addEventListener('click', (e) => {
+        const clickedDeleteId = e.target.parentElement.parentElement.parentElement.id;
+        
+        for (let j = 0; j <= transactions.length - 1; j++) {
+            if (transactions[j].id === parseInt(clickedDeleteId)) {
+                let newTransactionsArr = [...transactions];
+                console.log(transactions[j]);
+                const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
+                    return transaction.id === parseInt(clickedDeleteId);
+                })
+                if (indexOfTransaction !== -1) {
+                    newTransactionsArr.splice(indexOfTransaction, 1);
+                    transactions = newTransactionsArr;
+                    localStorage.setItem('data', JSON.stringify(transactions));
+                }
+            }
+        }
 
-const deleteDepositBtn = document.querySelectorAll('.delete-deposit-btn');
-
-deleteDepositBtn.forEach(deleteDeposit => {
-    deleteDeposit.addEventListener('click', () => {
-        const indexofTransaction = transactions.findIndex(transaction => {
-            return transaction.id === transaction.id;
-        })
-        console.log(indexofTransaction);
-        transactions.splice(indexofTransaction, 1);
-        localStorage.setItem('data', JSON.stringify(transactions));
         location.reload();
     })
-});
-
-console.log(transactions);
+}
