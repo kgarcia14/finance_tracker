@@ -223,7 +223,7 @@ depositForm.onsubmit = (e) => {
     location.reload();
 };
 
-//calculate total balance of transactions
+//calculate and display total balance of transactions
 transactions = JSON.parse(localStorage.getItem('data'));
 
 let totalBalance = 0;
@@ -240,7 +240,7 @@ if (totalBalance < 0) {
 }
 
 
-//Calculate expenses balance
+//Calculate and display expenses balance
 let expenseBalance = 0;
 for(let i = 0; i <= transactions.length - 1; i++) {
     if (transactions[i].type === 'expense') {
@@ -275,7 +275,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -291,7 +290,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -307,7 +305,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -323,7 +320,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -339,7 +335,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -355,7 +350,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -371,7 +365,6 @@ transactions.map(transaction => {
                 </div>
                 <div>
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
-                    <button type="button" class="delete-btn">Delete</button>
                 </div>
             </div>
         `
@@ -381,29 +374,65 @@ transactions.map(transaction => {
 })
 
 
-//DELETE Transaction from list
-const deleteButtons = document.querySelectorAll('.delete-btn');
-    
-for (let i = 0; i < deleteButtons.length; i++) {
-    let deleteBtn = deleteButtons[i];
-    deleteBtn.addEventListener('click', (e) => {
-        const clickedDeleteId = e.target.parentElement.parentElement.parentElement.id;
-        
-        for (let j = 0; j <= transactions.length - 1; j++) {
-            if (transactions[j].id === parseInt(clickedDeleteId)) {
-                let newTransactionsArr = [...transactions];
-                console.log(transactions[j]);
-                const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
-                    return transaction.id === parseInt(clickedDeleteId);
-                })
-                if (indexOfTransaction !== -1) {
-                    newTransactionsArr.splice(indexOfTransaction, 1);
-                    transactions = newTransactionsArr;
-                    localStorage.setItem('data', JSON.stringify(transactions));
-                }
+//View details of each transaction
+const transactionsListItem= document.querySelectorAll('.transaction-list-item');
+const transactionDetailsModal = document.querySelector('.transaction-details-modal');
+const transactionDetails = document.querySelector('.transaction-details');
+const deleteButton = document.querySelector('.delete-btn');
+const areYouSure = document.querySelector('.are-you-sure');
+const noDelete = document.querySelector('.no-delete');
+const yesDelete = document.querySelector('.yes-delete');
+
+transactionsListItem.forEach(transactionItem => {
+    transactionItem.addEventListener('click', (e) => {
+        const clickedTransactionId = e.target.parentElement.id;
+        transactionDetailsModal.classList.remove('hidden');
+        transactionDetailsModal.setAttribute('id', `${clickedTransactionId}`);
+        yesDelete.setAttribute('id', `${clickedTransactionId}`);
+        console.log(clickedTransactionId);
+
+        for (let i = 0; i <= transactions.length - 1; i++) {
+            if (transactions[i].id === parseInt(clickedTransactionId)) {
+                const transaction = transactions[i];
+                
+                transactionDetails.innerHTML = `
+                    <p>${transaction.amount}</p>
+                `
             }
         }
-
-        location.reload();
     })
-}
+})
+
+// DELETE Transaction from list
+yesDelete.addEventListener('click', () => {
+    console.log(yesDelete.id);
+    for (let i = 0; i <= transactions.length - 1; i++) {
+        if (transactions[i].id === parseInt(yesDelete.id)) {
+            let newTransactionsArr = [...transactions];
+            console.log(transactions[i]);
+            const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
+                return transaction.id === parseInt(yesDelete.id);
+            })
+            if (indexOfTransaction !== -1) {
+                newTransactionsArr.splice(indexOfTransaction, 1);
+                transactions = newTransactionsArr;
+                localStorage.setItem('data', JSON.stringify(transactions));
+            }
+        }
+        location.reload();
+    }
+})
+
+const closeTransactions = document.querySelector('.close-transactions');
+closeTransactions.addEventListener('click', () => {
+    transactionDetailsModal.classList.add('hidden');
+})
+
+deleteButton.addEventListener('click', () => {
+    areYouSure.classList.remove('hidden');
+})
+
+noDelete.addEventListener('click', () => {
+    areYouSure.classList.add('hidden');
+})
+
