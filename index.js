@@ -424,15 +424,22 @@ yesDelete.addEventListener('click', () => {
 })
 
 const closeTransactions = document.querySelector('.close-transactions');
+const transactionDetailsAndButtons = document.querySelector('.transaction-details-and-buttons'); 
+
 closeTransactions.addEventListener('click', () => {
     transactionDetailsModal.classList.add('hidden');
 })
 
 deleteButton.addEventListener('click', () => {
     areYouSure.classList.remove('hidden');
+    transactionDetailsAndButtons.classList.add('hidden');
 })
 
 noDelete.addEventListener('click', () => {
     areYouSure.classList.add('hidden');
+    transactionDetailsAndButtons.classList.remove('hidden');
 })
+
+
+//Edit Transactions
 

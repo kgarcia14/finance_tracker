@@ -373,20 +373,29 @@ nav {
 }
 
 .transaction-details-modal {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
   left: 0;
   top: 0;
-  height: 50vh;
-  width: 100%;
   position: fixed;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.transaction-details-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50vh;
   background-color: #fff;
+  border-radius: 20px;
 }
 
 .are-you-sure {
-  width: 100%;
-  height: 50vh;
-  position: fixed; 
-  top: 0;
-  left: 0;
+  
 }
 
 .hidden {
