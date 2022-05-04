@@ -372,6 +372,23 @@ nav {
   color: #0F9D58;
 }
 
+.transaction-details-modal {
+  left: 0;
+  top: 0;
+  height: 50vh;
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+}
+
+.are-you-sure {
+  width: 100%;
+  height: 50vh;
+  position: fixed; 
+  top: 0;
+  left: 0;
+}
+
 .hidden {
   display: none;
 }
