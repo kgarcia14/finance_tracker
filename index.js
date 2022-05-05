@@ -382,6 +382,7 @@ const deleteButton = document.querySelector('.delete-btn');
 const areYouSure = document.querySelector('.are-you-sure');
 const noDelete = document.querySelector('.no-delete');
 const yesDelete = document.querySelector('.yes-delete');
+const editTransaction = document.querySelector('.edit-transaction');
 
 transactionsListItem.forEach(transactionItem => {
     transactionItem.addEventListener('click', (e) => {
@@ -396,7 +397,13 @@ transactionsListItem.forEach(transactionItem => {
                 const transaction = transactions[i];
                 
                 transactionDetails.innerHTML = `
-                    <p>${transaction.amount}</p>
+                    <ul>
+                        <li>${transaction.amount}</li>
+                        <li>${transaction.date}</li>
+                        <li>${transaction.type}</li>
+                        <li>${transaction.store}</li>
+                        <li>${transaction.category}</li>
+                    </ul>
                 `
             }
         }
@@ -409,7 +416,6 @@ yesDelete.addEventListener('click', () => {
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(yesDelete.id)) {
             let newTransactionsArr = [...transactions];
-            console.log(transactions[i]);
             const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
                 return transaction.id === parseInt(yesDelete.id);
             })
