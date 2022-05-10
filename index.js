@@ -446,6 +446,10 @@ yesDelete.addEventListener('click', () => {
     }
 })
 
+let edit_expense_date = document.getElementById('edit_expense_date').value;
+let edit_expense_amount = document.getElementById('edit_expense_amount').value;
+let edit_expense_store = document.getElementById('edit_expense_store').value;
+let edit_expense_category = document.getElementById('edit_expense_category').value;
 //Edit Transaction
 editTransaction.addEventListener('click', () => {
     editModal.classList.remove('hidden');
@@ -459,24 +463,35 @@ editTransaction.addEventListener('click', () => {
     }
 })
 
-editExpenseForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log(editExpenseForm.id)
+editExpenseForm.onSubmit = () => {
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
-            transactions[i].store = 'yoooooblahh';
+            transactions[i].date = edit_expense_date;
+            transactions[i].amount = edit_expense_amount;
+            transactions[i].store = edit_expense_store;
+            transactions[i].category = edit_expense_category
         }
     }
     localStorage.setItem('data', JSON.stringify(transactions));
-})
+}
 
-editDepositForm.onSubmit = (e) => {
-    e.preventDefault();
-    for (let i = 0; i <= transactions.length; i++) {
-        console.log(transactions[i]);
-        // if (transactions[i].id)
+let edit_deposit_date = document.getElementById('edit_deposit_date').value;
+let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
+let edit_deposit_store = document.getElementById('edit_deposit_type').value;
+let edit_deposit_category = document.getElementById('edit_deposit_category').value;
+
+editDepositForm.onSubmit = () => {
+    for (let i = 0; i <= transactions.length - 1; i++) {
+        if (transactions[i].id === parseInt(editExpenseForm.id)) {
+            console.log(transactions[i]);
+            transactions[i].date = edit_deposit_date;
+            transactions[i].amount = edit_deposit_amount;
+            transactions[i].store = edit_deposit_store;
+            transactions[i].category = edit_deposit_category
+        }
     }
+    localStorage.setItem('data', JSON.stringify(transactions));
 }
 
 
