@@ -144,7 +144,7 @@ body {
     color: #9e9e9e;
 }
 
-.modal-overlay {
+.modal-overlay, .edit-modal-overlay {
     left: 0;
     top: 0;
     display: flex;
@@ -393,11 +393,18 @@ nav {
 }
 
 .are-you-sure {
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.are-you-sure-text {
+  text-align: center;
 }
 
 .yes-delete, .no-delete {
-  margin-left: 20px;
+  margin: 10px 10px 0 10px;
   width: 50px;
 }
 
