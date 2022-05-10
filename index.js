@@ -397,6 +397,7 @@ transactionsListItem.forEach(transactionItem => {
         //change edit transaction id to confirmation button id
         editExpenseForm.setAttribute('id', `${clickedTransactionId}`);
         editDepositForm.setAttribute('id', `${clickedTransactionId}`);
+
         console.log(clickedTransactionId);
 
         for (let i = 0; i <= transactions.length - 1; i++) {
@@ -486,7 +487,7 @@ editDepositForm.onSubmit = (e) => {
     let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
     let edit_deposit_store = document.getElementById('edit_deposit_type').value;
     let edit_deposit_category = document.getElementById('edit_deposit_category').value;
-    
+
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
@@ -507,6 +508,8 @@ closeTransactions.addEventListener('click', () => {
     transactionDetailsModal.classList.add('hidden');
     yesDelete.removeAttribute('id');
     editTransaction.removeAttribute('id');
+    editExpenseForm.removeAttribute('id');
+    editDepositForm.removeAttribute('id');
 })
 
 deleteButton.addEventListener('click', () => {
