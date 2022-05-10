@@ -114,6 +114,7 @@ cancelBtn.forEach(cancelButtons => {
         e.preventDefault();
 
         modal.classList.add('hidden');
+        editModal.classList.add('hidden');
 
         if(!modal.classList.contains('hidden')) {
             homeBtn.classList.add('disable-click');
@@ -258,7 +259,7 @@ expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 transactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
-    transactionLi.classList.add('transaction-list-item');
+    transactionLi.classList.add('transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', `${transaction.id}`);
     let transactionAmount = transaction.amount.toFixed(2);
     console.log(transactions);
@@ -386,15 +387,19 @@ const editTransaction = document.querySelector('.edit-transaction');
 
 transactionsListItem.forEach(transactionItem => {
     transactionItem.addEventListener('click', (e) => {
+        const clickedTransaction = e.target.parentElement;
         const clickedTransactionId = e.target.parentElement.id;
         transactionDetailsModal.classList.remove('hidden');
-        transactionDetailsModal.setAttribute('id', `${clickedTransactionId}`);
         yesDelete.setAttribute('id', `${clickedTransactionId}`);
+        //change edit transaction id to confirmation button id
+        editTransaction.setAttribute('id', `${clickedTransactionId}`);
         console.log(clickedTransactionId);
 
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
                 const transaction = transactions[i];
+                // clickedTransaction.classList.remove(transaction.type);
+                console.log(clickedTransaction);
                 
                 transactionDetails.innerHTML = `
                     <ul>
@@ -407,12 +412,20 @@ transactionsListItem.forEach(transactionItem => {
                 `
             }
         }
+
+        if (clickedTransaction.classList.contains('expense')) {
+            editTransaction.classList.add('expense');
+            editTransaction.classList.remove('deposit');
+        } else {
+            editTransaction.classList.add('deposit');
+            editTransaction.classList.remove('expense');
+        }
     })
 })
 
 // DELETE Transaction from list
 yesDelete.addEventListener('click', () => {
-    console.log(yesDelete.id);
+    console.log(yesDelete);
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(yesDelete.id)) {
             let newTransactionsArr = [...transactions];
@@ -429,11 +442,31 @@ yesDelete.addEventListener('click', () => {
     }
 })
 
+//Edit Transaction
+const editModal = document.querySelector('.edit-modal-overlay');
+const editExpenseForm = document.querySelector('.edit-expense-form');
+const editDepositForm = document.querySelector('.edit-deposit-form');
+
+editTransaction.addEventListener('click', () => {
+    editModal.classList.remove('hidden');
+
+    if (editTransaction.classList.contains('expense')) {
+        editExpenseForm.classList.remove('hidden');
+        editDepositForm.classList.add('hidden');
+    } else {
+        editDepositForm.classList.remove('hidden');
+        editExpenseForm.classList.add('hidden');
+    }
+})
+
+
 const closeTransactions = document.querySelector('.close-transactions');
 const transactionDetailsAndButtons = document.querySelector('.transaction-details-and-buttons'); 
 
 closeTransactions.addEventListener('click', () => {
     transactionDetailsModal.classList.add('hidden');
+    yesDelete.removeAttribute('id');
+    editTransaction.removeAttribute('id');
 })
 
 deleteButton.addEventListener('click', () => {
@@ -447,5 +480,4 @@ noDelete.addEventListener('click', () => {
 })
 
 
-//Edit Transactions
 
