@@ -461,28 +461,29 @@ editTransaction.addEventListener('click', () => {
     }
 })
 
-editExpenseForm.onSubmit = (e) => {
-    e.preventDefault();
+editExpenseForm.onsubmit = () => {
     let edit_expense_date = document.getElementById('edit_expense_date').value;
     let edit_expense_amount = document.getElementById('edit_expense_amount').value;
     let edit_expense_store = document.getElementById('edit_expense_store').value;
     let edit_expense_category = document.getElementById('edit_expense_category').value;
 
+    console.log(edit_expense_amount);
+
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
             transactions[i].date = edit_expense_date;
-            transactions[i].amount = edit_expense_amount;
+            transactions[i].amount = parseInt(edit_expense_amount);
             transactions[i].store = edit_expense_store;
             transactions[i].category = edit_expense_category
         }
     }
+    location.reload();
     localStorage.setItem('data', JSON.stringify(transactions));
 }
 
 
-editDepositForm.onSubmit = (e) => {
-    e.preventDefault();
+editDepositForm.onsubmit = () => {
     let edit_deposit_date = document.getElementById('edit_deposit_date').value;
     let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
     let edit_deposit_store = document.getElementById('edit_deposit_type').value;
@@ -492,11 +493,12 @@ editDepositForm.onSubmit = (e) => {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
             transactions[i].date = edit_deposit_date;
-            transactions[i].amount = edit_deposit_amount;
+            transactions[i].amount = parseInt(edit_deposit_amount);
             transactions[i].store = edit_deposit_store;
             transactions[i].category = edit_deposit_category
         }
     }
+    location.reload();
     localStorage.setItem('data', JSON.stringify(transactions));
 }
 
