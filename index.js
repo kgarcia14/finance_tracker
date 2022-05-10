@@ -446,10 +446,7 @@ yesDelete.addEventListener('click', () => {
     }
 })
 
-let edit_expense_date = document.getElementById('edit_expense_date').value;
-let edit_expense_amount = document.getElementById('edit_expense_amount').value;
-let edit_expense_store = document.getElementById('edit_expense_store').value;
-let edit_expense_category = document.getElementById('edit_expense_category').value;
+
 //Edit Transaction
 editTransaction.addEventListener('click', () => {
     editModal.classList.remove('hidden');
@@ -463,7 +460,13 @@ editTransaction.addEventListener('click', () => {
     }
 })
 
-editExpenseForm.onSubmit = () => {
+editExpenseForm.onSubmit = (e) => {
+    e.preventDefault();
+    let edit_expense_date = document.getElementById('edit_expense_date').value;
+    let edit_expense_amount = document.getElementById('edit_expense_amount').value;
+    let edit_expense_store = document.getElementById('edit_expense_store').value;
+    let edit_expense_category = document.getElementById('edit_expense_category').value;
+
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
@@ -476,12 +479,14 @@ editExpenseForm.onSubmit = () => {
     localStorage.setItem('data', JSON.stringify(transactions));
 }
 
-let edit_deposit_date = document.getElementById('edit_deposit_date').value;
-let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
-let edit_deposit_store = document.getElementById('edit_deposit_type').value;
-let edit_deposit_category = document.getElementById('edit_deposit_category').value;
 
-editDepositForm.onSubmit = () => {
+editDepositForm.onSubmit = (e) => {
+    e.preventDefault();
+    let edit_deposit_date = document.getElementById('edit_deposit_date').value;
+    let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
+    let edit_deposit_store = document.getElementById('edit_deposit_type').value;
+    let edit_deposit_category = document.getElementById('edit_deposit_category').value;
+    
     for (let i = 0; i <= transactions.length - 1; i++) {
         if (transactions[i].id === parseInt(editExpenseForm.id)) {
             console.log(transactions[i]);
