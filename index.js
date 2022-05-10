@@ -384,6 +384,9 @@ const areYouSure = document.querySelector('.are-you-sure');
 const noDelete = document.querySelector('.no-delete');
 const yesDelete = document.querySelector('.yes-delete');
 const editTransaction = document.querySelector('.edit-transaction');
+const editModal = document.querySelector('.edit-modal-overlay');
+const editExpenseForm = document.querySelector('.edit-expense-form');
+const editDepositForm = document.querySelector('.edit-deposit-form');
 
 transactionsListItem.forEach(transactionItem => {
     transactionItem.addEventListener('click', (e) => {
@@ -392,7 +395,8 @@ transactionsListItem.forEach(transactionItem => {
         transactionDetailsModal.classList.remove('hidden');
         yesDelete.setAttribute('id', `${clickedTransactionId}`);
         //change edit transaction id to confirmation button id
-        editTransaction.setAttribute('id', `${clickedTransactionId}`);
+        editExpenseForm.setAttribute('id', `${clickedTransactionId}`);
+        editDepositForm.setAttribute('id', `${clickedTransactionId}`);
         console.log(clickedTransactionId);
 
         for (let i = 0; i <= transactions.length - 1; i++) {
@@ -443,10 +447,6 @@ yesDelete.addEventListener('click', () => {
 })
 
 //Edit Transaction
-const editModal = document.querySelector('.edit-modal-overlay');
-const editExpenseForm = document.querySelector('.edit-expense-form');
-const editDepositForm = document.querySelector('.edit-deposit-form');
-
 editTransaction.addEventListener('click', () => {
     editModal.classList.remove('hidden');
 
@@ -458,6 +458,26 @@ editTransaction.addEventListener('click', () => {
         editExpenseForm.classList.add('hidden');
     }
 })
+
+editExpenseForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(editExpenseForm.id)
+    for (let i = 0; i <= transactions.length - 1; i++) {
+        if (transactions[i].id === parseInt(editExpenseForm.id)) {
+            console.log(transactions[i]);
+            transactions[i].store = 'yoooooblahh';
+        }
+    }
+    localStorage.setItem('data', JSON.stringify(transactions));
+})
+
+editDepositForm.onSubmit = (e) => {
+    e.preventDefault();
+    for (let i = 0; i <= transactions.length; i++) {
+        console.log(transactions[i]);
+        // if (transactions[i].id)
+    }
+}
 
 
 const closeTransactions = document.querySelector('.close-transactions');
