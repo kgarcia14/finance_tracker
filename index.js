@@ -525,13 +525,14 @@ editExpenseForm.forEach(editExpenseForm => {
 
 editDepositForm.forEach(editDepositForm => {
     editDepositForm.onsubmit = () => {
+        console.log('yoooo')
         let edit_deposit_date = document.getElementById('edit_deposit_date').value;
         let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
         let edit_deposit_store = document.getElementById('edit_deposit_type').value;
         let edit_deposit_category = document.getElementById('edit_deposit_category').value;
     
         for (let i = 0; i <= transactions.length - 1; i++) {
-            if (transactions[i].id === parseInt(editExpenseForm.id)) {
+            if (transactions[i].id === parseInt(editDepositForm.id)) {
                 console.log(transactions[i]);
                 transactions[i].date = edit_deposit_date;
                 transactions[i].amount = parseInt(edit_deposit_amount);
