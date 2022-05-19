@@ -37,6 +37,8 @@ homeBtn.addEventListener('click', () => {
     statisticsTitle.classList.add('hidden');
     savingsPage.classList.add('hidden');
     savingsTitle.classList.add('hidden');
+    transactionDetailsModal.classList.add('hidden');
+    allTransactionDetailsModal.classList.add('hidden');
 });
 
 transactionsBtn.addEventListener('click', () => {
@@ -53,6 +55,8 @@ transactionsBtn.addEventListener('click', () => {
     statisticsTitle.classList.add('hidden');
     savingsPage.classList.add('hidden');
     savingsTitle.classList.add('hidden');
+    transactionDetailsModal.classList.add('hidden');
+    allTransactionDetailsModal.classList.add('hidden');
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -69,6 +73,9 @@ addTransactionBtn.addEventListener('click', () => {
         chartBtn.classList.remove('disable-click');
         savingsBtn.classList.remove('disable-click');
     }
+
+    transactionDetailsModal.classList.add('hidden');
+    allTransactionDetailsModal.classList.add('hidden');
 });
 
 chartBtn.addEventListener('click', () => {
@@ -85,6 +92,8 @@ chartBtn.addEventListener('click', () => {
     transactionsTitle.classList.add('hidden');
     savingsPage.classList.add('hidden');
     savingsTitle.classList.add('hidden');
+    transactionDetailsModal.classList.add('hidden');
+    allTransactionDetailsModal.classList.add('hidden');
 });
 
 savingsBtn.addEventListener('click', () => {
@@ -101,6 +110,8 @@ savingsBtn.addEventListener('click', () => {
     transactionsTitle.classList.add('hidden');
     statisticsPage.classList.add('hidden');
     statisticsTitle.classList.add('hidden');
+    transactionDetailsModal.classList.add('hidden');
+    allTransactionDetailsModal.classList.add('hidden');
 });
 
 formSubmitBtns.forEach(formSubmitBtn => {
@@ -262,7 +273,7 @@ transactions.map(transaction => {
     transactionLi.classList.add('transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', `${transaction.id}`);
     let transactionAmount = transaction.amount.toFixed(2);
-    console.log(transactions);
+    // console.log(transactions);
 
     if (transaction.category ==='Food') {
         transactionLi.innerHTML = `
@@ -379,24 +390,30 @@ transactions.map(transaction => {
 const transactionsListItem= document.querySelectorAll('.transaction-list-item');
 const transactionDetailsModal = document.querySelector('.transaction-details-modal');
 const transactionDetails = document.querySelector('.transaction-details');
-const deleteButton = document.querySelector('.delete-btn');
-const areYouSure = document.querySelector('.are-you-sure');
-const noDelete = document.querySelector('.no-delete');
-const yesDelete = document.querySelector('.yes-delete');
-const editTransaction = document.querySelector('.edit-transaction');
+const deleteButtons = document.querySelectorAll('.delete-btn');
+const areYouSure = document.querySelectorAll('.are-you-sure');
+const noDelete = document.querySelectorAll('.no-delete');
+const yesDelete = document.querySelectorAll('.yes-delete');
+const editTransaction = document.querySelectorAll('.edit-transaction');
 const editModal = document.querySelector('.edit-modal-overlay');
-const editExpenseForm = document.querySelector('.edit-expense-form');
-const editDepositForm = document.querySelector('.edit-deposit-form');
+const editExpenseForm = document.querySelectorAll('.edit-expense-form');
+const editDepositForm = document.querySelectorAll('.edit-deposit-form');
 
 transactionsListItem.forEach(transactionItem => {
     transactionItem.addEventListener('click', (e) => {
         const clickedTransaction = e.target.parentElement;
         const clickedTransactionId = e.target.parentElement.id;
         transactionDetailsModal.classList.remove('hidden');
-        yesDelete.setAttribute('id', `${clickedTransactionId}`);
+        yesDelete.forEach(yesDelete => {
+            yesDelete.setAttribute('id', `${clickedTransactionId}`);
+        })
         //change edit transaction id to confirmation button id
-        editExpenseForm.setAttribute('id', `${clickedTransactionId}`);
-        editDepositForm.setAttribute('id', `${clickedTransactionId}`);
+        editExpenseForm.forEach(editExpenseForm => {
+            editExpenseForm.setAttribute('id', `${clickedTransactionId}`);
+        })
+        editDepositForm.forEach(editDepositForm => {
+            editDepositForm.setAttribute('id', `${clickedTransactionId}`);
+        })
 
         console.log(clickedTransactionId);
 
@@ -419,109 +436,157 @@ transactionsListItem.forEach(transactionItem => {
         }
 
         if (clickedTransaction.classList.contains('expense')) {
-            editTransaction.classList.add('expense');
-            editTransaction.classList.remove('deposit');
+            editTransaction.forEach(editTransaction => {
+                editTransaction.classList.add('expense');
+            })
+            editTransaction.forEach(editTransaction => {
+                editTransaction.classList.remove('deposit');
+            })
         } else {
-            editTransaction.classList.add('deposit');
-            editTransaction.classList.remove('expense');
+            editTransaction.forEach(editTransaction => {
+                editTransaction.classList.add('deposit');
+            })
+            editTransaction.forEach(editTransaction => {
+                editTransaction.classList.remove('expense');
+            })
         }
     })
 })
 
 // DELETE Transaction from list
-yesDelete.addEventListener('click', () => {
-    console.log(yesDelete);
-    for (let i = 0; i <= transactions.length - 1; i++) {
-        if (transactions[i].id === parseInt(yesDelete.id)) {
-            let newTransactionsArr = [...transactions];
-            const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
-                return transaction.id === parseInt(yesDelete.id);
-            })
-            if (indexOfTransaction !== -1) {
-                newTransactionsArr.splice(indexOfTransaction, 1);
-                transactions = newTransactionsArr;
-                localStorage.setItem('data', JSON.stringify(transactions));
+yesDelete.forEach(yesDelete => {
+    yesDelete.addEventListener('click', () => {
+        console.log(yesDelete);
+        for (let i = 0; i <= transactions.length - 1; i++) {
+            if (transactions[i].id === parseInt(yesDelete.id)) {
+                let newTransactionsArr = [...transactions];
+                const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
+                    return transaction.id === parseInt(yesDelete.id);
+                })
+                if (indexOfTransaction !== -1) {
+                    newTransactionsArr.splice(indexOfTransaction, 1);
+                    transactions = newTransactionsArr;
+                    localStorage.setItem('data', JSON.stringify(transactions));
+                }
             }
+            location.reload();
         }
-        location.reload();
-    }
+    })
 })
 
 
 //Edit Transaction
-editTransaction.addEventListener('click', () => {
-    editModal.classList.remove('hidden');
+editTransaction.forEach(editTransaction => {
+    editTransaction.addEventListener('click', () => {
+        editModal.classList.remove('hidden');
+    
+        if (editTransaction.classList.contains('expense')) {
+            editExpenseForm.forEach(editExpenseForm => {
+                editExpenseForm.classList.remove('hidden');
+            })
 
-    if (editTransaction.classList.contains('expense')) {
-        editExpenseForm.classList.remove('hidden');
-        editDepositForm.classList.add('hidden');
-    } else {
-        editDepositForm.classList.remove('hidden');
-        editExpenseForm.classList.add('hidden');
-    }
-})
-
-editExpenseForm.onsubmit = () => {
-    let edit_expense_date = document.getElementById('edit_expense_date').value;
-    let edit_expense_amount = document.getElementById('edit_expense_amount').value;
-    let edit_expense_store = document.getElementById('edit_expense_store').value;
-    let edit_expense_category = document.getElementById('edit_expense_category').value;
-
-    console.log(edit_expense_amount);
-
-    for (let i = 0; i <= transactions.length - 1; i++) {
-        if (transactions[i].id === parseInt(editExpenseForm.id)) {
-            console.log(transactions[i]);
-            transactions[i].date = edit_expense_date;
-            transactions[i].amount = parseInt(edit_expense_amount);
-            transactions[i].store = edit_expense_store;
-            transactions[i].category = edit_expense_category
+            editDepositForm.forEach(editDepositForm => {
+                editDepositForm.classList.add('hidden');
+            })
+        } else {
+            editDepositForm.forEach(editDepositForm => {
+                editDepositForm.classList.remove('hidden');
+            })
+            editExpenseForm.forEach(editExpenseForm => {
+                editExpenseForm.classList.add('hidden');
+            })
         }
-    }
-    location.reload();
-    localStorage.setItem('data', JSON.stringify(transactions));
-}
+    })
+})
 
-
-editDepositForm.onsubmit = () => {
-    let edit_deposit_date = document.getElementById('edit_deposit_date').value;
-    let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
-    let edit_deposit_store = document.getElementById('edit_deposit_type').value;
-    let edit_deposit_category = document.getElementById('edit_deposit_category').value;
-
-    for (let i = 0; i <= transactions.length - 1; i++) {
-        if (transactions[i].id === parseInt(editExpenseForm.id)) {
-            console.log(transactions[i]);
-            transactions[i].date = edit_deposit_date;
-            transactions[i].amount = parseInt(edit_deposit_amount);
-            transactions[i].store = edit_deposit_store;
-            transactions[i].category = edit_deposit_category
+editExpenseForm.forEach(editExpenseForm => {
+    editExpenseForm.onsubmit = () => {
+        let edit_expense_date = document.getElementById('edit_expense_date').value;
+        let edit_expense_amount = document.getElementById('edit_expense_amount').value;
+        let edit_expense_store = document.getElementById('edit_expense_store').value;
+        let edit_expense_category = document.getElementById('edit_expense_category').value;
+    
+        console.log(edit_expense_amount);
+    
+        for (let i = 0; i <= transactions.length - 1; i++) {
+            if (transactions[i].id === parseInt(editExpenseForm.id)) {
+                console.log(transactions[i]);
+                transactions[i].date = edit_expense_date;
+                transactions[i].amount = parseInt(edit_expense_amount);
+                transactions[i].store = edit_expense_store;
+                transactions[i].category = edit_expense_category
+            }
         }
+        location.reload();
+        localStorage.setItem('data', JSON.stringify(transactions));
     }
-    location.reload();
-    localStorage.setItem('data', JSON.stringify(transactions));
-}
-
-
-const closeTransactions = document.querySelector('.close-transactions');
-const transactionDetailsAndButtons = document.querySelector('.transaction-details-and-buttons'); 
-
-closeTransactions.addEventListener('click', () => {
-    transactionDetailsModal.classList.add('hidden');
-    yesDelete.removeAttribute('id');
-    editTransaction.removeAttribute('id');
-    editExpenseForm.removeAttribute('id');
-    editDepositForm.removeAttribute('id');
 })
 
-deleteButton.addEventListener('click', () => {
-    areYouSure.classList.remove('hidden');
-    transactionDetailsAndButtons.classList.add('hidden');
+
+editDepositForm.forEach(editDepositForm => {
+    editDepositForm.onsubmit = () => {
+        let edit_deposit_date = document.getElementById('edit_deposit_date').value;
+        let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
+        let edit_deposit_store = document.getElementById('edit_deposit_type').value;
+        let edit_deposit_category = document.getElementById('edit_deposit_category').value;
+    
+        for (let i = 0; i <= transactions.length - 1; i++) {
+            if (transactions[i].id === parseInt(editExpenseForm.id)) {
+                console.log(transactions[i]);
+                transactions[i].date = edit_deposit_date;
+                transactions[i].amount = parseInt(edit_deposit_amount);
+                transactions[i].store = edit_deposit_store;
+                transactions[i].category = edit_deposit_category
+            }
+        }
+        location.reload();
+        localStorage.setItem('data', JSON.stringify(transactions));
+    }
 })
 
-noDelete.addEventListener('click', () => {
-    areYouSure.classList.add('hidden');
-    transactionDetailsAndButtons.classList.remove('hidden');
+
+const closeTransactions = document.querySelectorAll('.close-transactions');
+const transactionDetailsAndButtons = document.querySelectorAll('.transaction-details-and-buttons'); 
+
+closeTransactions.forEach(closeTransaction => {
+    closeTransaction.addEventListener('click', () => {
+        transactionDetailsModal.classList.add('hidden');
+        allTransactionDetailsModal.classList.add('hidden');
+        yesDelete.forEach(yesDelete => {
+            yesDelete.removeAttribute('id');
+        })
+        editTransaction.forEach(editTransaction => {
+            editTransaction.removeAttribute('id');
+        })
+        editExpenseForm.forEach(editExpenseForm => {
+            editExpenseForm.removeAttribute('id');
+        })
+        editDepositForm.forEach(editDepositForm => {
+            editDepositForm.removeAttribute('id');
+        })
+    })
+})
+
+deleteButtons.forEach(deleteButton => {
+    deleteButton.addEventListener('click', () => {
+        areYouSure.forEach(youSure => {
+            youSure.classList.remove('hidden');
+        })
+        transactionDetailsAndButtons.forEach(transDetailsAndButtons => {
+            transDetailsAndButtons.classList.add('hidden');
+        })
+    })
+})
+
+noDelete.forEach(noDelete => {
+    noDelete.addEventListener('click', () => {
+        areYouSure.forEach(youSure => {
+            youSure.classList.add('hidden');
+        })
+        transactionDetailsAndButtons.forEach(transDetailsAndButtons => {
+            transDetailsAndButtons.classList.remove('hidden');
+        })
+    })
 })
 
 
