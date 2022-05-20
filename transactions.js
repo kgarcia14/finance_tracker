@@ -2,8 +2,9 @@
 
 //display transactions on home page and transctions page
 //map through transactions to display each transaction
+const allTransactionsList = document.querySelector('.all-transactions-list');
+
 transactions.map(transaction => {
-    const transactionsList = document.querySelector('.all-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('all-transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', `${transaction.id}`);
@@ -117,8 +118,14 @@ transactions.map(transaction => {
         `
     }
     
-    transactionsList.append(transactionLi);
+    allTransactionsList.append(transactionLi);
 })
+
+if (!transactions.length) {
+    allTransactionsList.innerHTML = `
+    <p class="start-adding-transactions">Start Adding Transactions!!!</p>
+    `
+}
 
 //View details of each transaction
 const allTransactionsListItem= document.querySelectorAll('.all-transaction-list-item');
