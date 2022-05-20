@@ -386,7 +386,7 @@ tenRecentTransactions.map(transaction => {
     
     transactionsList.append(transactionLi);
 
-    if (!transactions.length) {
+    if (transactions.length === 0) {
         transactionsList.innerHTML = `
             <p>Start Adding Transactions!!!</p>
         `
