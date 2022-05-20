@@ -111,7 +111,6 @@ savingsBtn.addEventListener('click', () => {
     statisticsPage.classList.add('hidden');
     statisticsTitle.classList.add('hidden');
     transactionDetailsModal.classList.add('hidden');
-    allTransactionDetailsModal.classList.add('hidden');
 });
 
 formSubmitBtns.forEach(formSubmitBtn => {
@@ -265,9 +264,12 @@ const expenseOverviewBalance = document.querySelector('.expenses-overview-balanc
 expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
 
-//display transactions on home page and transctions page
+//display 10 most recent transactions on home page
 //map through transactions to display each transaction
-transactions.map(transaction => {
+const reversedTransactions = [...transactions].reverse();
+const tenRecentTransactions = reversedTransactions.slice(0, 10);
+
+tenRecentTransactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item', transaction.type);
@@ -383,6 +385,12 @@ transactions.map(transaction => {
     }
     
     transactionsList.append(transactionLi);
+
+    if (!transactions.length) {
+        transactionsList.innerHTML = `
+            <p>Start Adding Transactions!!!</p>
+        `
+    }
 })
 
 
@@ -427,7 +435,6 @@ transactionsListItem.forEach(transactionItem => {
                     <ul>
                         <li>${transaction.amount}</li>
                         <li>${transaction.date}</li>
-                        <li>${transaction.type}</li>
                         <li>${transaction.store}</li>
                         <li>${transaction.category}</li>
                     </ul>
