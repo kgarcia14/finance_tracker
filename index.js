@@ -267,7 +267,10 @@ expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
 //display transactions on home page and transctions page
 //map through transactions to display each transaction
-transactions.map(transaction => {
+const reversedTransactions = [...transactions].reverse();
+const tenRecentTransactions = reversedTransactions.slice(0, 10);
+
+tenRecentTransactions.map(transaction => {
     const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item', transaction.type);

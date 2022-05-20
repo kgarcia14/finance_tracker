@@ -319,7 +319,17 @@ nav {
   justify-content: center;
 }
 
-.home-transactions-list, .all-transactions-list {
+.home-transactions-list {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 70px;
+}
+
+.all-transactions-list {
   list-style-type: none;
   width: 100%;
   display: flex;
