@@ -171,7 +171,7 @@ if(localStorage.getItem('data') === null) {
 }
 
 let transactions = JSON.parse(localStorage.getItem('data'));
-
+console.log(transactions);
 
 //submit expense form
 expenseForm.onsubmit = (e) => {
@@ -266,11 +266,11 @@ expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
 //display 10 most recent transactions on home page
 //map through transactions to display each transaction
+const transactionsList = document.querySelector('.home-transactions-list');
 const reversedTransactions = [...transactions].reverse();
 const tenRecentTransactions = reversedTransactions.slice(0, 10);
 
 tenRecentTransactions.map(transaction => {
-    const transactionsList = document.querySelector('.home-transactions-list');
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', `${transaction.id}`);
@@ -385,14 +385,13 @@ tenRecentTransactions.map(transaction => {
     }
     
     transactionsList.append(transactionLi);
-
-    if (transactions.length === 0) {
-        transactionsList.innerHTML = `
-            <p>Start Adding Transactions!!!</p>
-        `
-    }
 })
 
+if (!transactions.length) {
+    transactionsList.innerHTML = `
+        <p class="start-adding-transactions">Start Adding Transactions!!!</p>
+    `
+}
 
 //View details of each transaction
 const transactionsListItem= document.querySelectorAll('.transaction-list-item');
@@ -433,10 +432,10 @@ transactionsListItem.forEach(transactionItem => {
                 
                 transactionDetails.innerHTML = `
                     <ul>
-                        <li>${transaction.amount}</li>
-                        <li>${transaction.date}</li>
-                        <li>${transaction.store}</li>
-                        <li>${transaction.category}</li>
+                        <li><p>Amount:</p> <p>${transaction.amount}</p></li>
+                        <li><p>Date:</p> <p>${transaction.date}</p></li>
+                        <li><p>Merchant:</p> <p>${transaction.store}</p></li>
+                        <li><p>Category:</p> <p>${transaction.category}</p></li>
                     </ul>
                 `
             }

@@ -408,6 +408,16 @@ nav {
   border-radius: 20px;
 }
 
+.transaction-details ul {
+  list-style-type: none;
+}
+
+.transaction-details ul li {
+  width: 175px;
+  display: flex;
+  justify-content: space-between;
+}
+
 .are-you-sure {
   display: flex;
   flex-direction: column;
