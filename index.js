@@ -518,7 +518,7 @@ editExpenseForm.forEach(editExpenseForm => {
             if (transactions[i].id === parseInt(editExpenseForm.id)) {
                 console.log(transactions[i]);
                 transactions[i].date = edit_expense_date;
-                transactions[i].amount = parseInt(edit_expense_amount);
+                transactions[i].amount = - edit_expense_amount;
                 transactions[i].store = edit_expense_store;
                 transactions[i].category = edit_expense_category
             }
