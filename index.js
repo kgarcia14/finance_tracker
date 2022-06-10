@@ -423,7 +423,6 @@ transactionsListItem.forEach(transactionItem => {
         })
         
         console.log(clickedTransactionId);
-        transactionItem.click(console.log('clickedddddd'));
 
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
