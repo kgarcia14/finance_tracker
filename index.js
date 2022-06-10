@@ -287,7 +287,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -302,7 +302,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -317,7 +317,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -332,7 +332,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -347,7 +347,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -362,7 +362,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -377,7 +377,7 @@ tenRecentTransactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -407,9 +407,10 @@ const editExpenseForm = document.querySelectorAll('.edit-expense-form');
 const editDepositForm = document.querySelectorAll('.edit-deposit-form');
 
 transactionsListItem.forEach(transactionItem => {
-    transactionItem.addEventListener('click', (e) => {
-        const clickedTransaction = e.target.parentElement;
-        const clickedTransactionId = e.target.parentElement.id;
+    transactionItem.addEventListener('click', () => {
+        console.log(transactionItem.id);
+        const clickedTransaction = transactionItem;
+        const clickedTransactionId = transactionItem.id;
         transactionDetailsModal.classList.remove('hidden');
         yesDelete.forEach(yesDelete => {
             yesDelete.setAttribute('id', `${clickedTransactionId}`);
@@ -422,6 +423,7 @@ transactionsListItem.forEach(transactionItem => {
             editDepositForm.setAttribute('id', `${clickedTransactionId}`);
         })
         
+        console.log(clickedTransaction);
         console.log(clickedTransactionId);
 
         for (let i = 0; i <= transactions.length - 1; i++) {

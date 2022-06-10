@@ -351,6 +351,10 @@ nav {
   background-color: #fff;
 }
 
+.transaction-icon, .transaction-list-item-amount {
+  pointer-events: none;
+}
+
 .transaction-icon {
   display: flex;
 }

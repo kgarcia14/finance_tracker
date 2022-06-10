@@ -21,7 +21,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -36,7 +36,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -66,7 +66,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -81,7 +81,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -96,7 +96,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -111,7 +111,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -133,9 +133,9 @@ const allTransactionDetailsModal = document.querySelector('.all-transaction-deta
 const allTransactionDetails = document.querySelector('.all-transaction-details');
 
 allTransactionsListItem.forEach(transactionItem => {
-    transactionItem.addEventListener('click', (e) => {
-        const clickedTransaction = e.target.parentElement;
-        const clickedTransactionId = e.target.parentElement.id;
+    transactionItem.addEventListener('click', () => {
+        const clickedTransaction = transactionItem;
+        const clickedTransactionId = transactionItem.id;
         allTransactionDetailsModal.classList.remove('hidden');
         yesDelete.forEach(yesDelete => {
             yesDelete.setAttribute('id', `${clickedTransactionId}`);
