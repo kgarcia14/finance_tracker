@@ -158,11 +158,10 @@ allTransactionsListItem.forEach(transactionItem => {
                 
                 allTransactionDetails.innerHTML = `
                     <ul>
-                        <li>${transaction.amount}</li>
-                        <li>${transaction.date}</li>
-                        <li>${transaction.type}</li>
-                        <li>${transaction.store}</li>
-                        <li>${transaction.category}</li>
+                    <li><p>Amount:</p> <p>${transaction.amount}</p></li>
+                    <li><p>Date:</p> <p>${transaction.date}</p></li>
+                    <li><p>Merchant:</p> <p>${transaction.store}</p></li>
+                    <li><p>Category:</p> <p>${transaction.category}</p></li>
                     </ul>
                 `
             }
