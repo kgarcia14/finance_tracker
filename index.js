@@ -421,8 +421,9 @@ transactionsListItem.forEach(transactionItem => {
         editDepositForm.forEach(editDepositForm => {
             editDepositForm.setAttribute('id', `${clickedTransactionId}`);
         })
-
+        
         console.log(clickedTransactionId);
+        transactionItem.click(console.log('clickedddddd'));
 
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
