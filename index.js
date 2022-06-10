@@ -23,99 +23,84 @@ const modalContentDeposit = document.querySelector('.modal-content-deposit');
 const formSubmitBtns = document.querySelectorAll('.form-submit-btn');
 const inputs = document.querySelectorAll('input, select');
 
-homeBtn.addEventListener('click', () => {
-    homeBtn.classList.add('active-nav-btn');
-    transactionsBtn.classList.remove('active-nav-btn');
-    chartBtn.classList.remove('active-nav-btn');
-    savingsBtn.classList.remove('active-nav-btn');
+//helper functions & button functionality
+const active = (element) => {
+    element.classList.add('active-nav-btn');
+}
 
-    homePage.classList.remove('hidden');
-    homeTitle.classList.remove('hidden');
-    transactionsPage.classList.add('hidden');
-    transactionsTitle.classList.add('hidden');
-    statisticsPage.classList.add('hidden');
-    statisticsTitle.classList.add('hidden');
-    savingsPage.classList.add('hidden');
-    savingsTitle.classList.add('hidden');
-    transactionDetailsModal.classList.add('hidden');
-    allTransactionDetailsModal.classList.add('hidden');
+const inactive = (elements) => {
+    elements.forEach(element => {
+        element.classList.remove('active-nav-btn');
+    })
+}
+
+const show = (elements) => {
+    elements.forEach(element => {
+        element.classList.remove('hidden');
+    })
+}
+
+const hide = (elements) => {
+    elements.forEach(element => {
+        element.classList.add('hidden');
+    })
+}
+
+const disableNavClick = (elements) => {
+    elements.forEach(element => {
+        element.classList.add('disable-click');
+    })
+}
+
+const enableNavClick = (elements) => {
+    elements.forEach(element => {
+        element.classList.remove('disable-click');
+    })
+}
+
+homeBtn.addEventListener('click', () => {
+    active(homeBtn);
+    inactive([transactionsBtn, chartBtn, savingsBtn]);
+    show([homePage, homeTitle]);
+    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 transactionsBtn.addEventListener('click', () => {
-    transactionsBtn.classList.add('active-nav-btn');
-    homeBtn.classList.remove('active-nav-btn');
-    chartBtn.classList.remove('active-nav-btn');
-    savingsBtn.classList.remove('active-nav-btn');
-
-    transactionsPage.classList.remove('hidden');
-    transactionsTitle.classList.remove('hidden');
-    homePage.classList.add('hidden');
-    homeTitle.classList.add('hidden');
-    statisticsPage.classList.add('hidden');
-    statisticsTitle.classList.add('hidden');
-    savingsPage.classList.add('hidden');
-    savingsTitle.classList.add('hidden');
-    transactionDetailsModal.classList.add('hidden');
-    allTransactionDetailsModal.classList.add('hidden');
+    active(transactionsBtn);
+    inactive([homeBtn, chartBtn, savingsBtn]);
+    show([transactionsPage, transactionsTitle]);
+    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 addTransactionBtn.addEventListener('click', () => {
     modal.classList.toggle('hidden');
     // if modal does not contain element then...else...
     if(!modal.classList.contains('hidden')) {
-        homeBtn.classList.add('disable-click');
-        transactionsBtn.classList.add('disable-click');
-        chartBtn.classList.add('disable-click');
-        savingsBtn.classList.add('disable-click');
+        disableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
     } else {
-        homeBtn.classList.remove('disable-click');
-        transactionsBtn.classList.remove('disable-click');
-        chartBtn.classList.remove('disable-click');
-        savingsBtn.classList.remove('disable-click');
+        enableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
     }
 
-    transactionDetailsModal.classList.add('hidden');
-    allTransactionDetailsModal.classList.add('hidden');
+    hide([transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 chartBtn.addEventListener('click', () => {
-    chartBtn.classList.add('active-nav-btn');
-    homeBtn.classList.remove('active-nav-btn');
-    transactionsBtn.classList.remove('active-nav-btn');
-    savingsBtn.classList.remove('active-nav-btn');
-
-    statisticsPage.classList.remove('hidden');
-    statisticsTitle.classList.remove('hidden');
-    homePage.classList.add('hidden');
-    homeTitle.classList.add('hidden');
-    transactionsPage.classList.add('hidden');
-    transactionsTitle.classList.add('hidden');
-    savingsPage.classList.add('hidden');
-    savingsTitle.classList.add('hidden');
-    transactionDetailsModal.classList.add('hidden');
-    allTransactionDetailsModal.classList.add('hidden');
+    active(chartBtn);
+    inactive([homeBtn, transactionsBtn, savingsBtn]);
+    show([statisticsPage, statisticsTitle]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 savingsBtn.addEventListener('click', () => {
-    savingsBtn.classList.add('active-nav-btn');
-    homeBtn.classList.remove('active-nav-btn');
-    transactionsBtn.classList.remove('active-nav-btn');
-    chartBtn.classList.remove('active-nav-btn');
-
-    savingsPage.classList.remove('hidden');
-    savingsTitle.classList.remove('hidden');
-    homePage.classList.add('hidden');
-    homeTitle.classList.add('hidden');
-    transactionsPage.classList.add('hidden');
-    transactionsTitle.classList.add('hidden');
-    statisticsPage.classList.add('hidden');
-    statisticsTitle.classList.add('hidden');
-    transactionDetailsModal.classList.add('hidden');
+    active(savingsBtn);
+    inactive([homeBtn, transactionsBtn, chartBtn]);
+    show([savingsPage, savingsTitle]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 formSubmitBtns.forEach(formSubmitBtn => {
     formSubmitBtn.addEventListener('click', () => {
-        modal.classList.add('hidden');
+        hide(modal);
     })
 })
 
@@ -123,19 +108,12 @@ cancelBtn.forEach(cancelButtons => {
     cancelButtons.addEventListener('click', (e) => {
         e.preventDefault();
 
-        modal.classList.add('hidden');
-        editModal.classList.add('hidden');
+        hide([modal, editModal]);
 
         if(!modal.classList.contains('hidden')) {
-            homeBtn.classList.add('disable-click');
-            transactionsBtn.classList.add('disable-click');
-            chartBtn.classList.add('disable-click');
-            savingsBtn.classList.add('disable-click');
+            disableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
         } else {
-            homeBtn.classList.remove('disable-click');
-            transactionsBtn.classList.remove('disable-click');
-            chartBtn.classList.remove('disable-click');
-            savingsBtn.classList.remove('disable-click');
+            enableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
         }
 
         inputs.forEach(input => {
@@ -148,16 +126,16 @@ expenseBtn.addEventListener('click', () => {
     expenseBtn.classList.add('active-expense-btn');
     depositBtn.classList.remove('active-deposit-btn');
     expenseBtn.classList.remove('inactive-expense-btn');
-    modalContentExpense.classList.remove('hidden');
-    modalContentDeposit.classList.add('hidden');
+    show([modalContentExpense]);
+    hide([modalContentDeposit]);
 });
 
 depositBtn.addEventListener('click', () => {
     depositBtn.classList.add('active-deposit-btn');
     expenseBtn.classList.remove('active-expense-btn');
     expenseBtn.classList.add('inactive-expense-btn');
-    modalContentExpense.classList.add('hidden');
-    modalContentDeposit.classList.remove('hidden');
+    hide([modalContentExpense]);
+    show([modalContentDeposit]);
 });
 
 
