@@ -407,15 +407,26 @@ nav {
   background-color: #fff;
   border-radius: 20px;
 }
-
+.transaction-details {
+  width: 100%;
+}
 .transaction-details ul {
+  width: 100%;
   list-style-type: none;
+  margin: 20px 0;
 }
 
 .transaction-details ul li {
-  width: 175px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.transaction-details-and-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
 }
 
 .are-you-sure {
@@ -446,10 +457,21 @@ nav {
   -webkit-text-stroke: 1px #6488e5;
 }
 
-
+.close-transactions {
+  background: none;
+  border: none;
+  color: #5c5c5c;
+}
+.edit-transaction {
+  background: #6488e5;
+  color: #fff;
+  padding: 5px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 15px;
+}
 .delete-btn {
   background: none;
   color: red;
   border: none;
-  margin-top: 10px;
 }
