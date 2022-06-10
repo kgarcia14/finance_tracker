@@ -485,10 +485,22 @@ yesDelete.forEach(yesDelete => {
 editTransaction.forEach(editTransaction => {
     editTransaction.addEventListener('click', () => {
         editModal.classList.remove('hidden');
-    
         if (editTransaction.classList.contains('expense')) {
             editExpenseForm.forEach(editExpenseForm => {
                 editExpenseForm.classList.remove('hidden');
+                transactions.forEach(transaction => {
+                    if (transaction.id === parseFloat(editExpenseForm.id)) {
+                        console.log(transaction);
+                        let edit_expense_date = document.getElementById('edit_expense_date');
+                        let edit_expense_amount = document.getElementById('edit_expense_amount');
+                        let edit_expense_store = document.getElementById('edit_expense_store');
+                        
+                        edit_expense_date.value = transaction.date;
+                        edit_expense_amount.value = transaction.amount;
+                        edit_expense_store.value = transaction.store;
+                        edit_expense_category.value = transaction.category;
+                    }
+                })
             })
 
             editDepositForm.forEach(editDepositForm => {
@@ -497,6 +509,20 @@ editTransaction.forEach(editTransaction => {
         } else {
             editDepositForm.forEach(editDepositForm => {
                 editDepositForm.classList.remove('hidden');
+                transactions.forEach(transaction => {
+                    if (transaction.id === parseFloat(editDepositForm.id)) {
+                        console.log(transaction);
+                        let edit_deposit_date = document.getElementById('edit_deposit_date');
+                        let edit_deposit_amount = document.getElementById('edit_deposit_amount');
+                        let edit_deposit_store = document.getElementById('edit_deposit_type');
+                        let edit_deposit_category = document.getElementById('edit_deposit_category');
+                        
+                        edit_deposit_date.value = transaction.date;
+                        edit_deposit_amount.value = transaction.amount;
+                        edit_deposit_store.value = transaction.store;
+                        edit_deposit_category.value = transaction.category;
+                    }
+                })
             })
             editExpenseForm.forEach(editExpenseForm => {
                 editExpenseForm.classList.add('hidden');
@@ -515,7 +541,7 @@ editExpenseForm.forEach(editExpenseForm => {
         console.log(edit_expense_amount);
     
         for (let i = 0; i <= transactions.length - 1; i++) {
-            if (transactions[i].id === parseInt(editExpenseForm.id)) {
+            if (transactions[i].id === parseFloat(editExpenseForm.id)) {
                 console.log(transactions[i]);
                 transactions[i].date = edit_expense_date;
                 transactions[i].amount = - edit_expense_amount;
