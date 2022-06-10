@@ -351,6 +351,10 @@ nav {
   background-color: #fff;
 }
 
+.transaction-icon, .transaction-list-item-amount {
+  pointer-events: none;
+}
+
 .transaction-icon {
   display: flex;
 }
@@ -407,16 +411,16 @@ nav {
   background-color: #fff;
   border-radius: 20px;
 }
-.transaction-details {
+.transaction-details, .all-transaction-details {
   width: 100%;
 }
-.transaction-details ul {
+.transaction-details ul, .all-transaction-details ul {
   width: 100%;
   list-style-type: none;
   margin: 20px 0;
 }
 
-.transaction-details ul li {
+.transaction-details ul li, .all-transaction-details ul li {
   width: 100%;
   display: flex;
   justify-content: space-between;

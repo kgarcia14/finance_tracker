@@ -21,7 +21,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -36,7 +36,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -51,7 +51,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -66,7 +66,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -81,7 +81,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -96,7 +96,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -111,7 +111,7 @@ transactions.map(transaction => {
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>
-                <div>
+                <div class="transaction-list-item-amount">
                     <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
                 </div>
             </div>
@@ -133,9 +133,9 @@ const allTransactionDetailsModal = document.querySelector('.all-transaction-deta
 const allTransactionDetails = document.querySelector('.all-transaction-details');
 
 allTransactionsListItem.forEach(transactionItem => {
-    transactionItem.addEventListener('click', (e) => {
-        const clickedTransaction = e.target.parentElement;
-        const clickedTransactionId = e.target.parentElement.id;
+    transactionItem.addEventListener('click', () => {
+        const clickedTransaction = transactionItem;
+        const clickedTransactionId = transactionItem.id;
         allTransactionDetailsModal.classList.remove('hidden');
         yesDelete.forEach(yesDelete => {
             yesDelete.setAttribute('id', `${clickedTransactionId}`);
@@ -158,11 +158,10 @@ allTransactionsListItem.forEach(transactionItem => {
                 
                 allTransactionDetails.innerHTML = `
                     <ul>
-                        <li>${transaction.amount}</li>
-                        <li>${transaction.date}</li>
-                        <li>${transaction.type}</li>
-                        <li>${transaction.store}</li>
-                        <li>${transaction.category}</li>
+                    <li><p>Amount:</p> <p>${transaction.amount}</p></li>
+                    <li><p>Date:</p> <p>${transaction.date}</p></li>
+                    <li><p>Merchant:</p> <p>${transaction.store}</p></li>
+                    <li><p>Category:</p> <p>${transaction.category}</p></li>
                     </ul>
                 `
             }
