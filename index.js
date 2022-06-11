@@ -259,7 +259,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/food_icon.svg" alt="fork and knife icon">
+                    <i class="fa-solid fa-utensils expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -274,7 +274,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/shopping_icon.svg" alt="shopping bag">
+                    <i class="fa-solid fa-bag-shopping expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -289,7 +289,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/transportation_icon.svg" alt="car">
+                <i class="fa-solid fa-car expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -304,7 +304,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/home_icon.svg" alt="house">
+                    <i class="fa-solid fa-house-chimney expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -319,7 +319,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/gas_icon.svg" alt="gas tank">
+                    <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -334,7 +334,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/home_icon.svg" alt="gas tank">
+                    <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -349,7 +349,7 @@ tenRecentTransactions.map(transaction => {
         transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <img src="./images/deposit_icon.svg" alt="fork and knife icon">
+                    <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">Deposit</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
