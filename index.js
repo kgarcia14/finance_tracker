@@ -281,7 +281,13 @@ tenRecentTransactions.map(transaction => {
                     </div>
                 </div>
                 <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                    ${
+                        transaction.type === 'expense' ? `
+                            <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
+                        ` : `
+                            <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
+                        `
+                    }
                 </div>
             </div>
         `
