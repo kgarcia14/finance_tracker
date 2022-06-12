@@ -255,11 +255,26 @@ tenRecentTransactions.map(transaction => {
     let transactionAmount = transaction.amount.toFixed(2);
     // console.log(transactions);
 
-    if (transaction.category ==='Food') {
-        transactionLi.innerHTML = `
+    transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
                 <div class="transaction-icon">
-                    <i class="fa-solid fa-utensils expense-transaction-icon"></i>
+                    ${
+                        transaction.category === 'Food' ? `
+                            <i class="fa-solid fa-utensils expense-transaction-icon"></i>
+                        ` : transaction.category === 'Shopping' ? `
+                            <i class="fa-solid fa-bag-shopping expense-transaction-icon"></i>
+                        ` : transaction.category === 'Transportation' ? `
+                            <i class="fa-solid fa-car expense-transaction-icon"></i>
+                        ` : transaction.category === 'Home' ? `
+                            <i class="fa-solid fa-house-chimney expense-transaction-icon"></i>
+                        ` : transaction.category === 'Gas' ? `
+                            <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
+                        ` : transaction.category === 'Bills' ? `
+                            <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
+                        ` : `
+                            <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
+                        `
+                    }
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">${transaction.store}</h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
@@ -270,98 +285,6 @@ tenRecentTransactions.map(transaction => {
                 </div>
             </div>
         `
-    } else if (transaction.category ==='Shopping') {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                    <i class="fa-solid fa-bag-shopping expense-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    } else if (transaction.category ==='Transportation') {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                <i class="fa-solid fa-car expense-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    } else if (transaction.category ==='Home') {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                    <i class="fa-solid fa-house-chimney expense-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    } else if (transaction.category ==='Gas') {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                    <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    } else if (transaction.category ==='Bills') {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                    <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    } else {
-        transactionLi.innerHTML = `
-            <div class="transaction-content-wrapper">
-                <div class="transaction-icon">
-                    <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
-                    <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">Deposit</h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
-                    </div>
-                </div>
-                <div class="transaction-list-item-amount">
-                    <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
-                </div>
-            </div>
-        `
-    }
-    
     transactionsList.append(transactionLi);
 })
 
