@@ -31,6 +31,19 @@
                     </div>
                 </div>
             </div>
+            <div class="savings-balance-container hidden">
+                <div class="savings-balance-wrapper">
+                    <div class="savings-balance-label">
+                        <p class="savings-total-balance">Savings balance</p>
+                        <p class="savings-available">Savings available</p>
+                    </div>
+                    <div class="savings-total-balance">
+                        <p class="savings-balance">
+                            $100
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- Home Page -->
@@ -146,7 +159,10 @@
     </div>
     <!-- Savings Page -->
     <div class="savings-page hidden">
-        SAVINGS
+        <div class="transfer-modal">
+            yooo
+        </div>
+        <button class="add-savings">Add Saving</button>
     </div>
     <!-- Expense and Deposit Modal -->
     <div class="modal-overlay hidden">
@@ -155,6 +171,9 @@
                 <div class="expense-deposit-btn">
                     <button class="expense-btn active-expense-btn">Expense</button>
                     <button class="deposit-btn inactive-deposit-btn">Deposit</button>
+                </div>
+                <div class="transfer-btn-wrapper">
+                    <button class="transfer-btn">Make a Transfer</button>
                 </div>
                 <form class="modal-content-expense inputs-wrapper expense-form">
                     <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
@@ -286,4 +305,6 @@
 </body>
 <script src="index.js"></script>
 <script src="transactions.js"></script>
+<script src="statistics.js"></script>
+<script src="savings.js"></script>
 </html>

@@ -25,9 +25,16 @@ body {
   display: flex;
   justify-content: center;
   font-size: 2.3rem;
-  color: #E56372;
   width: 40px;
   color: #0F9D58;
+}
+
+.transfer-transaction-icon {
+  display: flex;
+  justify-content: center;
+  font-size: 2.05rem;
+  width: 40px;
+  color: #a3cbb8;
 }
 
 .header-container {
@@ -61,7 +68,7 @@ body {
   font-weight: 400;
 }
 
-.total-balance-container {
+.total-balance-container, .savings-balance-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,17 +78,17 @@ body {
   margin-bottom: -35px;
 }
 
-.total-balance-wrapper {
+.total-balance-wrapper, .savings-balance-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 90%;
 }
 
-.total-balance {
+.total-balance, .savings-total-balance {
 }
 
-.cash-available {
+.cash-available, .savings-available {
   font-size: 0.7rem;
   color: #9e9e9e;
   margin-top: 5px;
@@ -181,8 +188,8 @@ body {
     flex-direction: column;
     align-items: center;
     background-color: #fff;
-    height: 550px;
     border-radius: 20px;
+    padding: 20px 0;
     margin-bottom: 60px;
 }
 
@@ -211,6 +218,15 @@ body {
     border-radius: 20px;
     color: #fff;
     background-color: #6488e5;
+}
+
+.gray-btn {
+    width: 50%;
+    height: 45px;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    background-color: #dadee7;
 }
 
 .inactive-deposit-btn {
@@ -287,6 +303,23 @@ body {
   border-radius: 20px;
   color: #fff;
   background-color: #6488e5;
+}
+
+.transfer-btn-wrapper {
+  width: 80%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.transfer-btn {
+  background: none;
+  border: none;
+  color: #6488e5;
+}
+
+.active-transfer-btn {
+  border-bottom: 1px solid #6488e5;
 }
 
 nav {
@@ -497,4 +530,16 @@ nav {
   background: none;
   color: red;
   border: none;
+}
+
+.add-savings {
+  margin-top: 170px;
+}
+
+.transfer-modal {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
