@@ -34,7 +34,7 @@ body {
   justify-content: center;
   font-size: 2.05rem;
   width: 40px;
-  color: #a3cbb8;
+  color: #dadee7;
 }
 
 .header-container {
@@ -211,6 +211,10 @@ body {
   border-radius: 20px;
 }
 
+.gray-expense-deposit-btn {
+  border: 1px solid #dadee7;
+}
+
 .active-expense-btn {
     width: 50%;
     height: 45px;
@@ -277,6 +281,11 @@ body {
 
 .add-deposit-btn {
   color: #00E300;
+  font-size: 1rem;
+}
+
+.confirm-transfer-btn {
+  color: #dadee7;
   font-size: 1rem;
 }
 

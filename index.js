@@ -18,11 +18,13 @@ const savingsBalanceContainer = document.querySelector('.savings-balance-contain
 const modal = document.querySelector('.modal-overlay');
 const addTransactionBtn = document.querySelector('.add-transaction-btn');
 const cancelBtn = document.querySelectorAll('.cancel-btn');
+const expenseDepositBtn = document.querySelector('.expense-deposit-btn');
 const expenseBtn = document.querySelector('.expense-btn');
 const depositBtn = document.querySelector('.deposit-btn');
 const transferBtn = document.querySelector('.transfer-btn');
 const modalContentExpense = document.querySelector('.modal-content-expense');
 const modalContentDeposit = document.querySelector('.modal-content-deposit');
+const modalContentTransfer = document.querySelector('.modal-content-transfer');
 const formSubmitBtns = document.querySelectorAll('.form-submit-btn');
 const inputs = document.querySelectorAll('input, select');
 
@@ -131,8 +133,9 @@ expenseBtn.addEventListener('click', () => {
     depositBtn.classList.remove('active-deposit-btn', 'gray-btn');
     expenseBtn.classList.remove('inactive-expense-btn');
     transferBtn.classList.remove('active-transfer-btn');
+    expenseDepositBtn.classList.remove('gray-expense-deposit-btn');
+    hide([modalContentDeposit, modalContentTransfer]);
     show([modalContentExpense]);
-    hide([modalContentDeposit]);
 });
 
 depositBtn.addEventListener('click', () => {
@@ -140,12 +143,15 @@ depositBtn.addEventListener('click', () => {
     expenseBtn.classList.remove('active-expense-btn', 'gray-btn');
     expenseBtn.classList.add('inactive-expense-btn');
     transferBtn.classList.remove('active-transfer-btn');
-    hide([modalContentExpense]);
+    expenseDepositBtn.classList.remove('gray-expense-deposit-btn');
+    hide([modalContentExpense, modalContentTransfer]);
     show([modalContentDeposit]);
 });
 
 transferBtn.addEventListener('click', () => {
     transferBtn.classList.add('active-transfer-btn');
+    expenseDepositBtn.classList.add('gray-expense-deposit-btn');
+
     if (expenseBtn.classList.contains('active-expense-btn')) {
         expenseBtn.classList.remove('active-expense-btn');
         expenseBtn.classList.add('gray-btn');
@@ -157,6 +163,7 @@ transferBtn.addEventListener('click', () => {
     }
 
     hide([modalContentExpense, modalContentDeposit]);
+    show([modalContentTransfer]);
 });
 
 
