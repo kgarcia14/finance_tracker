@@ -13,11 +13,14 @@ const homeTitle = document.querySelector('.home-title');
 const transactionsTitle = document.querySelector('.transactions-title');
 const statisticsTitle = document.querySelector('.statistics-title');
 const savingsTitle = document.querySelector('.savings-title');
+const totalBalanceContainer = document.querySelector('.total-balance-container');
+const savingsBalanceContainer = document.querySelector('.savings-balance-container');
 const modal = document.querySelector('.modal-overlay');
 const addTransactionBtn = document.querySelector('.add-transaction-btn');
 const cancelBtn = document.querySelectorAll('.cancel-btn');
 const expenseBtn = document.querySelector('.expense-btn');
 const depositBtn = document.querySelector('.deposit-btn');
+const transferBtn = document.querySelector('.transfer-btn');
 const modalContentExpense = document.querySelector('.modal-content-expense');
 const modalContentDeposit = document.querySelector('.modal-content-deposit');
 const formSubmitBtns = document.querySelectorAll('.form-submit-btn');
@@ -61,15 +64,15 @@ const enableNavClick = (elements) => {
 homeBtn.addEventListener('click', () => {
     active(homeBtn);
     inactive([transactionsBtn, chartBtn, savingsBtn]);
-    show([homePage, homeTitle]);
-    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
+    show([homePage, homeTitle, totalBalanceContainer]);
+    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 transactionsBtn.addEventListener('click', () => {
     active(transactionsBtn);
     inactive([homeBtn, chartBtn, savingsBtn]);
-    show([transactionsPage, transactionsTitle]);
-    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
+    show([transactionsPage, transactionsTitle, totalBalanceContainer]);
+    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -87,15 +90,15 @@ addTransactionBtn.addEventListener('click', () => {
 chartBtn.addEventListener('click', () => {
     active(chartBtn);
     inactive([homeBtn, transactionsBtn, savingsBtn]);
-    show([statisticsPage, statisticsTitle]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, transactionDetailsModal, allTransactionDetailsModal]);
+    show([statisticsPage, statisticsTitle, totalBalanceContainer]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 savingsBtn.addEventListener('click', () => {
     active(savingsBtn);
     inactive([homeBtn, transactionsBtn, chartBtn]);
-    show([savingsPage, savingsTitle]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, transactionDetailsModal, allTransactionDetailsModal]);
+    show([savingsPage, savingsTitle, savingsBalanceContainer]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, totalBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 formSubmitBtns.forEach(formSubmitBtn => {
@@ -124,18 +127,36 @@ cancelBtn.forEach(cancelButtons => {
 
 expenseBtn.addEventListener('click', () => {
     expenseBtn.classList.add('active-expense-btn');
-    depositBtn.classList.remove('active-deposit-btn');
+    depositBtn.classList.add('inactive-deposit-btn');
+    depositBtn.classList.remove('active-deposit-btn', 'gray-btn');
     expenseBtn.classList.remove('inactive-expense-btn');
+    transferBtn.classList.remove('active-transfer-btn');
     show([modalContentExpense]);
     hide([modalContentDeposit]);
 });
 
 depositBtn.addEventListener('click', () => {
     depositBtn.classList.add('active-deposit-btn');
-    expenseBtn.classList.remove('active-expense-btn');
+    expenseBtn.classList.remove('active-expense-btn', 'gray-btn');
     expenseBtn.classList.add('inactive-expense-btn');
+    transferBtn.classList.remove('active-transfer-btn');
     hide([modalContentExpense]);
     show([modalContentDeposit]);
+});
+
+transferBtn.addEventListener('click', () => {
+    transferBtn.classList.add('active-transfer-btn');
+    if (expenseBtn.classList.contains('active-expense-btn')) {
+        expenseBtn.classList.remove('active-expense-btn');
+        expenseBtn.classList.add('gray-btn');
+    } 
+    
+    if (depositBtn.classList.contains('active-deposit-btn')){
+        depositBtn.classList.remove('active-deposit-btn', 'inactive-deposit-btn');
+        depositBtn.classList.add('gray-btn');
+    }
+
+    hide([modalContentExpense, modalContentDeposit]);
 });
 
 
@@ -271,6 +292,8 @@ tenRecentTransactions.map(transaction => {
                             <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
                         ` : transaction.category === 'Bills' ? `
                             <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
+                        ` : transaction.type === 'transfer' ? `
+                            <i class="fa-solid fa-money-bill-transfer transfer-transaction-icon"></i>
                         ` : `
                             <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
                         `
@@ -282,7 +305,7 @@ tenRecentTransactions.map(transaction => {
                 </div>
                 <div class="transaction-list-item-amount">
                     ${
-                        transaction.type === 'expense' ? `
+                        transaction.type === 'expense' || transaction.type === 'transfer' ? `
                             <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                         ` : `
                             <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
