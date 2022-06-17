@@ -105,7 +105,7 @@ savingsBtn.addEventListener('click', () => {
 
 formSubmitBtns.forEach(formSubmitBtn => {
     formSubmitBtn.addEventListener('click', () => {
-        hide(modal);
+        hide([modal]);
     })
 })
 
@@ -128,6 +128,7 @@ cancelBtn.forEach(cancelButtons => {
 });
 
 expenseBtn.addEventListener('click', () => {
+    expenseBtn.classList.remove('gray-btn');
     expenseBtn.classList.add('active-expense-btn');
     depositBtn.classList.add('inactive-deposit-btn');
     depositBtn.classList.remove('active-deposit-btn', 'gray-btn');
@@ -306,7 +307,16 @@ tenRecentTransactions.map(transaction => {
                         `
                     }
                     <div class="transaction-title-wrapper">
-                        <h4 class="transaction-title">${transaction.store}</h4>
+                        <h4 class="transaction-title">
+                        ${
+                            transaction.type === 'toSavings' ? `
+                                To Savings
+                            ` : transaction.type === 'fromSavings' ? `
+                                From Savings
+                            ` : 
+                                transaction.store
+                        }
+                        </h4>
                         <p class="transaction-subtitle">${transaction.category}</p>
                     </div>
                 </div>

@@ -229,15 +229,15 @@
                     <label class="inputs-label-wrapper" for="transfer_type"><span class="input-label">Transfer Type</span>
                         <select name="transfer_type" id="transfer_type" class="form-inputs">
                             <option value="">Choose Transfer</option>
-                            <option value="Food">To Savings</option>
-                            <option value="Shopping">From Savings</option>
+                            <option value="toSavings">To Savings</option>
+                            <option value="fromSavings">From Savings</option>
                         </select>
                     </label>
                     <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="expense_date" class="form-inputs">
+                        <input type="date" id="transfer_date" class="form-inputs">
                     </label>
                     <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="expense_amount" class="form-inputs" placeholder="Enter amount" step=".01">
+                        <input type="number" id="transfer_amount" class="form-inputs" placeholder="Enter amount" step=".01">
                     </label>
                     <div class="submit-btn">
                         <button type="submit" class="modal-btn confirm-transfer-btn form-submit-btn">Confirm Transfer</button>
