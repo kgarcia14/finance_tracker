@@ -42,7 +42,16 @@ transactions.map(transaction => {
                                     transaction.store
                             }
                         </h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
+                        <p class="transaction-subtitle">
+                            ${
+                                transaction.type === 'toSavings' ? `
+                                    Transfer
+                                ` : transaction.type === 'fromSavings' ? `
+                                    Transfer
+                                ` :
+                                    transaction.category
+                            }
+                        </p>
                     </div>
                 </div>
                 <div class="transaction-list-item-amount">
