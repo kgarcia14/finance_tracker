@@ -208,6 +208,7 @@ expenseForm.onsubmit = (e) => {
         input.value = '';
     });
 
+    alert('Expense Submitted Successfully!');
     location.reload();
 };
 
@@ -238,6 +239,7 @@ depositForm.onsubmit = (e) => {
         input.value = '';
     });
 
+    alert('Deposit Submitted Successfully!');
     location.reload();
 };
 
@@ -309,15 +311,22 @@ tenRecentTransactions.map(transaction => {
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">
                         ${
-                            transaction.type === 'toSavings' ? `
-                                To Savings
-                            ` : transaction.type === 'fromSavings' ? `
-                                From Savings
+                            transaction.type === 'toSavings' || transaction.type === 'fromSavings' ? `
+                                Transfer
                             ` : 
                                 transaction.store
                         }
                         </h4>
-                        <p class="transaction-subtitle">${transaction.category}</p>
+                        <p class="transaction-subtitle">
+                            ${
+                                transaction.type === 'toSavings' ? `
+                                    To Savings
+                                ` : transaction.type === 'fromSavings' ? `
+                                    From Savings
+                                ` :
+                                    transaction.category
+                            }
+                        </p>
                     </div>
                 </div>
                 <div class="transaction-list-item-amount">
