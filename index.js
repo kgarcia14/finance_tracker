@@ -67,14 +67,14 @@ homeBtn.addEventListener('click', () => {
     active(homeBtn);
     inactive([transactionsBtn, chartBtn, savingsBtn]);
     show([homePage, homeTitle, totalBalanceContainer]);
-    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
 });
 
 transactionsBtn.addEventListener('click', () => {
     active(transactionsBtn);
     inactive([homeBtn, chartBtn, savingsBtn]);
     show([transactionsPage, transactionsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -93,13 +93,13 @@ chartBtn.addEventListener('click', () => {
     active(chartBtn);
     inactive([homeBtn, transactionsBtn, savingsBtn]);
     show([statisticsPage, statisticsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
 });
 
 savingsBtn.addEventListener('click', () => {
     active(savingsBtn);
     inactive([homeBtn, transactionsBtn, chartBtn]);
-    show([savingsPage, savingsTitle, savingsBalanceContainer]);
+    show([savingsPage, savingsTitle, savingsBalanceContainer, addGoalBtn]);
     hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, totalBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
@@ -113,7 +113,7 @@ cancelBtn.forEach(cancelButtons => {
     cancelButtons.addEventListener('click', (e) => {
         e.preventDefault();
 
-        hide([modal, editModal]);
+        hide([modal, editModal, savingsModal]);
 
         if(!modal.classList.contains('hidden')) {
             disableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
@@ -197,7 +197,6 @@ expenseForm.onsubmit = (e) => {
         store: expense_store,
         category: expense_category,
     }
-
 
     transactions.push(expenseSubmission);
     console.log(transactions);

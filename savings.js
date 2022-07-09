@@ -1,4 +1,5 @@
 'use strict';
+
 const transferForm = document.querySelector('.transfer-form');
 
 transferForm.onsubmit = (e) => {
@@ -49,4 +50,37 @@ if (totalSavingsBalance < 0) {
     savingsBalance.innerHTML = `- $ ${totalSavingsBalance.replace('-', '')}`
 } else {
     savingsBalance.innerHTML = `$ ${totalSavingsBalance}`
+}
+
+//Create Savings Goals
+const addGoalBtn = document.querySelector('.add-savings-goal-btn');
+const savingsModal = document.querySelector('.savings-modal-overlay');
+const savingsForm = document.querySelector('.savings-goal-form');
+
+addGoalBtn.addEventListener('click', () => {
+    show([savingsModal]);
+});
+
+
+//save and fetch localstorage (must check if null first and if null then set item to empty array)
+if(localStorage.getItem('savingsData') === null) {
+    localStorage.setItem('savingsData', '[]');
+}
+
+let savingsGoals = JSON.parse(localStorage.getItem('data'));
+console.log(savingsGoals);
+
+savingsForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let savings_name = document.getElementById('savings_name').value;
+    let goal_amount = document.getElementById('goal_amount').value;
+     
+    let savingsGoalSubmission = {
+        id: Date.now(),
+        name: savings_name,
+        amount: +goal_amount,
+    }
+
+    console.log(savingsGoalSubmission.name, savingsGoalSubmission.amount);
 }
