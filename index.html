@@ -89,7 +89,7 @@
                         </div>
                         <div class="edit-delete-btn">
                             <button type="button" class="edit-transaction">Edit</button>
-                            <button type="button" class="delete-btn">Delete</button>
+                            <button type="button" class="delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                         </div>
                     </div>
                     <div class="are-you-sure hidden">
@@ -131,7 +131,7 @@
                         </div>
                         <div>
                             <button type="button" class="edit-transaction">Edit</button>
-                            <button type="button" class="delete-btn">Delete</button>
+                            <button type="button" class="delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                         </div>
                     </div>
                     <div class="are-you-sure hidden">
@@ -159,7 +159,30 @@
     </div>
     <!-- Savings Page -->
     <div class="savings-page hidden">
-        <ul class="savings-goals-list"></ul>
+        <div class="savings-page-wrapper">
+            <div class="savings-goal-btn-wrapper">
+                <button class="add-savings-goal-btn">Add Savings Goal</button>
+            </div>
+            <div class="savings-modal-overlay hidden">
+                <div class="modal">
+                    <div class="modal-content">
+                        <form class="modal-content-expense inputs-wrapper savings-goal-form">
+                            <label class="inputs-label-wrapper" for="savings_name"><span class="input-label">Savings Name</span>
+                                <input type="text" id="savings_name" class="form-inputs" placeholder="Enter savings name">
+                            </label>
+                            <label class="inputs-label-wrapper" for="goal_amount"><span class="input-label">Goal Amount</span>
+                                <input type="number" id="goal_amount" class="form-inputs" placeholder="Enter goal amount">
+                            </label>
+                            <div class="submit-btn">
+                                <button type="submit" class="modal-btn add-goal-btn form-submit-btn">Add Goal</button>
+                                <button class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <ul class="savings-goals-list"></ul>
+        </div>
     </div>
     <!-- Expense and Deposit Modal -->
     <div class="modal-overlay hidden">
