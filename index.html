@@ -159,19 +159,22 @@
     </div>
     <!-- Savings Page -->
     <div class="savings-page hidden">
-        <div class="savings-page-wrapper">
+        <div class="savings-goals-container">
             <div class="savings-goal-btn-wrapper">
-                <button class="add-savings-goal-btn">Add Savings Goal</button>
+                <button class="add-savings-goal-btn"><i class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="savings-goals-label">
+                <p class="savings-goals">Savings Goals</p>
             </div>
             <div class="savings-modal-overlay hidden">
                 <div class="modal">
                     <div class="modal-content">
-                        <form class="modal-content-expense inputs-wrapper savings-goal-form">
+                        <form class="modal-content-savings inputs-wrapper savings-goal-form">
                             <label class="inputs-label-wrapper" for="savings_name"><span class="input-label">Savings Name</span>
-                                <input type="text" id="savings_name" class="form-inputs" placeholder="Enter savings name">
+                                <input type="text" id="savings_name" class="form-inputs" placeholder="Enter savings name" required />
                             </label>
                             <label class="inputs-label-wrapper" for="goal_amount"><span class="input-label">Goal Amount</span>
-                                <input type="number" id="goal_amount" class="form-inputs" placeholder="Enter goal amount">
+                                <input type="number" id="goal_amount" class="form-inputs" placeholder="Enter goal amount" required />
                             </label>
                             <div class="submit-btn">
                                 <button type="submit" class="modal-btn add-goal-btn form-submit-btn">Add Goal</button>
@@ -181,7 +184,11 @@
                     </div>
                 </div>
             </div>
-            <ul class="savings-goals-list"></ul>
+            <div class="savings-goals-list-container">
+                <ul class="savings-goals-list">
+
+                </ul>
+            </div>
         </div>
     </div>
     <!-- Expense and Deposit Modal -->
@@ -196,17 +203,17 @@
                     <button class="transfer-btn">Make a Transfer</button>
                 </div>
                 <form class="modal-content-expense inputs-wrapper expense-form">
-                    <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="expense_date" class="form-inputs" required />
+                    <label class="inputs-label-wrapper" for="expense_date"><span class="input-label">Date</span>
+                        <input type="date" id="expense_date" name="expense_date" class="form-inputs" />
                     </label>
-                    <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="expense_amount" class="form-inputs" placeholder="Enter amount" step=".01" required />
+                    <label class="inputs-label-wrapper" for="expense_amount"><span class="input-label">Amount</span>
+                        <input type="number" id="expense_amount" name="expense_amount" class="form-inputs" placeholder="Enter amount" step=".01" />
                     </label>
                     <label class="inputs-label-wrapper" for="expense_store"><span class="input-label">Store</span>
-                        <input type="text" id="expense_store" class="form-inputs" placeholder="Enter store name" required />
+                        <input type="text" id="expense_store" name="expense_store" class="form-inputs" placeholder="Enter store name" />
                     </label>
                     <label class="inputs-label-wrapper" for="expense_category"><span class="input-label">Category</span>
-                        <select name="expense_category" id="expense_category" class="form-inputs" required>
+                        <select name="expense_category" id="expense_category" class="form-inputs">
                             <option value="">Choose Category</option>
                             <option value="Food">Food</option>
                             <option value="Shopping">Shopping</option>
@@ -222,21 +229,21 @@
                     </div>
                 </form>
                 <form class="modal-content-deposit inputs-wrapper deposit-form hidden">
-                    <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="deposit_date" class="form-inputs" required />
+                    <label class="inputs-label-wrapper" for="deposit_date"><span class="input-label">Date</span>
+                        <input type="date" id="deposit_date" class="form-inputs" />
                     </label>
-                    <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="deposit_amount" class="form-inputs" placeholder="Enter amount" step=".01" required />
+                    <label class="inputs-label-wrapper" for="deposit_amount"><span class="input-label">Amount</span>
+                        <input type="number" id="deposit_amount" class="form-inputs" placeholder="Enter amount" step=".01" />
                     </label>
                     <label class="inputs-label-wrapper" for="deposit_type"><span class="input-label">Deposit Type</span>
-                        <select name="deposit_type" id="deposit_type" class="form-inputs" required>
+                        <select name="deposit_type" id="deposit_type" class="form-inputs">
                             <option value="">Choose Deposit Type</option>
                             <option value="Deposit">Deposit</option>
                             <option value="Check">Check</option>
                         </select>
                     </label>
                     <label class="inputs-label-wrapper" for="deposit_category"><span class="input-label">Category</span>
-                        <select name="deposit_category" id="deposit_category" class="form-inputs" required>
+                        <select name="deposit_category" id="deposit_category" class="form-inputs">
                             <option value="">Choose Category</option>
                             <option value="Cash">Cash</option>
                             <option value="Paycheck">Paycheck</option>
@@ -250,17 +257,17 @@
                 </form>
                 <form class="modal-content-transfer inputs-wrapper transfer-form hidden">
                     <label class="inputs-label-wrapper" for="transfer_type"><span class="input-label">Transfer Type</span>
-                        <select name="transfer_type" id="transfer_type" class="form-inputs" required>
+                        <select name="transfer_type" id="transfer_type" class="form-inputs">
                             <option value="">Choose Transfer</option>
                             <option value="toSavings">To Savings</option>
                             <option value="fromSavings">From Savings</option>
                         </select>
                     </label>
-                    <label class="inputs-label-wrapper" for="date"><span class="input-label">Date</span>
-                        <input type="date" id="transfer_date" class="form-inputs" required />
+                    <label class="inputs-label-wrapper" for="transfer_date"><span class="input-label">Date</span>
+                        <input type="date" id="transfer_date" class="form-inputs"/>
                     </label>
-                    <label class="inputs-label-wrapper" for="amount"><span class="input-label">Amount</span>
-                        <input type="number" id="transfer_amount" class="form-inputs" placeholder="Enter amount" step=".01" required />
+                    <label class="inputs-label-wrapper" for="transfer_amount"><span class="input-label">Amount</span>
+                        <input type="number" id="transfer_amount" class="form-inputs" placeholder="Enter amount" step=".01"/>
                     </label>
                     <div class="submit-btn">
                         <button type="submit" class="modal-btn confirm-transfer-btn form-submit-btn">Confirm Transfer</button>

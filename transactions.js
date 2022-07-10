@@ -7,7 +7,7 @@ const allTransactionsList = document.querySelector('.all-transactions-list');
 transactions.map(transaction => {
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('all-transaction-list-item', transaction.type);
-    transactionLi.setAttribute('id', `${transaction.id}`);
+    transactionLi.setAttribute('id', transaction.id);
     let transactionAmount = transaction.amount.toFixed(2);
     // console.log(transactions);
 
@@ -27,27 +27,27 @@ transactions.map(transaction => {
                             <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
                         ` : transaction.category === 'Bills' ? `
                             <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
-                        ` : `
+                        ` : transaction.type === 'toSavings' || transaction.type === 'fromSavings' ? `
+                        <i class="fa-solid fa-money-bill-transfer transfer-transaction-icon"></i>
+                    ` : `
                             <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
                         `
                     }
                     <div class="transaction-title-wrapper">
                         <h4 class="transaction-title">
                             ${
-                                transaction.type === 'toSavings' ? `
-                                    To Savings
-                                ` : transaction.type === 'fromSavings' ? `
-                                    From Savings
-                                ` : 
-                                    transaction.store
+                                transaction.type === 'toSavings' || transaction.type === 'fromSavings' ? `
+                                    Transfer
+                            ` : 
+                                transaction.store
                             }
                         </h4>
                         <p class="transaction-subtitle">
                             ${
                                 transaction.type === 'toSavings' ? `
-                                    Transfer
+                                    To Savings
                                 ` : transaction.type === 'fromSavings' ? `
-                                    Transfer
+                                    From Savings
                                 ` :
                                     transaction.category
                             }

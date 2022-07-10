@@ -16,24 +16,24 @@ transferForm.onsubmit = (e) => {
         amount: transfer_type === 'toSavings' ? - transfer_amount : parseInt(transfer_amount),
     }
 
-    console.log(transferSubmission.amount);
-    console.log(transferSubmission);
-    console.log(totalSavingsBalance);
-
-    if (transfer_type === 'toSavings' && totalBalance < transfer_amount) {
-        alert('You are brokeeeee! Try again when you have more money');
-        modal.classList.toggle('hidden');
-    } else if (transfer_type === 'fromSavings' && totalSavingsBalance < transfer_amount) {
-        alert('Your transfer amount exceeds your savings balance!');
-        modal.classList.toggle('hidden');
+    if (!transfer_type || !transfer_date || !transfer_amount) {
+        alert('Not Submitted! Please fill out all fields.');
     } else {
-        transactions.push(transferSubmission);
-        console.log(transactions)
-        localStorage.setItem('data', JSON.stringify(transactions));
-    
-        alert('Transfer Submitted Successfully!');
-        location.reload();
+        if (transfer_type === 'toSavings' && totalBalance < transfer_amount) {
+            alert('You are brokeeeee! Try again when you have more money');
+            modal.classList.toggle('hidden');
+        } else if (transfer_type === 'fromSavings' && totalSavingsBalance < transfer_amount) {
+            alert('Your transfer amount exceeds your savings balance!');
+            modal.classList.toggle('hidden');
+        } else {
+            transactions.push(transferSubmission);
+            console.log(transactions)
+            localStorage.setItem('data', JSON.stringify(transactions));
+        
+            location.reload();
+        }
     }
+
 };
 
 let totalSavingsBalance = 0;
@@ -59,6 +59,14 @@ const savingsForm = document.querySelector('.savings-goal-form');
 
 addGoalBtn.addEventListener('click', () => {
     show([savingsModal]);
+
+    // if modal does not contain element then...else...
+    if(!savingsModal.classList.contains('hidden')) {
+        disableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
+    } else {
+        enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
+    }
+
 });
 
 
@@ -67,7 +75,7 @@ if(localStorage.getItem('savingsData') === null) {
     localStorage.setItem('savingsData', '[]');
 }
 
-let savingsGoals = JSON.parse(localStorage.getItem('data'));
+let savingsGoals = JSON.parse(localStorage.getItem('savingsData'));
 console.log(savingsGoals);
 
 savingsForm.onsubmit = (e) => {
@@ -79,8 +87,62 @@ savingsForm.onsubmit = (e) => {
     let savingsGoalSubmission = {
         id: Date.now(),
         name: savings_name,
-        amount: +goal_amount,
+        goalAmount: +goal_amount,
     }
 
-    console.log(savingsGoalSubmission.name, savingsGoalSubmission.amount);
+    savingsGoals.push(savingsGoalSubmission);
+    console.log(savingsGoals);
+
+    localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
+    
+    inputs.forEach(input => {
+        input.value = '';
+    });
+
+    location.reload();
 }
+
+//Display savings goals in a list
+const goalList = document.querySelector('.savings-goals-list');
+
+savingsGoals.map(goal => {
+    const goalLi = document.createElement('li');
+    goalLi.classList.add('goal-list-item');
+    goalLi.setAttribute('id', goal.id);
+    
+    goalLi.innerHTML = `
+    <div class="goal-content-wrapper">
+    ${goal.name}
+    ${goal.goalAmount}
+    <div>
+    <button id=${goal.id} type="button" class="delete-btn delete-goal-btn"><i class="fa-regular fa-trash-can"></i></button>
+    </div>
+    </div>
+    `;
+    
+    goalList.append(goalLi);
+});
+
+//Delete savings goal
+const deleteGoalBtn = document.querySelectorAll('.delete-goal-btn');
+
+deleteGoalBtn.forEach(deleteGoal => {
+    deleteGoal.addEventListener('click', () => {
+        for (let i = 0; i <= savingsGoals.length - 1; i++) {
+            if (savingsGoals[i].id === parseInt(deleteGoal.id)) {
+                let newGoalsArr = [...savingsGoals];
+                const indexOfGoal = newGoalsArr.findIndex(goal => {
+                    //Return index if goal.id === deleteGoal.id
+                    return goal.id === parseInt(deleteGoal.id);
+                })
+
+                if (indexOfGoal !== -1) {
+                    newGoalsArr.splice(indexOfGoal, 1);
+                    savingsGoals = newGoalsArr;
+                    localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
+                }
+                location.reload();
+            }
+        }
+    })
+})
