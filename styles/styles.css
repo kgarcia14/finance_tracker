@@ -85,9 +85,6 @@ body {
   width: 90%;
 }
 
-.total-balance, .savings-total-balance {
-}
-
 .cash-available, .savings-available {
   font-size: 0.7rem;
   color: #9e9e9e;
@@ -158,14 +155,14 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.transactions-label {
-    width: 90%;
+.transactions-label, .savings-goals-label {
+    width: 100%;
     display: flex;
     justify-content: center;
     margin: 20px 0 20px 0;
 }
 
-.transactions {
+.transactions, .savings-goals {
     width: 90%;
     color: #9e9e9e;
 }
@@ -379,7 +376,15 @@ nav {
   margin-top: 230px;
 }
 
-.transactions-list-container, .all-transactions-list-container {
+.savings-goals-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 160px;
+}
+
+.transactions-list-container, .all-transactions-list-container, .savings-goals-list-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -405,7 +410,17 @@ nav {
   margin-bottom: 70px;
 }
 
-.transaction-list-item, .all-transaction-list-item {
+.savings-goals-list {
+  list-style-type: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 70px;
+}
+
+.transaction-list-item, .all-transaction-list-item, .goal-list-item {
   border-radius: 20px;
   width: 95%;
   height: 95px;
@@ -442,6 +457,13 @@ nav {
 }
 
 .transaction-content-wrapper {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.goal-content-wrapper {
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -515,14 +537,6 @@ nav {
   width: 50px;
 }
 
-.hidden {
-  display: none;
-}
-
-.disable-click {
-  pointer-events: none;
-}
-
 .active-nav-btn{
   -webkit-text-stroke: 1px #6488e5;
 }
@@ -584,8 +598,26 @@ nav {
 }
 
 .add-savings-goal-btn {
-  margin-top: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  right: 0;
   border: none;
-  background: none;
+  border-radius: 50%;
+  background: #fff;
   color: #6488e5;
+  margin: 25px 25px 0 0;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.disable-click {
+  pointer-events: none;
 }

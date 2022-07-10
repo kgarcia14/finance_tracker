@@ -67,14 +67,14 @@ homeBtn.addEventListener('click', () => {
     active(homeBtn);
     inactive([transactionsBtn, chartBtn, savingsBtn]);
     show([homePage, homeTitle, totalBalanceContainer]);
-    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
+    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 transactionsBtn.addEventListener('click', () => {
     active(transactionsBtn);
     inactive([homeBtn, chartBtn, savingsBtn]);
     show([transactionsPage, transactionsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
+    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -93,13 +93,13 @@ chartBtn.addEventListener('click', () => {
     active(chartBtn);
     inactive([homeBtn, transactionsBtn, savingsBtn]);
     show([statisticsPage, statisticsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, addGoalBtn]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
 savingsBtn.addEventListener('click', () => {
     active(savingsBtn);
     inactive([homeBtn, transactionsBtn, chartBtn]);
-    show([savingsPage, savingsTitle, savingsBalanceContainer, addGoalBtn]);
+    show([savingsPage, savingsTitle, savingsBalanceContainer]);
     hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, totalBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
 });
 
@@ -118,7 +118,7 @@ cancelBtn.forEach(cancelButtons => {
         if(!modal.classList.contains('hidden')) {
             disableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
         } else {
-            enableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
+            enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
         }
 
         inputs.forEach(input => {
@@ -198,17 +198,21 @@ expenseForm.onsubmit = (e) => {
         category: expense_category,
     }
 
-    transactions.push(expenseSubmission);
-    console.log(transactions);
-
-    localStorage.setItem('data', JSON.stringify(transactions));
-
-    inputs.forEach(input => {
-        input.value = '';
-    });
-
-    alert('Expense Submitted Successfully!');
-    location.reload();
+    if (!expense_date || !expense_amount || !expense_store || !expense_category) {
+        alert('Not Submitted! Please fill out all fields.');
+        enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
+    } else {
+        transactions.push(expenseSubmission);
+        console.log(transactions);
+    
+        localStorage.setItem('data', JSON.stringify(transactions));
+    
+        inputs.forEach(input => {
+            input.value = '';
+        });
+    
+        location.reload();
+    }
 };
 
 //submit deposit form
@@ -229,17 +233,21 @@ depositForm.onsubmit = (e) => {
         category: deposit_category,
     }
 
-    transactions.push(depositSubmission);
-    console.log(transactions);
-
-    localStorage.setItem('data', JSON.stringify(transactions));
+    if (!deposit_date || !deposit_amount || !deposit_store || !deposit_category) {
+        alert('Not Submitted! Please fill out all fields.');
+        enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
+    } else {
+        transactions.push(depositSubmission);
+        console.log(transactions);
     
-    inputs.forEach(input => {
-        input.value = '';
-    });
+        localStorage.setItem('data', JSON.stringify(transactions));
+        
+        inputs.forEach(input => {
+            input.value = '';
+        });
 
-    alert('Deposit Submitted Successfully!');
-    location.reload();
+        location.reload();
+    }
 };
 
 //calculate and display total balance of transactions
@@ -281,7 +289,7 @@ const tenRecentTransactions = reversedTransactions.slice(0, 10);
 tenRecentTransactions.map(transaction => {
     const transactionLi = document.createElement('li');
     transactionLi.classList.add('transaction-list-item', transaction.type);
-    transactionLi.setAttribute('id', `${transaction.id}`);
+    transactionLi.setAttribute('id', transaction.id);
     let transactionAmount = transaction.amount.toFixed(2);
     // console.log(transactions);
 
@@ -301,7 +309,7 @@ tenRecentTransactions.map(transaction => {
                             <i class="fa-solid fa-gas-pump expense-transaction-icon"></i>
                         ` : transaction.category === 'Bills' ? `
                             <i class="fa-solid fa-file-invoice expense-transaction-icon"></i>
-                        ` : transaction.type === 'transfer' ? `
+                        ` : transaction.type === 'toSavings' || transaction.type === 'fromSavings' ? `
                             <i class="fa-solid fa-money-bill-transfer transfer-transaction-icon"></i>
                         ` : `
                             <i class="fa-solid fa-money-bill-trend-up deposit-transaction-icon"></i>
@@ -419,11 +427,11 @@ transactionsListItem.forEach(transactionItem => {
 // DELETE Transaction from list
 yesDelete.forEach(yesDelete => {
     yesDelete.addEventListener('click', () => {
-        console.log(yesDelete);
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(yesDelete.id)) {
                 let newTransactionsArr = [...transactions];
                 const indexOfTransaction = newTransactionsArr.findIndex(transaction => {
+                    //Return index if transaction.id === yesDelete.id
                     return transaction.id === parseInt(yesDelete.id);
                 })
                 if (indexOfTransaction !== -1) {
@@ -481,6 +489,7 @@ editTransaction.forEach(editTransaction => {
                     }
                 })
             })
+
             editExpenseForm.forEach(editExpenseForm => {
                 editExpenseForm.classList.add('hidden');
             })
@@ -495,42 +504,47 @@ editExpenseForm.forEach(editExpenseForm => {
         let edit_expense_store = document.getElementById('edit_expense_store').value;
         let edit_expense_category = document.getElementById('edit_expense_category').value;
     
-        console.log(edit_expense_amount);
-    
-        for (let i = 0; i <= transactions.length - 1; i++) {
-            if (transactions[i].id === parseFloat(editExpenseForm.id)) {
-                console.log(transactions[i]);
-                transactions[i].date = edit_expense_date;
-                transactions[i].amount = - edit_expense_amount;
-                transactions[i].store = edit_expense_store;
-                transactions[i].category = edit_expense_category
+        if (!edit_expense_date || !edit_expense_amount || !edit_expense_store || !edit_expense_category) {
+            alert('Not Submitted! Please fill out all fields.');
+        } else {
+            for (let i = 0; i <= transactions.length - 1; i++) {
+                if (transactions[i].id === parseFloat(editExpenseForm.id)) {
+                    console.log(transactions[i]);
+                    transactions[i].date = edit_expense_date;
+                    transactions[i].amount = - edit_expense_amount;
+                    transactions[i].store = edit_expense_store;
+                    transactions[i].category = edit_expense_category
+                }
             }
+            location.reload();
+            localStorage.setItem('data', JSON.stringify(transactions));
         }
-        location.reload();
-        localStorage.setItem('data', JSON.stringify(transactions));
     }
 })
 
 
 editDepositForm.forEach(editDepositForm => {
     editDepositForm.onsubmit = () => {
-        console.log('yoooo')
         let edit_deposit_date = document.getElementById('edit_deposit_date').value;
         let edit_deposit_amount = document.getElementById('edit_deposit_amount').value;
         let edit_deposit_store = document.getElementById('edit_deposit_type').value;
         let edit_deposit_category = document.getElementById('edit_deposit_category').value;
     
-        for (let i = 0; i <= transactions.length - 1; i++) {
-            if (transactions[i].id === parseInt(editDepositForm.id)) {
-                console.log(transactions[i]);
-                transactions[i].date = edit_deposit_date;
-                transactions[i].amount = parseInt(edit_deposit_amount);
-                transactions[i].store = edit_deposit_store;
-                transactions[i].category = edit_deposit_category
+        if (!edit_deposit_date || !edit_deposit_amount || !edit_deposit_store || !edit_deposit_category) {
+            alert('Not Submitted! Please fill out all fields.');
+        } else {
+            for (let i = 0; i <= transactions.length - 1; i++) {
+                if (transactions[i].id === parseInt(editDepositForm.id)) {
+                    console.log(transactions[i]);
+                    transactions[i].date = edit_deposit_date;
+                    transactions[i].amount = parseInt(edit_deposit_amount);
+                    transactions[i].store = edit_deposit_store;
+                    transactions[i].category = edit_deposit_category
+                }
             }
+            location.reload();
+            localStorage.setItem('data', JSON.stringify(transactions));
         }
-        location.reload();
-        localStorage.setItem('data', JSON.stringify(transactions));
     }
 })
 
