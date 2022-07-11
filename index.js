@@ -392,7 +392,6 @@ transactionsListItem.forEach(transactionItem => {
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
                 const transaction = transactions[i];
-                // clickedTransaction.classList.remove(transaction.type);
                 console.log(clickedTransaction);
                 
                 transactionDetails.innerHTML = `
@@ -556,6 +555,9 @@ closeTransactions.forEach(closeTransaction => {
     closeTransaction.addEventListener('click', () => {
         transactionDetailsModal.classList.add('hidden');
         allTransactionDetailsModal.classList.add('hidden');
+        goalModal.classList.add('hidden');
+
+
         yesDelete.forEach(yesDelete => {
             yesDelete.removeAttribute('id');
         })

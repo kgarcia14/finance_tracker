@@ -88,6 +88,7 @@ savingsForm.onsubmit = (e) => {
         id: Date.now(),
         name: savings_name,
         goalAmount: +goal_amount,
+        goalContributions: [],
     }
 
     savingsGoals.push(savingsGoalSubmission);
@@ -112,16 +113,62 @@ savingsGoals.map(goal => {
     
     goalLi.innerHTML = `
     <div class="goal-content-wrapper">
-    ${goal.name}
-    ${goal.goalAmount}
-    <div>
-    <button id=${goal.id} type="button" class="delete-btn delete-goal-btn"><i class="fa-regular fa-trash-can"></i></button>
-    </div>
+        <div class="name-and-progress-div">
+            <p>${goal.name}</p>
+            <div class="progress-div">
+                <div class="progress-bar-div">
+                    <div class="goal-amount-div">
+                        <p>$0 / $${goal.goalAmount}</p>
+                    </div>
+                    <div class="progress-bar-percentage-div">
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                        <div class="progress-percentage">50%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button id=${goal.id} type="button" class="delete-btn delete-goal-btn"><i class="fa-regular fa-trash-can"></i></button>
+        </div>
     </div>
     `;
     
     goalList.append(goalLi);
 });
+
+if (!savingsGoals.length) {
+   goalList.innerHTML = `
+        <p class="start-adding-transactions">Start Adding Savings Goals!!!</p>
+    `
+}
+
+//Display savings goal details
+const goalListItem = document.querySelectorAll('.goal-list-item');
+const goalModal = document.querySelector('.goal-details-modal');
+const goalDetails = document.querySelector('.savings-goal-details');
+
+goalListItem.forEach(goalItem => {
+    goalItem.addEventListener('click', () => {
+        const clickedGoalId = goalItem.id;
+
+        goalModal.classList.remove('hidden');
+
+        for (let i = 0; i <= savingsGoals.length - 1; i++) {
+            if (savingsGoals[i].id === parseInt(clickedGoalId)) {
+                const goal = savingsGoals[i];
+                goalDetails.innerHTML = `
+                <div>${goal.id}</div>
+                <div>${goal.name}</div>
+                <div>${goal.goalAmount}</div>
+            `;
+            }
+        }
+    })
+})
+
+
 
 //Delete savings goal
 const deleteGoalBtn = document.querySelectorAll('.delete-goal-btn');
