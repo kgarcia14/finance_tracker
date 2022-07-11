@@ -614,6 +614,39 @@ nav {
   font-size: 1.2rem;
 }
 
+.name-and-progress-div {
+  width: 80%;
+}
+
+.progress-bar-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress-bar-percentage-div {
+  display: flex;
+  align-items: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  background-color: #e7e7e7;
+  border-radius: 10px;
+}
+
+.progress {
+  width: 50%;
+  height: 5px;
+  background-color: #00d100;
+  border-radius: 10px;
+}
+
+.progress-percentage {
+  margin-left: 10px;
+}
+
 .hidden {
   display: none;
 }
