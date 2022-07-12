@@ -66,9 +66,7 @@ addGoalBtn.addEventListener('click', () => {
     } else {
         enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
     }
-
 });
-
 
 //save and fetch localstorage (must check if null first and if null then set item to empty array)
 if(localStorage.getItem('savingsData') === null) {
@@ -148,12 +146,18 @@ if (!savingsGoals.length) {
 const goalListItem = document.querySelectorAll('.goal-list-item');
 const goalModal = document.querySelector('.goal-details-modal');
 const goalDetails = document.querySelector('.savings-goal-details');
+const goalDeleteBtn = document.querySelector('.goal-delete-btn');
+const goalDetailsAndButtons = document.querySelector('.goal-details-and-buttons');
 
 goalListItem.forEach(goalItem => {
     goalItem.addEventListener('click', () => {
         const clickedGoalId = goalItem.id;
 
         goalModal.classList.remove('hidden');
+
+        yesDelete.forEach(yesDelete => {
+            yesDelete.setAttribute('id', clickedGoalId);
+        })
 
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
@@ -165,22 +169,37 @@ goalListItem.forEach(goalItem => {
             `;
             }
         }
+
     })
 })
 
+//Delete goals functionality
+goalDeleteBtn.addEventListener('click', () => {
+    areYouSure.forEach(areYouSure => {
+        areYouSure.classList.remove('hidden');
+    })
+    goalDetailsAndButtons.classList.add('hidden');
 
+    disableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
+})
 
-//Delete savings goal
-const deleteGoalBtn = document.querySelectorAll('.delete-goal-btn');
+noDelete.forEach(noDelete => {
+    noDelete.addEventListener('click', () => {
+        areYouSure.forEach(youSure => {
+            youSure.classList.add('hidden');
+        })
+        goalDetailsAndButtons.classList.remove('hidden');
+    })
+})
 
-deleteGoalBtn.forEach(deleteGoal => {
-    deleteGoal.addEventListener('click', () => {
+yesDelete.forEach(yesDelete => {
+    yesDelete.addEventListener('click', () => {
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
-            if (savingsGoals[i].id === parseInt(deleteGoal.id)) {
+            if (savingsGoals[i].id === parseInt(yesDelete.id)) {
                 let newGoalsArr = [...savingsGoals];
                 const indexOfGoal = newGoalsArr.findIndex(goal => {
                     //Return index if goal.id === deleteGoal.id
-                    return goal.id === parseInt(deleteGoal.id);
+                    return goal.id === parseInt(yesDelete.id);
                 })
 
                 if (indexOfGoal !== -1) {
