@@ -532,9 +532,22 @@ nav {
   text-align: center;
 }
 
-.yes-delete, .no-delete {
-  margin: 10px 10px 0 10px;
-  width: 50px;
+.yes-delete {
+  border: none;
+  background: #6488e5;
+  color: #E56372;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+  margin: 15px 10px 0 0;
+}
+
+.no-delete {
+  border: 1px solid #6488e5;
+  background: #fff;
+  color: #6488e5;
+  padding: 5px 20px 5px 20px;
+  border-radius: 5px;
+  margin: 15px 0 0 10px;
 }
 
 .active-nav-btn{
@@ -547,7 +560,7 @@ nav {
   color: #8d8d8d;
 }
 
-.edit-transaction {
+.edit-transaction, .contribute-btn {
   background: #6488e5;
   color: #fff;
   padding: 5px 20px;
@@ -560,7 +573,7 @@ nav {
   display: flex;
 }
 
-.delete-btn {
+.delete-btn, .goal-delete-btn {
   background: none;
   color: #E56372;
   border: none;
@@ -645,6 +658,10 @@ nav {
 
 .progress-percentage {
   margin-left: 10px;
+}
+
+.savings-goal-details {
+  margin: 20px 0;
 }
 
 .hidden {

@@ -128,7 +128,7 @@ savingsGoals.map(goal => {
             </div>
         </div>
         <div>
-            <button id=${goal.id} type="button" class="delete-btn delete-goal-btn"><i class="fa-regular fa-trash-can"></i></button>
+            <p>?</p>
         </div>
     </div>
     `;
@@ -163,15 +163,16 @@ goalListItem.forEach(goalItem => {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
                 const goal = savingsGoals[i];
                 goalDetails.innerHTML = `
-                <div>${goal.id}</div>
-                <div>${goal.name}</div>
-                <div>${goal.goalAmount}</div>
+                <div>Id: ${goal.id}</div>
+                <div>Goal Name: ${goal.name}</div>
+                <div>Goal Amount: ${goal.goalAmount}</div>
             `;
             }
         }
 
     })
 })
+
 
 //Delete goals functionality
 goalDeleteBtn.addEventListener('click', () => {
@@ -212,3 +213,6 @@ yesDelete.forEach(yesDelete => {
         }
     })
 })
+
+
+//Contribute to savings goals
