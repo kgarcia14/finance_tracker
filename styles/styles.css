@@ -167,7 +167,7 @@ body {
     color: #9e9e9e;
 }
 
-.modal-overlay, .edit-modal-overlay, .savings-modal-overlay {
+.modal-overlay, .edit-modal-overlay, .savings-modal-overlay, .contribute-modal-overlay {
     left: 0;
     top: 0;
     display: flex;
@@ -478,7 +478,7 @@ nav {
   color: #0F9D58;
 }
 
-.transaction-details-modal, .all-transaction-details-modal{
+.transaction-details-modal, .all-transaction-details-modal, .goal-details-modal {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -662,6 +662,14 @@ nav {
 
 .savings-goal-details {
   margin: 20px 0;
+}
+
+.contribute-modal {
+  height: 50vh;
+}
+
+.contribute-label {
+  margin-left: 15px;
 }
 
 .hidden {

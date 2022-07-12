@@ -189,7 +189,7 @@
 
                 </ul>
             </div>
-            <div class="transaction-details-modal goal-details-modal hidden">
+            <div class="goal-details-modal hidden">
                 <div class="transaction-details-wrapper goal-details-wrapper">
                     <div class="goal-details-and-buttons">
                         <button type="button" class="close-transactions">Close</button>
@@ -207,6 +207,22 @@
                             <button class="yes-delete">Yes</button>
                             <button class="no-delete">No</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contribute-modal-overlay hidden">
+                <div class="modal contribute-modal">
+                    <div class="modal-content">
+                        <form class="modal-content-contribute inputs-wrapper contribute-form">
+                            <h5 class="contribute-label">Contribute From Savings</h5>
+                            <label class="inputs-label-wrapper" for="contribution_amount"><span class="input-label">Amount</span>
+                                <input type="number" id="contribution_amount" class="form-inputs" placeholder="Enter amount" required />
+                            </label>
+                            <div class="submit-btn">
+                                <button type="submit" class="modal-btn add-goal-btn form-submit-btn">Add Contribution</button>
+                                <button class="cancel-btn">Cancel</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

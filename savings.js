@@ -159,6 +159,8 @@ goalListItem.forEach(goalItem => {
             yesDelete.setAttribute('id', clickedGoalId);
         })
 
+        contributeBtn.setAttribute('id', clickedGoalId);
+
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
                 const goal = savingsGoals[i];
@@ -169,7 +171,6 @@ goalListItem.forEach(goalItem => {
             `;
             }
         }
-
     })
 })
 
@@ -214,5 +215,33 @@ yesDelete.forEach(yesDelete => {
     })
 })
 
-
 //Contribute to savings goals
+const contributeBtn = document.querySelector('.contribute-btn');
+const contributeModal = document.querySelector('.contribute-modal-overlay');
+const contributeForm = document.querySelector('.contribute-form');
+
+contributeBtn.addEventListener('click', () => {
+    contributeModal.classList.remove('hidden');
+})
+
+contributeForm.onsubmit = (e) => {
+    e.preventDefault();
+
+    let contributionAmount = document.getElementById('contribution_amount').value;
+
+    const contributionObj = {
+        id: Date.now(),
+        amount: contributionAmount,
+    }
+
+    for (let i = 0; i <= savingsGoals.length - 1; i++) {
+        if (savingsGoals[i].id === parseInt(contributeBtn.id)) {
+            console.log(savingsGoals[i]);
+            savingsGoals[i].goalContributions.push(contributionObj);
+        }
+    }
+
+    localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
+    
+    location.reload();
+}
