@@ -67,14 +67,14 @@ homeBtn.addEventListener('click', () => {
     active(homeBtn);
     inactive([transactionsBtn, chartBtn, savingsBtn]);
     show([homePage, homeTitle, totalBalanceContainer]);
-    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, goalModal]);
 });
 
 transactionsBtn.addEventListener('click', () => {
     active(transactionsBtn);
     inactive([homeBtn, chartBtn, savingsBtn]);
     show([transactionsPage, transactionsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([homePage, homeTitle, statisticsPage, statisticsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, goalModal]);
 });
 
 addTransactionBtn.addEventListener('click', () => {
@@ -86,21 +86,21 @@ addTransactionBtn.addEventListener('click', () => {
         enableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
     }
 
-    hide([transactionDetailsModal, allTransactionDetailsModal]);
+    hide([transactionDetailsModal, allTransactionDetailsModal, goalModal]);
 });
 
 chartBtn.addEventListener('click', () => {
     active(chartBtn);
     inactive([homeBtn, transactionsBtn, savingsBtn]);
     show([statisticsPage, statisticsTitle, totalBalanceContainer]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, savingsPage, savingsTitle, savingsBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, goalModal]);
 });
 
 savingsBtn.addEventListener('click', () => {
     active(savingsBtn);
     inactive([homeBtn, transactionsBtn, chartBtn]);
     show([savingsPage, savingsTitle, savingsBalanceContainer]);
-    hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, totalBalanceContainer, transactionDetailsModal, allTransactionDetailsModal]);
+    hide([homePage, homeTitle, transactionsPage, transactionsTitle, statisticsPage, statisticsTitle, totalBalanceContainer, transactionDetailsModal, allTransactionDetailsModal, goalModal]);
 });
 
 formSubmitBtns.forEach(formSubmitBtn => {
@@ -338,7 +338,7 @@ tenRecentTransactions.map(transaction => {
                 </div>
                 <div class="transaction-list-item-amount">
                     ${
-                        transaction.type === 'expense' || transaction.type === 'transfer' ? `
+                        transaction.type === 'expense' || transaction.type === 'transfer' || transaction.type === 'toSavings' ? `
                             <p class="expense-list-item-amount">- $ ${transactionAmount.replace('-', '')}</p>
                         ` : `
                             <p class="deposit-list-item-amount">+ $ ${transactionAmount.replace('-', '')}</p>
@@ -374,9 +374,11 @@ transactionsListItem.forEach(transactionItem => {
         console.log(transactionItem.id);
         const clickedTransaction = transactionItem;
         const clickedTransactionId = transactionItem.id;
+
         transactionDetailsModal.classList.remove('hidden');
+
         yesDelete.forEach(yesDelete => {
-            yesDelete.setAttribute('id', `${clickedTransactionId}`);
+            yesDelete.setAttribute('id', clickedTransactionId);
         })
         //change edit transaction id to confirmation button id
         editExpenseForm.forEach(editExpenseForm => {
@@ -557,10 +559,9 @@ closeTransactions.forEach(closeTransaction => {
         allTransactionDetailsModal.classList.add('hidden');
         goalModal.classList.add('hidden');
 
-
-        yesDelete.forEach(yesDelete => {
-            yesDelete.removeAttribute('id');
-        })
+        // yesDelete.forEach(yesDelete => {
+        //     yesDelete.removeAttribute('id');
+        // })
         editTransaction.forEach(editTransaction => {
             editTransaction.removeAttribute('id');
         })
@@ -581,6 +582,8 @@ deleteButtons.forEach(deleteButton => {
         transactionDetailsAndButtons.forEach(transDetailsAndButtons => {
             transDetailsAndButtons.classList.add('hidden');
         })
+        
+        disableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
     })
 })
 
@@ -592,6 +595,8 @@ noDelete.forEach(noDelete => {
         transactionDetailsAndButtons.forEach(transDetailsAndButtons => {
             transDetailsAndButtons.classList.remove('hidden');
         })
+
+        enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
     })
 })
 
