@@ -113,7 +113,7 @@ cancelBtn.forEach(cancelButtons => {
     cancelButtons.addEventListener('click', (e) => {
         e.preventDefault();
 
-        hide([modal, editModal, savingsModal]);
+        hide([modal, editModal, savingsModal, contributeModal]);
 
         if(!modal.classList.contains('hidden')) {
             disableNavClick([homeBtn, transactionsBtn, chartBtn, savingsBtn]);
