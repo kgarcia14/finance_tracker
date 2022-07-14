@@ -654,7 +654,6 @@ nav {
 }
 
 .progress {
-  width: 50%;
   height: 5px;
   background-color: #00d100;
   border-radius: 10px;
@@ -674,6 +673,10 @@ nav {
 
 .contribute-label {
   margin-left: 15px;
+}
+
+.goal-complete {
+  padding-right: 20px;
 }
 
 .hidden {
