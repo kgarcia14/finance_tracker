@@ -121,7 +121,7 @@ savingsGoals.map(goal => {
         for (let i = 0; i <= contributions.length - 1; i++) {
             totalContributions += parseInt(contributions[i].amount);
         }
-        goalPercentage = (totalContributions/goalAmount)*100;
+        goalPercentage = Math.round((totalContributions/goalAmount) * 100);
         
         goalLi.innerHTML = `
         <div class="goal-content-wrapper">
@@ -272,4 +272,4 @@ contributeForm.onsubmit = (e) => {
     location.reload();
 }
 
-//Get percentage of savings progress
+
