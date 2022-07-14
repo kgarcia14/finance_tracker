@@ -175,7 +175,7 @@ goalListItem.forEach(goalItem => {
                     const li = document.createElement('li');
 
                     li.innerHTML = `
-                        ${contribution.amount}
+                        Contribution: $${contribution.amount}
                     `;
 
                     goalDetails.append(li);
