@@ -112,8 +112,7 @@ savingsGoals.map(goal => {
     
     if (parseInt(goalLi.id) === goal.id) {
         const contributions = goal.goalContributions;
-        const goalAmount = goal.goalAmount;
-        console.log(goalAmount);    
+        const goalAmount = goal.goalAmount;  
 
         //show progress and percentage of progress
         let totalContributions = 0;
@@ -127,27 +126,43 @@ savingsGoals.map(goal => {
         <div class="goal-content-wrapper">
             <div class="name-and-progress-div">
                 <p>${goal.name}</p>
-                <div class="progress-div">
-                    <div class="progress-bar-div">
-                        <div class="goal-amount-div">
-                            <p class="total-progress">${totalContributions}</p> / <p>$${goal.goalAmount}</p>
-                        </div>
-                        <div class="progress-bar-percentage-div">
-                            <div class="progress-bar">
-                                <div class="progress"></div>
+                    <div class="progress-div">
+                        <div class="progress-bar-div">
+                            <div class="goal-amount-div">
+                                <p class="total-progress">${totalContributions}</p> / <p>$${goal.goalAmount}</p>
+                                </div>
+                                <div class="progress-bar-percentage-div">
+                                <div class="progress-bar">
+                                <div id=${goal.id} class="progress"></div>
+                                </div>
+                                <div class="progress-percentage">${goalPercentage}%</div>
+                                </div>
+                                </div>
                             </div>
-                            <div class="progress-percentage">${goalPercentage}%</div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <p>?</p>
+                    <div>
+                    <p id=${goal.id} class="goal-complete"></p>
             </div>
         </div>
         `;
         
         goalList.append(goalLi);
+        
+        //display percentage visual with progress bar
+        const progress = document.querySelectorAll('.progress');
+        const goalComplete = document.querySelectorAll('.goal-complete');
+
+        progress.forEach(progress => {
+            if (goalLi.id === progress.id && goalLi.id === progress.id) {
+                progress.style.width = `${goalPercentage}%`;
+
+                goalComplete.forEach(goalComplete => {
+                    if (goalPercentage >= 100 && goalLi.id === goalComplete.id) {
+                        goalComplete.innerHTML = '🎉';
+                    }
+                })
+            }
+        })
     }
 });
 
