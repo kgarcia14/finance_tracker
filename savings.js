@@ -42,7 +42,7 @@ for(let i = 0; i <= transactions.length - 1; i++) {
         totalSavingsBalance -= transactions[i].amount;
     }
 }
-console.log(totalSavingsBalance);
+
 totalSavingsBalance = totalSavingsBalance.toFixed(2);
 
 const savingsBalance = document.querySelector('.savings-balance');
@@ -155,6 +155,8 @@ goalListItem.forEach(goalItem => {
 
         goalModal.classList.remove('hidden');
 
+        goalDetails.innerHTML = '';
+
         yesDelete.forEach(yesDelete => {
             yesDelete.setAttribute('id', clickedGoalId);
         })
@@ -164,11 +166,20 @@ goalListItem.forEach(goalItem => {
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
                 const goal = savingsGoals[i];
-                goalDetails.innerHTML = `
-                <div>Id: ${goal.id}</div>
-                <div>Goal Name: ${goal.name}</div>
-                <div>Goal Amount: ${goal.goalAmount}</div>
-            `;
+                const contributionsArr = goal.goalContributions;
+                console.log(goal);
+                console.log(contributionsArr);
+
+                contributionsArr.map(contribution => {
+                    console.log(contribution);
+                    const li = document.createElement('li');
+
+                    li.innerHTML = `
+                        ${contribution.amount}
+                    `;
+
+                    goalDetails.append(li);
+                })
             }
         }
     })
@@ -242,6 +253,6 @@ contributeForm.onsubmit = (e) => {
     }
 
     localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
-    
+
     location.reload();
 }
