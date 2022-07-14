@@ -84,6 +84,7 @@ savingsForm.onsubmit = (e) => {
      
     let savingsGoalSubmission = {
         id: Date.now(),
+        // goalId: ,
         name: savings_name,
         goalAmount: +goal_amount,
         goalContributions: [],
@@ -109,31 +110,45 @@ savingsGoals.map(goal => {
     goalLi.classList.add('goal-list-item');
     goalLi.setAttribute('id', goal.id);
     
-    goalLi.innerHTML = `
-    <div class="goal-content-wrapper">
-        <div class="name-and-progress-div">
-            <p>${goal.name}</p>
-            <div class="progress-div">
-                <div class="progress-bar-div">
-                    <div class="goal-amount-div">
-                        <p>$0 / $${goal.goalAmount}</p>
-                    </div>
-                    <div class="progress-bar-percentage-div">
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+    if (parseInt(goalLi.id) === goal.id) {
+        const contributions = goal.goalContributions;
+        const goalAmount = goal.goalAmount;
+        console.log(goalAmount);    
+
+        //show progress and percentage of progress
+        let totalContributions = 0;
+        let goalPercentage = 0;
+        for (let i = 0; i <= contributions.length - 1; i++) {
+            totalContributions += parseInt(contributions[i].amount);
+        }
+        goalPercentage = (totalContributions/goalAmount)*100;
+        
+        goalLi.innerHTML = `
+        <div class="goal-content-wrapper">
+            <div class="name-and-progress-div">
+                <p>${goal.name}</p>
+                <div class="progress-div">
+                    <div class="progress-bar-div">
+                        <div class="goal-amount-div">
+                            <p class="total-progress">${totalContributions}</p> / <p>$${goal.goalAmount}</p>
                         </div>
-                        <div class="progress-percentage">50%</div>
+                        <div class="progress-bar-percentage-div">
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <div class="progress-percentage">${goalPercentage}%</div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div>
+                <p>?</p>
+            </div>
         </div>
-        <div>
-            <p>?</p>
-        </div>
-    </div>
-    `;
-    
-    goalList.append(goalLi);
+        `;
+        
+        goalList.append(goalLi);
+    }
 });
 
 if (!savingsGoals.length) {
@@ -170,8 +185,8 @@ goalListItem.forEach(goalItem => {
                 console.log(goal);
                 console.log(contributionsArr);
 
+                //map through contributions and create a list of them
                 contributionsArr.map(contribution => {
-                    console.log(contribution);
                     const li = document.createElement('li');
 
                     li.innerHTML = `
@@ -256,3 +271,5 @@ contributeForm.onsubmit = (e) => {
 
     location.reload();
 }
+
+//Get percentage of savings progress
