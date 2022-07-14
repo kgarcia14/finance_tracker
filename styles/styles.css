@@ -631,6 +631,10 @@ nav {
   width: 80%;
 }
 
+.goal-amount-div {
+  display: flex;
+}
+
 .progress-bar-div {
   width: 100%;
   display: flex;
