@@ -559,9 +559,6 @@ closeTransactions.forEach(closeTransaction => {
         allTransactionDetailsModal.classList.add('hidden');
         goalModal.classList.add('hidden');
 
-        // yesDelete.forEach(yesDelete => {
-        //     yesDelete.removeAttribute('id');
-        // })
         editTransaction.forEach(editTransaction => {
             editTransaction.removeAttribute('id');
         })
