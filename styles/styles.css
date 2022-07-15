@@ -635,6 +635,17 @@ nav {
   display: flex;
 }
 
+.total-progress-p-div {
+  display: flex;
+  color: #333;
+  font-size: .85rem;
+  margin-top: 8px;
+}
+
+.total-progress {
+  
+}
+
 .progress-bar-div {
   width: 100%;
   display: flex;
@@ -682,6 +693,10 @@ nav {
 
 .goal-li-wrapper {
   display: flex;
+}
+
+.goal-details-and-buttons {
+  width: 225px;
 }
 
 .delete-contribution-btn {

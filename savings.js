@@ -43,14 +43,12 @@ for(let i = 0; i <= transactions.length - 1; i++) {
     }
 }
 
-totalSavingsBalance = totalSavingsBalance.toFixed(2);
-
-const savingsBalance = document.querySelector('.savings-balance');
-if (totalSavingsBalance < 0) {
-    savingsBalance.innerHTML = `- $ ${totalSavingsBalance.replace('-', '')}`
-} else {
-    savingsBalance.innerHTML = `$ ${totalSavingsBalance}`
-}
+// const savingsBalance = document.querySelector('.savings-balance');
+// if (totalSavingsBalance < 0) {
+//     savingsBalance.innerHTML = `- $ ${totalSavingsBalance.replace('-', '')}`
+// } else {
+//     savingsBalance.innerHTML = `$ ${totalSavingsBalance}`
+// }
 
 //Create Savings Goals
 const addGoalBtn = document.querySelector('.add-savings-goal-btn');
@@ -129,7 +127,9 @@ savingsGoals.map(goal => {
                     <div class="progress-div">
                         <div class="progress-bar-div">
                             <div class="goal-amount-div">
-                                <p class="total-progress">${totalContributions}</p> / <p>$${goal.goalAmount}</p>
+                                <div class="total-progress-p-div">
+                                    <p class="total-progress">${totalContributions}</p> / <p>$${goal.goalAmount}</p>
+                                </div>
                                 </div>
                                 <div class="progress-bar-percentage-div">
                                 <div class="progress-bar">
@@ -298,6 +298,34 @@ contributeBtn.addEventListener('click', () => {
     contributeModal.classList.remove('hidden');
 })
 
+//Add and subtract when adding and removing goal contributions.
+let allContributions = [];
+let totalContributions = 0;
+savingsGoals.map(savingsGoal => {
+    const contributions = savingsGoal.goalContributions;
+
+    contributions.forEach(contribution => {
+        allContributions.push(contribution.amount);
+        console.log(allContributions)
+
+    })
+})
+
+for (let i = 0; i <= allContributions.length - 1; i++) {
+    totalContributions += parseInt(allContributions[i]);
+    console.log(totalContributions);
+}
+
+totalSavingsBalance = (totalSavingsBalance - totalContributions).toFixed(2);
+console.log(totalSavingsBalance);
+
+const savingsBalance = document.querySelector('.savings-balance');
+if (totalSavingsBalance < 0) {
+    savingsBalance.innerHTML = `- $ ${totalSavingsBalance.replace('-', '')}`
+} else {
+    savingsBalance.innerHTML = `$ ${totalSavingsBalance}`
+}
+
 contributeForm.onsubmit = (e) => {
     e.preventDefault();
 
@@ -308,16 +336,21 @@ contributeForm.onsubmit = (e) => {
         amount: contributionAmount,
     }
 
-    for (let i = 0; i <= savingsGoals.length - 1; i++) {
-        if (savingsGoals[i].id === parseInt(contributeBtn.id)) {
-            console.log(savingsGoals[i]);
-            savingsGoals[i].goalContributions.push(contributionObj);
+    if (parseInt(totalContributions) + parseInt(contributionAmount) > parseInt(totalSavingsBalance)) {
+        alert('You will need to transfer more money into savings for this.');
+    } else {
+        for (let i = 0; i <= savingsGoals.length - 1; i++) {
+            if (savingsGoals[i].id === parseInt(contributeBtn.id)) {
+                console.log(savingsGoals[i]);
+    
+                savingsGoals[i].goalContributions.push(contributionObj);
+            }
         }
+
+        localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
+
+        location.reload();
     }
-
-    localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
-
-    location.reload();
 }
 
 
