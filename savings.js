@@ -169,7 +169,7 @@ savingsGoals.map(goal => {
 if (!savingsGoals.length) {
    goalList.innerHTML = `
         <p class="start-adding-transactions">Start Adding Savings Goals!!!</p>
-    `
+    `;
 }
 
 //Display savings goal details
@@ -196,7 +196,7 @@ goalListItem.forEach(goalItem => {
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
                 const goal = savingsGoals[i];
-                const contributionsArr = goal.goalContributions;
+                let contributionsArr = goal.goalContributions;
                 console.log(goal);
                 console.log(contributionsArr);
 
@@ -205,11 +205,44 @@ goalListItem.forEach(goalItem => {
                     const li = document.createElement('li');
 
                     li.innerHTML = `
-                        Contribution: $${contribution.amount}
+                        <div class="goal-li-wrapper">
+                            <p>Contribution: $${contribution.amount}</p>
+                            <button id="${contribution.id}" type="button" class="delete-contribution-btn">Remove</button>
+                        </div>
                     `;
 
                     goalDetails.append(li);
+
+                    //Delete contributions functionality 
+                    const deleteContribution = document.querySelectorAll('.delete-contribution-btn');
+
+                    deleteContribution.forEach(deleteContribution => {
+                        deleteContribution.addEventListener('click', () => {
+                            if (contribution.id === parseInt(deleteContribution.id)) {
+                                console.log(contribution, deleteContribution.id);
+                                let newContributionsArr = [...contributionsArr];
+                                const indexOfGoal = newContributionsArr.findIndex(contribution => {
+                                    return contribution.id === parseInt(deleteContribution.id);
+                                })
+
+                                if (indexOfGoal !== -1) {
+                                    newContributionsArr.splice(indexOfGoal, 1);
+                                    contributionsArr = newContributionsArr;
+                                    goal.goalContributions = contributionsArr;
+                                    localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
+                                }
+                                console.log(contributionsArr);
+                                location.reload();
+                            }
+                        })
+                    })
                 })
+
+                if (!contributionsArr.length) {
+                    goalDetails.innerHTML = `
+                        <p>You have not contributed to this goal yet!<p>
+                    `;
+                }
             }
         }
     })
