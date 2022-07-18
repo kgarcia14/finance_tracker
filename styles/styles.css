@@ -669,6 +669,7 @@ nav {
   height: 5px;
   background-color: #00d100;
   border-radius: 10px;
+  transition: 1s;
 }
 
 .progress-percentage {
