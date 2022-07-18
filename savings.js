@@ -43,12 +43,6 @@ for(let i = 0; i <= transactions.length - 1; i++) {
     }
 }
 
-// const savingsBalance = document.querySelector('.savings-balance');
-// if (totalSavingsBalance < 0) {
-//     savingsBalance.innerHTML = `- $ ${totalSavingsBalance.replace('-', '')}`
-// } else {
-//     savingsBalance.innerHTML = `$ ${totalSavingsBalance}`
-// }
 
 //Create Savings Goals
 const addGoalBtn = document.querySelector('.add-savings-goal-btn');
@@ -152,16 +146,31 @@ savingsGoals.map(goal => {
         const progress = document.querySelectorAll('.progress');
         const goalComplete = document.querySelectorAll('.goal-complete');
 
-        progress.forEach(progress => {
-            if (goalLi.id === progress.id && goalLi.id === progress.id) {
-                progress.style.width = `${goalPercentage}%`;
+        const navBtns = document.querySelectorAll('.not-savings');
 
-                goalComplete.forEach(goalComplete => {
-                    if (goalPercentage >= 100 && goalLi.id === goalComplete.id) {
-                        goalComplete.innerHTML = '🎉';
+        navBtns.forEach(navBtn => {
+            navBtn.addEventListener('click', () => {
+                progress.forEach(progress => {
+                    progress.style.width = `0`;
+                })
+            })
+        })
+        
+        savingsBtn.addEventListener('click', () => {
+            const progressFunctionality = () => {
+                progress.forEach(progress => {
+                    if (goalLi.id === progress.id && goalLi.id === progress.id) {
+                        progress.style.width = `${goalPercentage}%`;
+        
+                        goalComplete.forEach(goalComplete => {
+                            if (goalPercentage >= 100 && goalLi.id === goalComplete.id) {
+                                goalComplete.innerHTML = '🎉';
+                            }
+                        })
                     }
                 })
             }
+            setTimeout(progressFunctionality, 150)
         })
     }
 });
