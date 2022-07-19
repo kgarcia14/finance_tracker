@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1" maximum-scale>
     <title>Finance Tracker</title>
     <script src="https://kit.fontawesome.com/6ca788691e.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
@@ -62,10 +63,19 @@
                 </div>
                 <div class="expenses-overview-icons-wrapper">
                     <ul class="expenses-overview-icons-list">
-                        <li class="expenses-overview-icon"><i class="fa-solid fa-utensils overview-icon"></i></li>
-                        <li class="expenses-overview-icon"><i class="fa-solid fa-bag-shopping overview-icon"></i></li>
-                        <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-car"></i></li>
-                        <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-house"></i></li>
+                        <div class="overview-circle">
+                            <li class="expenses-overview-icon"><i class="fa-solid fa-utensils overview-icon"></i></li>
+                        </div>
+                        <div class="overview-circle">
+                            <li class="expenses-overview-icon"><i class="fa-solid fa-bag-shopping overview-icon"></i></li>
+                        </div>
+                        <div class="overview-circle">
+                            <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-car"></i></li>
+                        </div>
+                        <div class="overview-circle">
+                            <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-house"></i></li>
+                        </div>
+                        
                     </ul>
                 </div>
             </div>
@@ -155,7 +165,9 @@
     </div>
     <!-- Statistics Page -->
     <div class="statistics-page hidden">
-        STATISTICS
+        <div class="chart">
+            <canvas id="myChart"></canvas>
+        </div>
     </div>
     <!-- Savings Page -->
     <div class="savings-page hidden">
@@ -390,4 +402,5 @@
 <script src="transactions.js"></script>
 <script src="statistics.js"></script>
 <script src="savings.js"></script>
+
 </html>
