@@ -345,7 +345,7 @@ contributeForm.onsubmit = (e) => {
         amount: contributionAmount,
     }
 
-    if (parseInt(totalContributions) + parseInt(contributionAmount) > parseInt(totalSavingsBalance)) {
+    if (parseInt(contributionAmount) > parseInt(totalSavingsBalance)) {
         alert('You will need to transfer more money into savings for this.');
     } else {
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
@@ -361,5 +361,7 @@ contributeForm.onsubmit = (e) => {
         location.reload();
     }
 }
+
+console.log(totalSavingsBalance);
 
 
