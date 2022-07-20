@@ -279,6 +279,15 @@ expenseBalance = expenseBalance.toFixed(2);
 const expenseOverviewBalance = document.querySelector('.expenses-overview-balance');
 expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
+//calculate income balance
+let incomeBalance = 0;
+for(let i = 0; i <= transactions.length - 1; i++) {
+    if (transactions[i].type === 'deposit') {
+        incomeBalance += transactions[i].amount;
+    }
+}
+incomeBalance = incomeBalance.toFixed(2);
+
 
 //display 10 most recent transactions on home page
 //map through transactions to display each transaction

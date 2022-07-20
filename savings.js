@@ -36,6 +36,7 @@ transferForm.onsubmit = (e) => {
 
 };
 
+
 let totalSavingsBalance = 0;
 for(let i = 0; i <= transactions.length - 1; i++) {
     if (transactions[i].type === 'toSavings' || transactions[i].type === 'fromSavings') {
@@ -153,6 +154,9 @@ savingsGoals.map(goal => {
                 progress.forEach(progress => {
                     progress.style.width = `0`;
                 })
+                goalComplete.forEach(goalComplete => {
+                    goalComplete.style.transform = '';
+                })
             })
         })
         
@@ -165,6 +169,7 @@ savingsGoals.map(goal => {
                         goalComplete.forEach(goalComplete => {
                             if (goalPercentage >= 100 && goalLi.id === goalComplete.id) {
                                 goalComplete.innerHTML = '🎉';
+                                goalComplete.style.transform = 'rotate(360deg)';
                             }
                         })
                     }
@@ -362,6 +367,4 @@ contributeForm.onsubmit = (e) => {
     }
 }
 
-console.log(totalSavingsBalance);
-
-
+localStorage.setItem('totalSavings', totalSavingsBalance);
