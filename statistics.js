@@ -1,10 +1,6 @@
 'use strict';
 
-const labels = [
-    'January',
-    'February',
-    
-];
+let savingsBalanceStats = localStorage.getItem('totalSavings');
 
 const data = {
     labels: [
@@ -13,12 +9,11 @@ const data = {
         'Savings',
     ],
     datasets: [{
-      label: 'My First Dataset',
-      data: [60, 50, 100],
+      data: [parseInt(expenseBalance), parseInt(incomeBalance), parseInt(savingsBalanceStats)],
       backgroundColor: [
+        '#E56372',
         '#6488E5',
         '#F9BE7D',
-        '#E56372',
       ],
       hoverOffset: 4
     }]

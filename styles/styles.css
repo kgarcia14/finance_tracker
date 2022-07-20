@@ -149,6 +149,7 @@ body {
   justify-content: center;
   align-items: center;
   border: 1px solid #e8e8e8;
+  border-radius: 50%;
 }
 
 .overview-icon {
@@ -718,6 +719,7 @@ nav {
 
 .goal-complete {
   padding-right: 20px;
+  transition: 1s;
 }
 
 .chart-container {
