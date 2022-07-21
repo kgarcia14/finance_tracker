@@ -367,4 +367,5 @@ contributeForm.onsubmit = (e) => {
     }
 }
 
-localStorage.setItem('totalSavings', totalSavingsBalance);
+const totalSavingsAndContributions = parseInt(totalSavingsBalance) + parseInt(totalContributions);
+localStorage.setItem('totalSavings', totalSavingsAndContributions);
