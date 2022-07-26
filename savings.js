@@ -29,11 +29,10 @@ transferForm.onsubmit = (e) => {
             transactions.push(transferSubmission);
             console.log(transactions)
             localStorage.setItem('data', JSON.stringify(transactions));
-        
+            
             location.reload();
         }
     }
-
 };
 
 
