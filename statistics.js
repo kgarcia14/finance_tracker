@@ -1,6 +1,7 @@
 'use strict';
 
 let savingsBalanceStats = localStorage.getItem('totalSavings');
+console.log(savingsBalanceStats);
 
 const data = {
     labels: [
@@ -28,3 +29,41 @@ const myChart = new Chart(
     document.getElementById('myChart'),
     config
 );
+
+
+//Filter transactions for card stats amount and display amount
+const foodCardAmount = document.querySelector('.food-card-amount');
+const shoppingCardAmount = document.querySelector('.shopping-card-amount');
+const transportationCardAmount = document.querySelector('.transportation-card-amount');
+const householdCardAmount = document.querySelector('.household-card-amount');
+const savingsCardAmount = document.querySelector('.savings-card-amount');
+
+
+let foodAmount = 0;
+let shoppingAmount = 0;
+let transportationAmount = 0;
+let householdAmount = 0;
+for (let i = 0; i <= transactions.length - 1; i++) {
+    if (transactions[i].category === 'Food') {
+      foodAmount += transactions[i].amount;
+      console.log(foodAmount);
+      foodCardAmount.innerHTML = `$ ${foodAmount}`;
+    }
+    if (transactions[i].category === 'Shopping') {
+      shoppingAmount += transactions[i].amount;
+      console.log(shoppingAmount);
+      shoppingCardAmount.innerHTML = `$ ${shoppingAmount}`;
+    }
+    if (transactions[i].category === 'Transportation' || transactions[i].category === 'Gas') {
+      transportationAmount += transactions[i].amount;
+      console.log(transportationAmount);
+      transportationCardAmount.innerHTML = `$ ${transportationAmount}`;
+    } 
+    if (transactions[i].category === 'Home' || transactions[i].category === 'Bills') {
+      householdAmount += transactions[i].amount;
+      console.log(householdAmount);
+      householdCardAmount.innerHTML = `$ ${householdAmount}`;
+    } 
+    
+    savingsCardAmount.innerHTML = `$ ${savingsBalanceStats}`;
+}
