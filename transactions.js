@@ -106,10 +106,22 @@ allTransactionsListItem.forEach(transactionItem => {
                 
                 allTransactionDetails.innerHTML = `
                     <ul>
-                        <li><p>Amount:</p> <p>${transaction.amount}</p></li>
-                        <li><p>Date:</p> <p>${transaction.date}</p></li>
-                        <li><p>Merchant:</p> <p>${transaction.store}</p></li>
-                        <li><p>Category:</p> <p>${transaction.category}</p></li>
+                        <li>
+                            <p>Amount:</p> 
+                            <p>${transaction.amount}</p>
+                        </li>
+                        <li>
+                            <p>Date:</p> 
+                            <p>${transaction.date}</p>
+                        </li>
+                        <li>
+                            <p>${transaction.store === 'Deposit' ? 'Category:' : transaction.type === 'toSavings' ||  transaction.type === 'fromSavings' ? '' : 'Merchant:'}</p> 
+                            <p>${transaction.type === 'toSavings' ||  transaction.type === 'fromSavings' ? '' : transaction.store}</p>
+                        </li>
+                        <li>
+                            <p>${transaction.store === 'Deposit' ? 'Type:' : 'Category:'}</p> 
+                            <p>${transaction.type === 'toSavings' ? 'To Savings' : transaction.type === 'fromSavings' ? 'From Savings' : transaction.category}</p>
+                        </li>
                     </ul>
                 `
             }
