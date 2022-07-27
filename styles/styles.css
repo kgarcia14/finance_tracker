@@ -742,8 +742,8 @@ nav {
 }
 
 .stats-card {
-  height: 185px;
-  min-width: 185px;
+  height: 175px;
+  min-width: 175px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -804,8 +804,4 @@ nav {
 
 .disable-click {
   pointer-events: none;
-}
-
-@media screen and (min-width: 414px) {
-  
 }
