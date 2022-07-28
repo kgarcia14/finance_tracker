@@ -753,7 +753,7 @@ nav {
 
 .chart {
   width: 75%;
-  max-width: 450px;
+  max-width: 350px;
 }
 
 .stats-card-container {
@@ -843,5 +843,11 @@ nav {
   .inputs-label-wrapper {
     display: flex;
     flex-direction: column;
+  }
 }
+
+@media screen and (min-width: 1050px) {
+  .stats-card-container {
+    justify-content: center;
+  }
 }
