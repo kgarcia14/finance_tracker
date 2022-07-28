@@ -191,14 +191,14 @@ body {
 }
 
 .modal {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 20px 0;
-    margin-bottom: 80px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 10px 0;
+  margin-bottom: 60px;
 }
 
 .modal-content {
@@ -258,7 +258,7 @@ body {
 .inputs-label-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    margin: 5px 0;
 }
 
 .input-label {
@@ -742,8 +742,8 @@ nav {
 }
 
 .stats-card {
-  height: 175px;
-  min-width: 175px;
+  height: 185px;
+  min-width: 185px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -804,4 +804,23 @@ nav {
 
 .disable-click {
   pointer-events: none;
+}
+
+@media screen and (min-width: 360px) {
+  .modal {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 20px 0;
+    margin-bottom: 80px;
+  }
+
+  .inputs-label-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
 }
