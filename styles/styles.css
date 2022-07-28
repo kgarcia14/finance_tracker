@@ -282,6 +282,10 @@ body {
     border-radius: 20px;
 }
 
+.submit-btn {
+  margin-top: 8px;
+}
+
 .add-expense-btn {
   color: #FF7D8C;
   font-size: 1rem;
@@ -821,6 +825,5 @@ nav {
   .inputs-label-wrapper {
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
 }
 }
