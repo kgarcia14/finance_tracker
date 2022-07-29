@@ -279,6 +279,46 @@ expenseBalance = expenseBalance.toFixed(2);
 const expenseOverviewBalance = document.querySelector('.expenses-overview-balance');
 expenseOverviewBalance.innerHTML = `- $ ${expenseBalance.replace('-', '')}`;
 
+//Calculate and display percentages for expense overview
+const foodPercent = document.querySelector('.food-percent');
+const shoppingPercent = document.querySelector('.shopping-percent');
+const transportationPercent = document.querySelector('.transportation-percent');
+const householdPercent = document.querySelector('.household-percent');
+
+let foodTotal = 0;
+let foodPercentage = 0;
+let shoppingTotal = 0
+let shoppingPercentage = 0;
+let transportationTotal = 0;
+let transportationPercentage = 0;
+let householdTotal = 0;
+let householdPercentage = 0;
+for (let i = 0; i <= transactions.length - 1; i++) {
+    if (transactions[i].category === 'Food') {
+        foodTotal += transactions[i].amount;
+    }
+    if (transactions[i].category === 'Shopping') {
+        shoppingTotal += transactions[i].amount;
+    }
+    if (transactions[i].category === 'Transportation' || transactions[i].category === 'Gas') {
+        transportationTotal += transactions[i].amount;
+    }
+    if (transactions[i].category === 'Household' || transactions[i].category === 'Bills') {
+        householdTotal += transactions[i].amount;
+    }
+}
+
+foodPercentage = Math.round((foodTotal/expenseBalance) * 100);
+shoppingPercentage = Math.round((shoppingTotal/expenseBalance) * 100);
+transportationPercentage = Math.round((transportationTotal/expenseBalance) * 100);
+householdPercentage = Math.round((householdTotal/expenseBalance) * 100);
+
+foodPercent.innerHTML = `${foodPercentage}%`;
+shoppingPercent.innerHTML = `${shoppingPercentage}%`;
+transportationPercent.innerHTML = `${transportationPercentage}%`;
+householdPercent.innerHTML = `${householdPercentage}%`;
+
+
 //calculate income balance
 let incomeBalance = 0;
 for(let i = 0; i <= transactions.length - 1; i++) {
