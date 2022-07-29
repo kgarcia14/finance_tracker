@@ -307,7 +307,7 @@ for (let i = 0; i <= transactions.length - 1; i++) {
         householdTotal += transactions[i].amount;
     }
 }
-console.log(foodTotal, shoppingTotal, transportationTotal, householdTotal);
+console.log(foodTotal, shoppingTotal, transportationTotal, householdTotal, parseInt(expenseBalance));
 
 foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
 shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
