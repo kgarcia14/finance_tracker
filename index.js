@@ -307,11 +307,12 @@ for (let i = 0; i <= transactions.length - 1; i++) {
         householdTotal += transactions[i].amount;
     }
 }
+console.log(foodTotal, shoppingTotal, transportationTotal, householdTotal);
 
-foodPercentage = Math.round((foodTotal/expenseBalance) * 100);
-shoppingPercentage = Math.round((shoppingTotal/expenseBalance) * 100);
-transportationPercentage = Math.round((transportationTotal/expenseBalance) * 100);
-householdPercentage = Math.round((householdTotal/expenseBalance) * 100);
+foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
+shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
+transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
+householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
 
 foodPercent.innerHTML = `${foodPercentage}%`;
 shoppingPercent.innerHTML = `${shoppingPercentage}%`;
