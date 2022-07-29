@@ -303,7 +303,7 @@ for (let i = 0; i <= transactions.length - 1; i++) {
     if (transactions[i].category === 'Transportation' || transactions[i].category === 'Gas') {
         transportationTotal += transactions[i].amount;
     }
-    if (transactions[i].category === 'Household' || transactions[i].category === 'Bills') {
+    if (transactions[i].category === 'Home' || transactions[i].category === 'Bills') {
         householdTotal += transactions[i].amount;
     }
 }
