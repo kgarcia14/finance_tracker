@@ -108,7 +108,7 @@ body {
   width: 95%;
   max-width: 500px;
   height: 170px;
-  margin-top: 230px;
+  margin-top: 15px;
 }
 
 .expenses-overview-wrapper {
@@ -391,8 +391,8 @@ nav {
   color: #6488e5;
 }
 
-.transactions-page, .statistics-page, .savings-page {
-  margin-top: 50px;
+.home-page, .transactions-page, .statistics-page, .savings-page {
+  margin-top: 215px;
 }
 
 .transactions-container {
@@ -403,7 +403,6 @@ nav {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 230px;
 }
 
 .savings-goals-container {
@@ -412,7 +411,6 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 160px;
 }
 
 .transactions-list-container, .all-transactions-list-container, .savings-goals-list-container {
@@ -729,6 +727,7 @@ nav {
 
 .goal-li-wrapper {
   display: flex;
+  justify-content: space-between;
 }
 
 .goal-details-and-buttons {
@@ -739,6 +738,7 @@ nav {
   background: none;
   border: none;
   color: #E56372;
+  margin-right: 10px;
 }
 
 .goal-complete {
@@ -747,7 +747,6 @@ nav {
 }
 
 .chart-container {
-  margin-top: 230px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -756,6 +755,7 @@ nav {
 .chart {
   width: 75%;
   max-width: 350px;
+  margin-top: 15px;
 }
 
 .stats-card-container {

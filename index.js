@@ -341,7 +341,6 @@ tenRecentTransactions.map(transaction => {
     transactionLi.classList.add('transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', transaction.id);
     let transactionAmount = transaction.amount.toFixed(2);
-    // console.log(transactions);
 
     transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
