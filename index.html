@@ -63,23 +63,26 @@
                 </div>
                 <div class="expenses-overview-icons-wrapper">
                     <ul class="expenses-overview-icons-list">
-                        <div class="overview-circle">
+                        <div class="circle-container">
+                            <div id="food-circle"></div>
                             <li class="expenses-overview-icon"><i class="fa-solid fa-utensils overview-icon"></i></li>
                             <p class="food-percent"></p>
                         </div>
-                        <div class="overview-circle">
+                        <div class="circle-container">
+                            <div id="shopping-circle"></div>
                             <li class="expenses-overview-icon"><i class="fa-solid fa-bag-shopping overview-icon"></i></li>
                             <p class="shopping-percent"></p>
                         </div>
-                        <div class="overview-circle">
+                        <div class="circle-container">
+                            <div id="transportation-circle"></div>
                             <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-car"></i></li>
                             <p class="transportation-percent"></p>
                         </div>
-                        <div class="overview-circle">
+                        <div class="circle-container">
+                            <div id="household-circle"></div>
                             <li class="expenses-overview-icon overview-icon"><i class="fa-solid fa-house"></i></li>
                             <p class="household-percent"></p>
                         </div>
-                        
                     </ul>
                 </div>
             </div>
@@ -435,6 +438,7 @@
         </ul>
     </nav>
 </body>
+<script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
 <script src="index.js"></script>
 <script src="transactions.js"></script>
 <script src="statistics.js"></script>
