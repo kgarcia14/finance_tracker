@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 * {
   margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: #f3f3f3;
   color: #333;
 }
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: center;
   font-size: 2.3rem;
-  color: #E56372;
+  color: #e56372;
   width: 40px;
 }
 
@@ -26,7 +26,7 @@ body {
   justify-content: center;
   font-size: 2.3rem;
   width: 40px;
-  color: #0F9D58;
+  color: #0f9d58;
 }
 
 .transfer-transaction-icon {
@@ -47,6 +47,7 @@ body {
   align-items: flex-end;
   border-radius: 0 0 20px 20px;
   background-color: #6488e5;
+  z-index: 1;
 }
 
 .header {
@@ -69,7 +70,8 @@ body {
   font-weight: 400;
 }
 
-.total-balance-container, .savings-balance-container {
+.total-balance-container,
+.savings-balance-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -80,14 +82,16 @@ body {
   box-shadow: rgb(63 61 86) 0px 8px 20px -9px;
 }
 
-.total-balance-wrapper, .savings-balance-wrapper {
+.total-balance-wrapper,
+.savings-balance-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 90%;
 }
 
-.cash-available, .savings-available {
+.cash-available,
+.savings-available {
   font-size: 0.7rem;
   color: #9e9e9e;
   margin-top: 5px;
@@ -107,7 +111,7 @@ body {
   justify-content: center;
   width: 95%;
   max-width: 500px;
-  height: 170px;
+  height: 185px;
   margin-top: 15px;
 }
 
@@ -123,8 +127,8 @@ body {
 }
 
 .expenses-dollar-sign {
-    color: #E56372;
-    margin-right: 5px;
+  color: #e56372;
+  margin-right: 5px;
 }
 
 .expense-overview {
@@ -134,7 +138,7 @@ body {
 }
 
 .expenses-overview-balance {
-    color: #E56372;
+  color: #e56372;
 }
 
 .expenses-overview-icons-list {
@@ -145,15 +149,34 @@ body {
   margin-top: 30px;
 }
 
-.overview-circle {
-  width: 80px;
-  height: 80px;
+#food-circle {
+  width: 70px;
+  position: absolute;
+}
+
+#shopping-circle {
+  width: 70px;
+  position: absolute;
+  color: #e6e6e6;
+}
+
+#transportation-circle {
+  width: 70px;
+  position: absolute;
+}
+
+#household-circle {
+  width: 70px;
+  position: absolute;
+}
+
+.circle-container {
+  width: 70px;
+  height: 70px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  border: 1px solid #e8e8e8;
-  border-radius: 50%;
+  align-items: center;
 }
 
 .overview-icon {
@@ -161,7 +184,14 @@ body {
   color: #fff;
   -webkit-text-stroke: 1px #e56372;
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: px;
+}
+
+.food-percent,
+.shopping-percent,
+.transportation-percent,
+.household-percent {
+  font-size: 0.89rem;
 }
 
 .transactions-container {
@@ -170,36 +200,42 @@ body {
   justify-content: center;
 }
 
-.transactions-wrapper, .all-transactions-wrapper {
-    width: 95%;
-    max-width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.transactions-wrapper,
+.all-transactions-wrapper {
+  width: 95%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.transactions-label, .savings-goals-label {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin: 20px 0 20px 0;
-}
-
-.transactions, .savings-goals {
-    width: 90%;
-    color: #9e9e9e;
+.transactions-label,
+.savings-goals-label {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0 20px 0;
 }
 
-.modal-overlay, .edit-modal-overlay, .savings-modal-overlay, .contribute-modal-overlay {
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position:fixed;
-    width: 100%;
-    height: 100vh;
-    background-color:rgba(0, 0, 0, 0.4);
+.transactions,
+.savings-goals {
+  width: 90%;
+  color: #9e9e9e;
+}
+
+.modal-overlay,
+.edit-modal-overlay,
+.savings-modal-overlay,
+.contribute-modal-overlay {
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal {
@@ -215,12 +251,12 @@ body {
 }
 
 .modal-content {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .expense-deposit-btn {
@@ -237,41 +273,41 @@ body {
 }
 
 .active-expense-btn {
-    width: 50%;
-    height: 45px;
-    border: none;
-    border-radius: 20px;
-    color: #fff;
-    background-color: #6488e5;
+  width: 50%;
+  height: 45px;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #6488e5;
 }
 
 .gray-btn {
-    width: 50%;
-    height: 45px;
-    border: none;
-    border-radius: 20px;
-    color: #fff;
-    background-color: #dadee7;
+  width: 50%;
+  height: 45px;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  background-color: #dadee7;
 }
 
 .inactive-deposit-btn {
-    width: 50%;
-    height: 45px;
-    border: none;
-    border-radius: 20px;
-    background: none;
+  width: 50%;
+  height: 45px;
+  border: none;
+  border-radius: 20px;
+  background: none;
 }
 
 .inputs-wrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .inputs-label-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 5px 0;
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
 }
 
 .input-label {
@@ -279,20 +315,20 @@ body {
 }
 
 .form-inputs {
-    width: 100%;
-    height: 45px;
-    border: 1px solid #6488e5;
-    border-radius: 20px;
-    background: none;
-    padding: 0 20px 0 20px;
+  width: 100%;
+  height: 45px;
+  border: 1px solid #6488e5;
+  border-radius: 20px;
+  background: none;
+  padding: 0 20px 0 20px;
 }
 
 .modal-btn {
-    width: 50%;
-    height: 45px;
-    background-color: #6488e5;
-    border: none;
-    border-radius: 20px;
+  width: 50%;
+  height: 45px;
+  background-color: #6488e5;
+  border: none;
+  border-radius: 20px;
 }
 
 .submit-btn {
@@ -300,12 +336,12 @@ body {
 }
 
 .add-expense-btn {
-  color: #FF7D8C;
+  color: #ff7d8c;
   font-size: 1rem;
 }
 
 .add-deposit-btn {
-  color: #00E300;
+  color: #00e300;
   font-size: 1rem;
 }
 
@@ -391,7 +427,10 @@ nav {
   color: #6488e5;
 }
 
-.home-page, .transactions-page, .statistics-page, .savings-page {
+.home-page,
+.transactions-page,
+.statistics-page,
+.savings-page {
   margin-top: 215px;
 }
 
@@ -413,7 +452,9 @@ nav {
   align-items: center;
 }
 
-.transactions-list-container, .all-transactions-list-container, .savings-goals-list-container {
+.transactions-list-container,
+.all-transactions-list-container,
+.savings-goals-list-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -449,7 +490,9 @@ nav {
   margin-bottom: 70px;
 }
 
-.transaction-list-item, .all-transaction-list-item, .goal-list-item {
+.transaction-list-item,
+.all-transaction-list-item,
+.goal-list-item {
   border-radius: 20px;
   width: 100%;
   height: 95px;
@@ -460,7 +503,8 @@ nav {
   background-color: #fff;
 }
 
-.transaction-icon, .transaction-list-item-amount {
+.transaction-icon,
+.transaction-list-item-amount {
   pointer-events: none;
 }
 
@@ -480,8 +524,8 @@ nav {
 }
 
 .transaction-subtitle {
-  color: #9E9E9E;
-  font-size: .8rem;
+  color: #9e9e9e;
+  font-size: 0.8rem;
   margin-top: 8px;
 }
 
@@ -500,14 +544,16 @@ nav {
 }
 
 .expense-list-item-amount {
-  color: #E56372;
+  color: #e56372;
 }
 
 .deposit-list-item-amount {
-  color: #0F9D58;
+  color: #0f9d58;
 }
 
-.transaction-details-modal, .all-transaction-details-modal, .goal-details-modal {
+.transaction-details-modal,
+.all-transaction-details-modal,
+.goal-details-modal {
   height: 100vh;
   width: 100%;
   display: flex;
@@ -519,7 +565,8 @@ nav {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-.transaction-details-wrapper, .all-transaction-details-wrapper {
+.transaction-details-wrapper,
+.all-transaction-details-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -531,16 +578,19 @@ nav {
   background-color: #fff;
   border-radius: 20px;
 }
-.transaction-details, .all-transaction-details {
+.transaction-details,
+.all-transaction-details {
   width: 100%;
 }
-.transaction-details ul, .all-transaction-details ul {
+.transaction-details ul,
+.all-transaction-details ul {
   width: 100%;
   list-style-type: none;
   margin: 20px 0;
 }
 
-.transaction-details ul li, .all-transaction-details ul li {
+.transaction-details ul li,
+.all-transaction-details ul li {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -566,7 +616,7 @@ nav {
 
 .yes-delete {
   border: none;
-  background: #E56372;
+  background: #e56372;
   color: #fff;
   padding: 5px 20px 5px 20px;
   border-radius: 5px;
@@ -582,7 +632,7 @@ nav {
   margin: 15px 0 0 10px;
 }
 
-.active-nav-btn{
+.active-nav-btn {
   -webkit-text-stroke: 1px #6488e5;
 }
 
@@ -592,7 +642,8 @@ nav {
   color: #8d8d8d;
 }
 
-.edit-transaction, .contribute-btn {
+.edit-transaction,
+.contribute-btn {
   background: #6488e5;
   color: #fff;
   padding: 5px 20px;
@@ -605,9 +656,10 @@ nav {
   display: flex;
 }
 
-.delete-btn, .goal-delete-btn {
+.delete-btn,
+.goal-delete-btn {
   background: none;
-  color: #E56372;
+  color: #e56372;
   border: none;
   font-size: 20px;
 }
@@ -670,12 +722,11 @@ nav {
 .total-progress-p-div {
   display: flex;
   color: #9e9e9e;
-  font-size: .8rem;
+  font-size: 0.8rem;
   margin-top: 8px;
 }
 
 .total-progress {
-  
 }
 
 .progress-bar-div {
@@ -737,7 +788,7 @@ nav {
 .delete-contribution-btn {
   background: none;
   border: none;
-  color: #E56372;
+  color: #e56372;
   margin-right: 10px;
 }
 
@@ -775,7 +826,7 @@ nav {
   border-radius: 20px;
   color: #fff;
   padding-left: 25px;
-  transition: .35s;
+  transition: 0.35s;
 }
 
 .stats-card:hover {
@@ -794,29 +845,27 @@ nav {
 }
 
 .card-amount {
-
 }
 
 .food-card {
-  background-color: #45B8AC;
+  background-color: #798ea4;
 }
 
 .shopping-card {
-  background-color: #6488e5;
+  background-color: #45b8ac;
 }
 
 .transportation-card {
-  background-color: #FF7D8C;
+  background-color: #939597;
 }
 
 .household-card {
-  background-color: #DFCFBE;
+  background-color: #dfcfbe;
 }
 
 .savings-card {
-  background-color: #F9BE7D;
+  background-color: #f9be7d;
 }
-
 
 .stats-card-container::-webkit-scrollbar {
   display: none;

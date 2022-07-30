@@ -310,6 +310,7 @@ for (let i = 0; i <= transactions.length - 1; i++) {
 console.log(foodTotal, shoppingTotal, transportationTotal, householdTotal, parseInt(expenseBalance));
 
 foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
+console.log(foodPercentage)
 shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
 transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
 householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
@@ -318,6 +319,55 @@ foodPercent.innerHTML = `${foodPercentage}%`;
 shoppingPercent.innerHTML = `${shoppingPercentage}%`;
 transportationPercent.innerHTML = `${transportationPercentage}%`;
 householdPercent.innerHTML = `${householdPercentage}%`;
+
+//progress circles for expense overview
+let foodCirclePercentage = foodTotal/parseInt(expenseBalance);
+console.log(foodCirclePercentage);
+let shoppingCirclePercentage = shoppingTotal/parseInt(expenseBalance);
+let transportationCirclePercentage = transportationTotal/parseInt(expenseBalance);
+let householdCirclePercentage = householdTotal/parseInt(expenseBalance);
+
+var circle = new ProgressBar.Circle('#food-circle', {
+    color: '#e56372',
+    duration: 2000,
+    easing: 'easeInOut',
+    trailColor: '#e6e6e6',
+    trailWidth: 1,
+    // strokeWidth: 6,
+    // easing: 'easeInOut',
+    // duration: 1400,
+    // color: '#FFEA82',
+    // trailColor: '#eee',
+    // trailWidth: 1,
+});
+circle.animate(foodCirclePercentage); 
+
+var circle = new ProgressBar.Circle('#shopping-circle', {
+    color: '#e56372',
+    duration: 2000,
+    easing: 'easeInOut',
+    trailColor: '#e6e6e6',
+    trailWidth: 1,
+});
+circle.animate(shoppingCirclePercentage); 
+
+var circle = new ProgressBar.Circle('#transportation-circle', {
+    color: '#e56372',
+    duration: 2000,
+    easing: 'easeInOut',
+    trailColor: '#e6e6e6',
+    trailWidth: 1,
+});
+circle.animate(transportationCirclePercentage);  
+
+var circle = new ProgressBar.Circle('#household-circle', {
+    color: '#e56372',
+    duration: 2000,
+    easing: 'easeInOut',
+    trailColor: '#e6e6e6',
+    trailWidth: 1,
+});
+circle.animate(householdCirclePercentage);  
 
 
 //calculate income balance
