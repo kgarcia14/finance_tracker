@@ -75,25 +75,21 @@ window.onload = () => {
   for (let i = 0; i <= transactions.length - 1; i++) {
       if (transactions[i].category === 'Food') {
         foodAmount += transactions[i].amount;
-        console.log(foodAmount);
-        foodCardAmount.innerHTML = `$ ${foodAmount}`;
+        foodCardAmount.innerHTML = `- $ ${JSON.stringify(foodAmount).replace('-', '')}`;
       }
       if (transactions[i].category === 'Shopping') {
         shoppingAmount += transactions[i].amount;
-        console.log(shoppingAmount);
-        shoppingCardAmount.innerHTML = `$ ${shoppingAmount}`;
+        shoppingCardAmount.innerHTML = `- $ ${JSON.stringify(shoppingAmount).replace('-', '')}`;
       }
       if (transactions[i].category === 'Transportation' || transactions[i].category === 'Gas') {
         transportationAmount += transactions[i].amount;
-        console.log(transportationAmount);
-        transportationCardAmount.innerHTML = `$ ${transportationAmount}`;
+        transportationCardAmount.innerHTML = `- $ ${JSON.stringify(transportationAmount).replace('-', '')}`;
       } 
       if (transactions[i].category === 'Home' || transactions[i].category === 'Bills') {
         householdAmount += transactions[i].amount;
-        console.log(householdAmount);
-        householdCardAmount.innerHTML = `$ ${householdAmount}`;
+        householdCardAmount.innerHTML = `- $ ${JSON.stringify(householdAmount).replace('-', '')}`;
       } 
       
-      savingsCardAmount.innerHTML = `$ ${savingsBalanceStats}`;
+      savingsCardAmount.innerHTML = `+ $ ${savingsBalanceStats}`;
   }
 }
