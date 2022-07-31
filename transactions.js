@@ -9,7 +9,6 @@ transactions.map(transaction => {
     transactionLi.classList.add('all-transaction-list-item', transaction.type);
     transactionLi.setAttribute('id', transaction.id);
     let transactionAmount = transaction.amount.toFixed(2);
-    // console.log(transactions);
 
     transactionLi.innerHTML = `
             <div class="transaction-content-wrapper">
@@ -96,13 +95,9 @@ allTransactionsListItem.forEach(transactionItem => {
             editDepositForm.setAttribute('id', `${clickedTransactionId}`);
         })
 
-        console.log(clickedTransactionId);
-
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
                 const transaction = transactions[i];
-                // clickedTransaction.classList.remove(transaction.type);
-                console.log(clickedTransaction);
                 
                 allTransactionDetails.innerHTML = `
                     <ul>

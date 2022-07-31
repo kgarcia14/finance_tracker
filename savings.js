@@ -27,7 +27,6 @@ transferForm.onsubmit = (e) => {
             modal.classList.toggle('hidden');
         } else {
             transactions.push(transferSubmission);
-            console.log(transactions)
             localStorage.setItem('data', JSON.stringify(transactions));
             
             location.reload();
@@ -66,7 +65,6 @@ if(localStorage.getItem('savingsData') === null) {
 }
 
 let savingsGoals = JSON.parse(localStorage.getItem('savingsData'));
-console.log(savingsGoals);
 
 savingsForm.onsubmit = (e) => {
     e.preventDefault();
@@ -83,7 +81,6 @@ savingsForm.onsubmit = (e) => {
     }
 
     savingsGoals.push(savingsGoalSubmission);
-    console.log(savingsGoals);
 
     localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
     
@@ -210,8 +207,6 @@ goalListItem.forEach(goalItem => {
             if (savingsGoals[i].id === parseInt(clickedGoalId)) {
                 const goal = savingsGoals[i];
                 let contributionsArr = goal.goalContributions;
-                console.log(goal);
-                console.log(contributionsArr);
 
                 //map through contributions and create a list of them
                 contributionsArr.map(contribution => {
@@ -232,7 +227,6 @@ goalListItem.forEach(goalItem => {
                     deleteContribution.forEach(deleteContribution => {
                         deleteContribution.addEventListener('click', () => {
                             if (contribution.id === parseInt(deleteContribution.id)) {
-                                console.log(contribution, deleteContribution.id);
                                 let newContributionsArr = [...contributionsArr];
                                 const indexOfGoal = newContributionsArr.findIndex(contribution => {
                                     return contribution.id === parseInt(deleteContribution.id);
@@ -244,7 +238,6 @@ goalListItem.forEach(goalItem => {
                                     goal.goalContributions = contributionsArr;
                                     localStorage.setItem('savingsData', JSON.stringify(savingsGoals));
                                 }
-                                console.log(contributionsArr);
                                 location.reload();
                             }
                         })
@@ -319,18 +312,14 @@ savingsGoals.map(savingsGoal => {
 
     contributions.forEach(contribution => {
         allContributions.push(contribution.amount);
-        console.log(allContributions)
-
     })
 })
 
 for (let i = 0; i <= allContributions.length - 1; i++) {
     totalContributions += parseInt(allContributions[i]);
-    console.log(totalContributions);
 }
 
 totalSavingsBalance = (totalSavingsBalance - totalContributions).toFixed(2);
-console.log(totalSavingsBalance);
 
 const savingsBalance = document.querySelector('.savings-balance');
 if (totalSavingsBalance < 0) {
@@ -354,8 +343,6 @@ contributeForm.onsubmit = (e) => {
     } else {
         for (let i = 0; i <= savingsGoals.length - 1; i++) {
             if (savingsGoals[i].id === parseInt(contributeBtn.id)) {
-                console.log(savingsGoals[i]);
-    
                 savingsGoals[i].goalContributions.push(contributionObj);
             }
         }
