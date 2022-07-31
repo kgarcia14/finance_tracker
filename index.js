@@ -327,7 +327,7 @@ let householdCirclePercentage = householdTotal/parseInt(expenseBalance);
 var circle = new ProgressBar.Circle('#food-circle', {
     color: '#e56372',
     strokeWidth: 1.5,
-    duration: 1300,
+    duration: 1400,
     easing: 'easeInOut',
     trailColor: '#e6e6e6',
 });
@@ -336,7 +336,7 @@ circle.animate(foodCirclePercentage);
 var circle = new ProgressBar.Circle('#shopping-circle', {
     color: '#e56372',
     strokeWidth: 1.5,
-    duration: 1300,
+    duration: 1400,
     easing: 'easeInOut',
     trailColor: '#e6e6e6',
     trailWidth: 1,
@@ -346,7 +346,7 @@ circle.animate(shoppingCirclePercentage);
 var circle = new ProgressBar.Circle('#transportation-circle', {
     color: '#e56372',
     strokeWidth: 1.5,
-    duration: 1300,
+    duration: 1400,
     easing: 'easeInOut',
     trailColor: '#e6e6e6',
     trailWidth: 1,
@@ -356,7 +356,7 @@ circle.animate(transportationCirclePercentage);
 var circle = new ProgressBar.Circle('#household-circle', {
     color: '#e56372',
     strokeWidth: 1.5,
-    duration: 1300,
+    duration: 1400,
     easing: 'easeInOut',
     trailColor: '#e6e6e6',
     trailWidth: 1,
