@@ -203,7 +203,6 @@ expenseForm.onsubmit = (e) => {
         enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
     } else {
         transactions.push(expenseSubmission);
-        console.log(transactions);
     
         localStorage.setItem('data', JSON.stringify(transactions));
     
@@ -238,7 +237,6 @@ depositForm.onsubmit = (e) => {
         enableNavClick([homeBtn, transactionsBtn, addTransactionBtn, chartBtn, savingsBtn]);
     } else {
         transactions.push(depositSubmission);
-        console.log(transactions);
     
         localStorage.setItem('data', JSON.stringify(transactions));
         
@@ -307,13 +305,13 @@ for (let i = 0; i <= transactions.length - 1; i++) {
         householdTotal += transactions[i].amount;
     }
 }
-console.log(foodTotal, shoppingTotal, transportationTotal, householdTotal, parseInt(expenseBalance));
 
-foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
-console.log(foodPercentage)
-shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
-transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
-householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
+if (transactions.length) {
+    foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
+    shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
+    transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
+    householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
+}
 
 foodPercent.innerHTML = `${foodPercentage}%`;
 shoppingPercent.innerHTML = `${shoppingPercentage}%`;
@@ -322,7 +320,6 @@ householdPercent.innerHTML = `${householdPercentage}%`;
 
 //progress circles for expense overview
 let foodCirclePercentage = foodTotal/parseInt(expenseBalance);
-console.log(foodCirclePercentage);
 let shoppingCirclePercentage = shoppingTotal/parseInt(expenseBalance);
 let transportationCirclePercentage = transportationTotal/parseInt(expenseBalance);
 let householdCirclePercentage = householdTotal/parseInt(expenseBalance);
@@ -467,7 +464,6 @@ const editDepositForm = document.querySelectorAll('.edit-deposit-form');
 
 transactionsListItem.forEach(transactionItem => {
     transactionItem.addEventListener('click', () => {
-        console.log(transactionItem.id);
         const clickedTransaction = transactionItem;
         const clickedTransactionId = transactionItem.id;
 
@@ -483,14 +479,10 @@ transactionsListItem.forEach(transactionItem => {
         editDepositForm.forEach(editDepositForm => {
             editDepositForm.setAttribute('id', `${clickedTransactionId}`);
         })
-        
-        console.log(clickedTransaction);
-        console.log(clickedTransactionId);
 
         for (let i = 0; i <= transactions.length - 1; i++) {
             if (transactions[i].id === parseInt(clickedTransactionId)) {
                 const transaction = transactions[i];
-                console.log(clickedTransaction);
                 
                 transactionDetails.innerHTML = `
                     <ul>
@@ -564,7 +556,6 @@ editTransaction.forEach(editTransaction => {
                 editExpenseForm.classList.remove('hidden');
                 transactions.forEach(transaction => {
                     if (transaction.id === parseFloat(editExpenseForm.id)) {
-                        console.log(transaction);
                         let edit_expense_date = document.getElementById('edit_expense_date');
                         let edit_expense_amount = document.getElementById('edit_expense_amount');
                         let edit_expense_store = document.getElementById('edit_expense_store');
@@ -585,7 +576,6 @@ editTransaction.forEach(editTransaction => {
                 editDepositForm.classList.remove('hidden');
                 transactions.forEach(transaction => {
                     if (transaction.id === parseFloat(editDepositForm.id)) {
-                        console.log(transaction);
                         let edit_deposit_date = document.getElementById('edit_deposit_date');
                         let edit_deposit_amount = document.getElementById('edit_deposit_amount');
                         let edit_deposit_store = document.getElementById('edit_deposit_type');
@@ -618,7 +608,6 @@ editExpenseForm.forEach(editExpenseForm => {
         } else {
             for (let i = 0; i <= transactions.length - 1; i++) {
                 if (transactions[i].id === parseFloat(editExpenseForm.id)) {
-                    console.log(transactions[i]);
                     transactions[i].date = edit_expense_date;
                     transactions[i].amount = - edit_expense_amount;
                     transactions[i].store = edit_expense_store;
@@ -644,7 +633,6 @@ editDepositForm.forEach(editDepositForm => {
         } else {
             for (let i = 0; i <= transactions.length - 1; i++) {
                 if (transactions[i].id === parseInt(editDepositForm.id)) {
-                    console.log(transactions[i]);
                     transactions[i].date = edit_deposit_date;
                     transactions[i].amount = parseInt(edit_deposit_amount);
                     transactions[i].store = edit_deposit_store;
