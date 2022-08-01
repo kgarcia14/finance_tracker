@@ -304,13 +304,13 @@ for (let i = 0; i <= transactions.length - 1; i++) {
     if (transactions[i].category === 'Home' || transactions[i].category === 'Bills') {
         householdTotal += transactions[i].amount;
     }
-}
 
-if (transactions.length) {
-    foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
-    shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
-    transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
-    householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
+    if (transactions[i].type === 'expense') {
+        foodPercentage = Math.round((foodTotal/parseInt(expenseBalance)) * 100);
+        shoppingPercentage = Math.round((shoppingTotal/parseInt(expenseBalance)) * 100);
+        transportationPercentage = Math.round((transportationTotal/parseInt(expenseBalance)) * 100);
+        householdPercentage = Math.round((householdTotal/parseInt(expenseBalance)) * 100);
+    }
 }
 
 foodPercent.innerHTML = `${foodPercentage}%`;
