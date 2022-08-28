@@ -1,7 +1,7 @@
 # Finance Tracker
 ##### *[Click Here](https://financetracker.kurtisgarcia.dev) for live site*
 
-The purpose of this project is to allow users to keep track of their finances. FinanceTracker allows users to add, edit, delete, and view transactions such as deposits, expenses, and trasfer to and from the savings section. Users can also create savings goals with a target amount to contribute towards. 
+The purpose of this project is to allow users to keep track of their finances.
 
 
 ### How To Use
@@ -35,15 +35,16 @@ The purpose of this project is to allow users to keep track of their finances. F
 
     - View your savings balance.
     - Click "add" button at top right of screen to add a savings goal and goal amount.
-    - Click on 
+    - Click on goal to view goal details, contribute towards goal, or delete goal.
+    - Visualization of goal progress will be shown. Once goal is reached, a celebration emoji will animate in.
 
 
 ### Motivation
-The motivation for this project came from being around friends and wanting to try new cocktails. I thought it would be cool to add a feature where if a user clicks on a type of alcohol, they will get a list of different cocktails that include that particular type of alcohol in its recipe.
+The motivation for this project came from wanting to challenge myself to build a project working with numbers. What better way to work with numbers than to build a web application that allows a user to track their finances?
 
 
 ### Challenges and Solutions
-One of the bigger challenges I had was getting each unique cocktail to display in the popup modal when "view details" was clicked. When I would click "view details" the first cocktail in the list would show regardless of which cocktail I was selecting. I was correct in passing down the mapped cocktail object as a prop into the modal. I thought this is all i needed in order to have access to it in the modal. However, I was not passing the cocktail prop into the modal function that opens the modal when button is clicked. After hours of debugging and googling, I was able to solve this. 
+I encountered lots of challenges while working on this project. One of the bigger challenges I faced was getting the Savings Page progress bar feature to animate every time the user clicked on the Savings Page. I partly solved this issue by adding a CSS transition. This alone did not solve the issue. After slamming my head on the keyboard a couple of times (not really!), and lots of google searches, I realized I needed a setTimeout(). This problem was solved by adding a setTimeout() to the Savings Button click event listener. After the setTimeout() the progress bar element would be styled to match the percentage of the progress in addition to triggering the transition effect, therefore giving a beautiful animation of the progress each time the user goes to the Savings Page. 
 
 
 ### Screenshots
@@ -66,17 +67,13 @@ One of the bigger challenges I had was getting each unique cocktail to display i
 </div>
 
 ### Features
-- Users can search for different cocktails by cocktail name or part of cocktail name.
-- Users can view cocktail recipe in a popup modal which contains cocktail ingredients as well as directions to make the cocktail.
-- Users can search for cocktails by the type of alcohol the cocktails contain. 
-- Users can save cocktails to "favorites" as well as remove them.
-- Users are able to view application in "dark mode" for a more comfortable viewing experience.
+- Users can add, edit, delete, and view transactions such as deposits, expenses, and trasfer to and from the savings section.
+- Users can also create savings goals with a target amount to contribute towards.
 
 
 **Technologies Used:**
-- [React](https://reactjs.org/)
-- [React-Router](https://reactrouter.com/)
-- [Styled-Components](https://styled-components.com/)
-- [TheCocktailDB API](https://www.thecocktaildb.com/)
-- [Axios](https://axios-http.com/docs/intro)
-- [Material UI](https://mui.com/)
+- [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
+- [Chart.js](https://www.chartjs.org/)
+- [Progressbar.js](https://kimmobrunfeldt.github.io/progressbar.js/)
