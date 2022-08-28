@@ -35,7 +35,7 @@ The purpose of this project is to allow users to keep track of their finances. F
 
     - View your savings balance.
     - Click "add" button at top right of screen to add a savings goal and goal amount.
-    - 
+    - Click on 
 
 
 ### Motivation
