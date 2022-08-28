@@ -47,6 +47,7 @@ body {
   align-items: flex-end;
   border-radius: 0 0 20px 20px;
   background-color: #6488e5;
+  z-index: 1;
 }
 
 .header {
@@ -236,6 +237,7 @@ body {
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 3;
 }
 
 .modal {
@@ -563,6 +565,7 @@ nav {
   top: 0;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
 }
 
 .transaction-details-wrapper,
@@ -709,6 +712,7 @@ nav {
   width: 30px;
   height: 30px;
   font-size: 1.2rem;
+  z-index: 2;
 }
 
 .name-and-progress-div {
