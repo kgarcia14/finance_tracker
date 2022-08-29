@@ -1,4 +1,6 @@
 # Finance Tracker
+##### *[Click Here](https://youtu.be/BVDUV6CEojs) for demo*
+
 ##### *[Click Here](https://financetracker.kurtisgarcia.dev) for live site*
 
 The purpose of this project is to allow users to keep track of their finances and create savings goals!
